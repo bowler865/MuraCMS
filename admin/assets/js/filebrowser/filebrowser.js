@@ -1106,7 +1106,7 @@ config: {
   Vue.component('imageeditmenu', {
     props: ["currentFile","currentIndex","imageEditTarget"],
     template: `
-       <div class="fileviewer-modal">
+       <div>
        <div v-if="this.editmode  == 'RESIZE'" class="fileviewer-image" id="imagediv" :style="{ 'background-image': 'url(' + encodeURI(currentFile.url) + '?' + Math.ceil(Math.random()*100000) + ')' }"></div>
        <div v-if="this.editmode == ''" class="fileviewer-image-edit"><img style="min-height: 100%" id="fileviewer-image-editable" :src="currentFile.url"></div>
         <div class="fileviewer-edit-menu mura-actions">
