@@ -56,12 +56,22 @@ body.compact.modal-wrapper{
     height: auto;
   }
 
-  } //compact.modal-wrapper
+} //compact.modal-wrapper
 
 .sidebar-mini .fileviewer-gallery,
 .sidebar-mini .fileviewer-modal {
   left: 0 !important;
   width: ~"calc(100% - 30px)";
+}
+
+@media (max-width: 991px){
+  .fileviewer-gallery,
+  .fileviewer-modal,
+  .sidebar-mini .fileviewer-gallery,
+  .sidebar-mini .fileviewer-modal {
+    left: 0 !important;
+    width: ~"calc(100% - 30px)";
+  }
 }
 
 #MuraFileBrowserContainer{
