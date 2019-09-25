@@ -413,8 +413,7 @@ header .btn i{
   .clearfix(); // Adding clearfix to allow for .pull-right button containers
   display: flex;
   justify-content: center;
-
-  > .btn{
+  &> .btn{
     background-color: #DEDEDE;
     border: 0;
     border-color: #BCBCBC;
@@ -433,6 +432,16 @@ header .btn i{
       }
 
     }
+
+  }
+  &> .form-actions-toolbar .btn{
+     background-color: @mura-red !important;
+      color:#FFF !important;
+
+      > i{
+        color:#fff !important;
+        opacity: .7 !important;
+      }
 
   }
 }

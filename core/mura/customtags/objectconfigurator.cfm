@@ -29,6 +29,7 @@
 		<cfparam name="attributes.params.contentcssclass" default="">
 		<cfparam name="attributes.params.contentcssid" default="">
 		<cfparam name="attributes.params.cssid" default="">
+		<cfparam name="attributes.params.hasTargetAttr" default="false">
 		<cfparam name="attributes.params.label" default="">
 		<cfparam name="attributes.params.labeltag" default="h2">
 		<cfparam name="attributes.params.object" default="">
@@ -36,7 +37,33 @@
 		<cfparam name="request.hasbasicoptions" default="false">
 		<cfparam name="request.hasmetaoptions" default="false">
 		<cfparam name="request.haspositionoptions" default="false">
-		<cfparam name="attributes.params.hasTargetAttr" default="false">
+
+
+		<cfscript>
+		request.uomdefault = "rem,em,%,px";
+		request.uomextdefault = "rem,em,vw,vh,%,px";
+		param name="request.objectlayoutuom" default=$.globalConfig().getValue(property='objectlayoutuom',defaultValue=request.uomdefault);
+		param name="request.objectlayoutuomext" default=$.globalConfig().getValue(property='objectlayoutuomext',defaultValue=request.uomextdefault);
+
+		u = request.objectlayoutuom.listToArray(',');
+		v = request.uomdefault.listToArray(',');
+		u.retainAll(v);
+		if (arrayLen(v)){
+			request.objectlayoutuom = u.toList(',');
+		} else {
+			request.objectlayoutuom = request.uomdefault;
+		}
+
+		u = request.objectlayoutuomext.listToArray(',');
+		v = request.uomextdefault.listToArray(',');
+		u.retainAll(v);
+		if (arrayLen(v)){
+			request.objectlayoutuomext = u.toList(',');
+		} else {
+			request.objectlayoutuomext = request.uomextdefault;
+		}
+
+		</cfscript>
 
 		<cfscript>
 			if(!isStruct(attributes.params)){

@@ -118,7 +118,7 @@
 												<input type="text" name="objectminheight" id="objectminheightnum" placeholder="0" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.objectstyles.minheight))>#val(esapiEncode('html_attr',attributes.params.stylesupport.objectstyles.minheight))#</cfif>">
 											</label>
 											<select id="objectminheightuom" name="objectminheightuom" class="styleSupport">
-												<cfloop list="rem,em,vw,vh,%,px" index="u">
+												<cfloop list="#request.objectlayoutuomext#" index="u">
 													<option value="#u#"<cfif attributes.params.stylesupport.objectminheightuom eq u> selected</cfif>>#u#</option>
 												</cfloop>
 											</select>
@@ -135,11 +135,11 @@
 								<div class="row mura-ui-row">
 									<div class="col-xs-12 center">
 										<div class="mura-input-group">
-											<label class="mura-serial">
+											<label sclass="mura-serial">
 												<input type="text" name="margin" id="objectmarginall" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.objectstyles.marginall))>#val(esapiEncode('html_attr',attributes.params.stylesupport.objectstyles.marginall))#</cfif>">
 											</label>
 											<select id="objectmarginuom" name="objectmarginuom" class="styleSupport">
-												<cfloop list="rem,em,%,px" index="u">
+												<cfloop list="#request.objectlayoutuom#" index="u">
 													<option value="#u#"<cfif attributes.params.stylesupport.objectmarginuom eq u> selected</cfif>>#u#</option>
 												</cfloop>
 											</select>
@@ -209,7 +209,7 @@
 												<input type="text" name="padding" id="objectpaddingall" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.objectstyles.paddingall))>#val(esapiEncode('html_attr',attributes.params.stylesupport.objectstyles.paddingall))#</cfif>">
 											</label>
 											<select id="objectpaddinguom" name="objectpaddinguom" class="styleSupport">
-												<cfloop list="rem,em,%,px" index="u">
+												<cfloop list="#request.objectlayoutuom#" index="u">
 													<option value="#u#"<cfif attributes.params.styleSupport.objectpaddinguom eq u> selected</cfif>>#u#</option>
 												</cfloop>
 											</select>
