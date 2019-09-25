@@ -335,15 +335,14 @@ body.compact.modal-wrapper{
     margin: 8px 0 18px 0;
     overflow: hidden;
     position: relative;
-    height: 150px;
-  }
-
-  .fileviewer-droptarget p {
-    color: #bdbdbd;
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: 25px;
-    text-align: center;
+    height: 60px;
+      p {
+        color: #bdbdbd;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+        padding-top: 18px;
+      }
   }
 
   .fileviewer-uploadedfiles {
@@ -373,8 +372,15 @@ body.compact.modal-wrapper{
     min-width: 400px;
   }
 
-  .upload-icon {
-    padding: 5px;
+  p.upload-icon {
+    padding: 15px 5px 5px;
+    
+    i{
+      font-size: 32px;
+      margin-right: 8px;
+      opacity: .5;
+      vertical-align: middle;
+    }
   }
 
   .filewindow-context {
@@ -402,8 +408,8 @@ body.compact.modal-wrapper{
       }
   }
 
-  .upload-icon:before {
-    content: "\f093";  /* this is your text. You can also use UTF-8 character codes as I do here */
+/*  .upload-icon:before {
+    content: "\f093"; 
     font-family: FontAwesome;
     left: -5px;
     font-size: 4em;
@@ -412,7 +418,7 @@ body.compact.modal-wrapper{
     top: 54px;
     left: 47%;
     color: #ddd;
-  }
+  }*/
 
   .download-icon {
     width: 100%;

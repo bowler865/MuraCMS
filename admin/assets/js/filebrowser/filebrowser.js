@@ -1959,7 +1959,7 @@ config: {
         <div class="fileviewer-droptarget">
           <form enctype="multipart/form-data" novalidate v-if="isStart || isSave">
             <input type="file" multiple :name="uploadField" :disabled="isSave" @change="filesChanged($event.target.name, $event.target.files);" accept="*.*" class="file-input-field">
-            <p v-if="isStart" class="upload-icon">
+            <p v-if="isStart" class="upload-icon"><i class="mi-upload"></i>
               {{settings.rb.filebrowser_draghere}}
             </p>
             <p v-if="isSave" class="download-icon">
