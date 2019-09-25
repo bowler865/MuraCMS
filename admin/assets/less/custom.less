@@ -444,6 +444,9 @@ header .btn i{
       }
 
   }
+  input, select{
+    height: 35px;
+  }
 }
 
 .block .form-actions{
@@ -532,9 +535,26 @@ body.mura-admin{
    > i{
     color: #545454;
    }
-
   }
+  
+  > label{
+    font-size: 14px;
+    margin: 5px 8px 0 0;
+  }
+
+  > input, 
+  > select,
+  > label input,
+  > label select{
+    width: auto;
+    display: inline-block;
+   }
+  
+  > label input.numeric{
+    max-width: 74px;
+   }
 }
+
 .mura-actions + .block-content{
   margin-top: 15px;
 }

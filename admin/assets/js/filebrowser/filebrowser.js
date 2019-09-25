@@ -1158,13 +1158,13 @@ config: {
                   </span>
                 </label>
               </div>
-            </div> <!-- /.form-actions-toolbar
+            </div> <!-- /.form-actions-toolbar -->
 
           </div>
           <!-- RESIZE -->
           <div class="form-actions" v-if="editmode=='RESIZE'">
-            <label>Width: <input :disabled="resizedimensions.aspect == 'height'" name="resize-width" @keyup="changedAspectWidth" v-model="resizedimensions.width"></label>
-            <label>Height: <input :disabled="resizedimensions.aspect == 'width'" name="resize-height" @keyup="changedAspectHeight" v-model="resizedimensions.height"></label>
+            <label>Width: <input class="numeric" :disabled="resizedimensions.aspect == 'height'" name="resize-width" @keyup="changedAspectWidth" v-model="resizedimensions.width"></label>
+            <label>Height: <input class="numeric" :disabled="resizedimensions.aspect == 'width'" name="resize-height" @keyup="changedAspectHeight" v-model="resizedimensions.height"></label>
             <label>Aspect:
               <select name="resize-aspect" v-model="resizedimensions.aspect" @change="changedAspect">
                 <option value="none">None</option>
