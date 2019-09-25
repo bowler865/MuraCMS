@@ -1294,10 +1294,10 @@ buttons: {
 		this.checkExtendSetTargeting();
 		setHTMLEditors("textarea.mura-html, textarea.htmlEditor");
 		setMarkdownEditors("textarea.mura-markdown, textarea.markdownEditor");
-		setDatePickers(".tab-content .datepicker", dtLocale);
-		setColorPickers(".tab-content .mura-colorpicker");
-		setFinders(".tab-content .mura-ckfinder, .tab-content .mura-finder");
-		setToolTips(".tab-content");
+		setDatePickers("#mura-content-body-block .datepicker", dtLocale);
+		setColorPickers("#mura-content-body-block .mura-colorpicker");
+		setFinders("#mura-content-body-block .mura-ckfinder, #mura-content-body-block .mura-finder");
+		setToolTips("#mura-content-body-block");
 		setFileSelectors();
 
 		var niceSelects=$('.extendset-container select');
