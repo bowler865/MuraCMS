@@ -30,6 +30,11 @@ body.modal-wrapper{
     }
 } // body.modal-wrapper
 
+.sidebar-mini .fileviewer-gallery,
+.sidebar-mini .fileviewer-modal {
+  left: 0 !important;
+  width: ~"calc(100% - 30px)";
+}
 
 #MuraFileBrowserContainer{
 
@@ -251,7 +256,7 @@ body.modal-wrapper{
     margin-left: 5px;
     min-width: 130px;
     max-width: 280px;
-    width: calc(100% - 240px);
+    width: ~"calc(100% - 240px)";
   }
 
   .ui-dialog .CodeMirror{
@@ -485,16 +490,12 @@ body.modal-wrapper{
   .fileviewer-modal {
     z-index: 100000;
     padding: 0;
-    position: fixed;
+    position: absolute;
     width: 100%;
     height: 100%;
-    left: 125px;
+    left: 0;
     top: 0;
     background-color: rgba(0, 0, 0, 0.25);
-  }
-
-  .sidebar-mini .fileviewer-modal {
-    left: 0;
   }
 
   .fileviewer-gallery {
@@ -504,7 +505,8 @@ body.modal-wrapper{
     margin: 3% auto;
     position: relative;
     padding-top: 2%;
-    width: 80%;
+    width: ~"calc(100% - 280px)";
+    left: 125px;
   }
 
   .fileviewer-image {
@@ -538,7 +540,8 @@ body.modal-wrapper{
 
   .fileviewer-edit-menu.mura-actions,
   .fileviewer-gallery-menu.mura-actions {
-    bottom: -105px;
+    bottom: -125px;
+    height: 125px;
     position: absolute;
     text-align: center;
     width: 100%;
