@@ -72,7 +72,6 @@
 	<script type="text/javascript" src="#application.configBean.getContext()#/core/vendor/ckeditor/adapters/jquery.js?coreversion=#application.coreversion#"></script>
 
 	<script src="#application.configBean.getContext()##application.configBean.getAdminDir()#/assets/js/filebrowser/filebrowser.js?coreversion=#application.coreversion#"></script>
-	<link href="#application.configBean.getContext()##application.configBean.getAdminDir()#/assets/js/filebrowser/assets/css/filebrowser.css?coreversion=#application.coreversion#" link rel="stylesheet" type="text/css"></script>
 
 	<!-- Color Picker -->
 	<script type="text/javascript" src="#application.configBean.getContext()#/core/vendor/colorpicker/js/bootstrap-colorpicker.js?coreversion=#application.coreversion#"></script>

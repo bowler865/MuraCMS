@@ -518,6 +518,7 @@ body.modal-wrapper #MuraFileBrowserContainer{
   background-repeat: no-repeat;
 }
 
+.fileviewer-edit-menu.mura-actions,
 .fileviewer-gallery-menu.mura-actions {
   bottom: -105px;
   position: absolute;
@@ -534,12 +535,13 @@ body.modal-wrapper .fileviewer-gallery-menu.mura-actions{
   padding-bottom: 6px !important;
 }
 
-.fileviewer-gallery-menu.mura-actions label{
+.fileviewer-gallery-menu.mura-actions > label{
     width: auto;
     display: inline-block;
     margin: 3px 6px 0 6px;
 }
-.fileviewer-gallery-menu.mura-actions label.fileinfo{
+mura-actions label.fileinfo,
+mura-actions label.fileinfo{
   width: 100%;
   display: block;
   margin: 0;
