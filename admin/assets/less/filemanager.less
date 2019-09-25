@@ -3,7 +3,9 @@ body.MuraFileBrowserWindow{
   background-color: #fff;
   
   .fileviewer-gallery{
-    margin-top: 1.5%;
+    margin-top: .5% !important;
+    width: 80% !important !important;
+    left: 0 !important;
   }
   
   .mura-header ul.breadcrumb{
@@ -29,6 +31,32 @@ body.modal-wrapper{
       padding-bottom: 6px !important;
     }
 } // body.modal-wrapper
+
+
+body.compact.modal-wrapper{
+
+  .fileviewer-modal{
+    left: 0 !important;
+    margin: 0 auto !important;    
+  }
+  .fileviewer-gallery{
+    height: ~"calc(90% - 125px)" !important;
+    left: 0 !important;
+    margin: 5% auto 0 !important;
+    padding-top: 12px;
+  }
+
+  #MuraFileBrowserContainer .fileviewer-edit-menu.mura-actions, 
+  #MuraFileBrowserContainer .fileviewer-gallery-menu.mura-actions{
+    height: 95px;
+    bottom: -95px
+  }
+
+  .fileviewer-image-edit {
+    height: auto;
+  }
+
+  } //compact.modal-wrapper
 
 .sidebar-mini .fileviewer-gallery,
 .sidebar-mini .fileviewer-modal {
@@ -564,29 +592,36 @@ body.modal-wrapper{
           width: 60px;
         }
       }
+
       label.fileinfo{
         width: 100%;
         display: block;
         margin: 0;
         padding: 0 0 2px 0;
       }
+
+      .form-actions > .form-actions-toolbar{
+        position: absolute;
+        top: -86px;
+      }
+  
+      .form-actions > a.btn {
+        background-color: #6f6f6f;
+        cursor: pointer;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 2;
+        margin: 6px;
+        padding: .2em 1.1em;
+        color: #fff;
+        
+        i{
+          color: #fff;
+          margin-right: 6px;
+        }
+      }
   }
 
-  .fileviewer-gallery-menu.mura-actions .form-actions > a.btn {
-    background-color: #6f6f6f;
-    cursor: pointer;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 2;
-    margin: 6px;
-    padding: .2em 1.1em;
-    color: #fff;
-    
-    i{
-      color: #fff;
-      margin-right: 6px;
-    }
-  }
 
 
   .fileviewer-gallery-menu input:disabled {

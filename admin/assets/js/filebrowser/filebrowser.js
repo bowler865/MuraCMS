@@ -1113,46 +1113,53 @@ config: {
           <label class="fileinfo">{{currentFile.fullname}} ({{currentFile.size}}kb {{currentFile.info.width}}x{{currentFile.info.height}})</label>
           <!-- MAIN -->
           <div class="form-actions" v-if="editmode==''">
-            <button class="btn mura-primary" @click="resize()"><i class="mi-expand"></i>Resize</button>
-
-            <a class="btn mura-primary btn-small" @click="zoomIn()"><i class="mi-search-plus"></i></a>
-            <a class="btn mura-primary btn-small" @click="zoomOut()"><i class="mi-search-minus"></i></a>
-
-            <a class="btn mura-primary btn-small" @click="rotateRight()"><i class="mi-rotate-right"></i></a>
-            <a class="btn mura-primary btn-small" @click="rotateLeft()"><i class="mi-rotate-left"></i></a>
-
-            <a class="btn mura-primary btn-small" @click="moveMode()"><i class="mi-move"></i></a>
-            <a class="btn mura-primary btn-small" @click="cropMode()"><i class="mi-crop"></i></a>
-
-            <div class="btn-group d-flex flex-nowrap">
-              <label class="btn btn-primary" :class="{ 'active': cropaspect == 1.3333 }">
-                <input type="radio" class="sr-only" id="cropaspect1" name="cropaspect" v-model="cropaspect" value="1.3333">
-                <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="aspectRatio: 4 / 3">
-                  4:3
-                </span>
-              </label>
-              <label class="btn btn-primary" :class="{ 'active': cropaspect == 1 }">
-                <input type="radio" class="sr-only" id="cropaspect3" name="cropaspect" v-model="cropaspect" value="1">
-                <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="aspectRatio: 1 / 1">
-                  1:1
-                </span>
-              </label>
-              <label class="btn btn-primary" :class="{ 'active': cropaspect == 0.6666 }">
-                <input type="radio" class="sr-only" id="cropaspect4" name="cropaspect" v-model="cropaspect" value="0.6666">
-                <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="aspectRatio: 2 / 3">
-                  2:3
-                </span>
-              </label>
-              <label class="btn btn-primary" :class="{ 'active': cropaspect == NaN }">
-                <input type="radio" class="sr-only" id="cropaspect5" name="cropaspect" v-model="cropaspect" value="NaN">
-                <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="aspectRatio: NaN">
-                  Free
-                </span>
-              </label>
-            </div>
-            <a class="btn mura-primary btn-small" @click="saveImage()"><i class="mi-save"></i></a>
-
+            
+            <a class="btn mura-primary" @click="resize()"><i class="mi-expand"></i>Resize</a>
+            <a class="btn mura-primary" @click="saveImage()"><i class="mi-check"></i>Confirm</a>
             <a class="btn" @click="cancel()"><i class="mi-ban"></i>Cancel</a>
+            
+            <div class="form-actions-toolbar">
+
+              <div class="btn-group d-flex flex-nowrap">
+                <a class="btn mura-primary" title="Zoom In" @click="zoomIn()"><i class="mi-search-plus"></i></a>
+                <a class="btn mura-primary" title="Zoom Out" @click="zoomOut()"><i class="mi-search-minus"></i></a>
+                <a class="btn mura-primary" title="Rotate Right" @click="rotateRight()"><i class="mi-rotate-right"></i></a>
+                <a class="btn mura-primary" title="Rotate Left" @click="rotateLeft()"><i class="mi-rotate-left"></i></a>
+              </div>
+
+              <div class="btn-group d-flex flex-nowrap">
+                <a class="btn mura-primary" title="Move" @click="moveMode()"><i class="mi-move"></i></a>
+                <a class="btn mura-primary" title="Crop" @click="cropMode()"><i class="mi-crop"></i></a>
+              </div>
+
+              <div class="btn-group d-flex flex-nowrap">
+                <label class="btn mura-primary" title="Aspect Ratio: 4/3" :class="{ 'active': cropaspect == 1.3333 }">
+                  <input type="radio" class="sr-only" id="cropaspect1" name="cropaspect" v-model="cropaspect" value="1.3333">
+                  <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="aspectRatio: 4 / 3">
+                    4:3
+                  </span>
+                </label>
+                <label class="btn mura-primary" title="Aspect Ratio: 2/3" :class="{ 'active': cropaspect == 0.6666 }">
+                  <input type="radio" class="sr-only" id="cropaspect4" name="cropaspect" v-model="cropaspect" value="0.6666">
+                  <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="aspectRatio: 2 / 3">
+                    2:3
+                  </span>
+                </label>
+                <label class="btn mura-primary" title="Aspect Ratio: Square" :class="{ 'active': cropaspect == 1 }">
+                  <input type="radio" class="sr-only" id="cropaspect3" name="cropaspect" v-model="cropaspect" value="1">
+                  <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="aspectRatio: 1 / 1">
+                    1:1
+                  </span>
+                </label>
+                <label class="btn mura-primary" title="Free Selection" :class="{ 'active': cropaspect == NaN }">
+                  <input type="radio" class="sr-only" id="cropaspect5" name="cropaspect" v-model="cropaspect" value="NaN">
+                  <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="aspectRatio: NaN">
+                    Free
+                  </span>
+                </label>
+              </div>
+            </div> <!-- /.form-actions-toolbar
+
           </div>
           <!-- RESIZE -->
           <div class="form-actions" v-if="editmode=='RESIZE'">
