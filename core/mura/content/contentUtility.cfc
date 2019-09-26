@@ -1210,7 +1210,7 @@ and parentID is null
 		<cfquery datasource="#variables.configBean.getReadOnlyDatasource()#" name="rs"  username="#variables.configBean.getReadOnlyDbUsername()#" password="#variables.configBean.getReadOnlyDbPassword()#">
 			select * from tcontentobjects where params like <cfqueryparam value="%#jsonFind#%" cfsqltype="cf_sql_varchar"> and siteID = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.siteID#"/>
 		</cfquery>
-
+	
 		<cfloop query="rs">
 			<cfset newParams = replaceNoCase(rs.params,"#jsonFind#","#jsonReplace#","ALL")>
 			<cfquery datasource="#variables.configBean.getDatasource()#" username="#variables.configBean.getDBUsername()#" password="#variables.configBean.getDBPassword()#">

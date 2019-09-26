@@ -1273,8 +1273,13 @@
 			function(){ 
 				$(this).removeClass('open'); 
 			});
-
-			window.configuratorInited=true;
+			//wait to tell the listener to start reacting to allow setup js to fire
+			setTimeout(
+				function(){
+					window.configuratorInited=true;
+				},
+				1000
+			)
 		});
 	</script>
 	</cfif>
