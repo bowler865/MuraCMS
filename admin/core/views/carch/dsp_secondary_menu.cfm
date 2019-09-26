@@ -207,100 +207,112 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 	<!--- all other content types (!= form, components, remote var) --->
 	<cfdefaultcase>
 		<cfswitch expression="#rc.originalfuseaction#">
+
 			<cfcase value="edit,update">
 
 				<cfif rc.contentid neq "">
+					<!--- subnavigation for custom entities --->
 					<cfsavecontent variable="customEntitiesNav">
-					<cfset started=false>
-					<cfoutput>
+						<cfset started=false>
+						<cfoutput>
+							<div class="btn-group">
+								<a class="btn dropdown-toggle" data-toggle="dropdown" href="##">
+									<i class="mi-cubes"></i> Custom Entities
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu drop-right">
+									<cfset hasManyArray=rc.contentBean.getHasManyPropArray()>
+									<cfloop array="#hasManyArray#" index="i">
+										<cfif structKeyExists(i,'scaffold') and i.scaffold>
+											<cfset started=true>
+											<cfset beanInstance=rc.$.getBean(i.cfc)>
+											<li><a href="./?muraAction=cArch.list&activeTab=2&entityid=#esapiEncode('url',rc.contentid)#&entityname=content&siteid=#esapiEncode('url',rc.siteid)#&relatesto=#esapiEncode('url',i.cfc)#"><i class="mi-cube"></i> #esapiEncode('html',beanInstance.pluralizeHasRefName(beanInstance.getEntityDisplayName()))#</a></li>
+										</cfif>
+									</cfloop>
+									<cfset hasOneArray=rc.contentBean.getHasOnePropArray()>
+									<cfloop array="#hasOneArray#" index="i">
+										<cfif structKeyExists(i,'scaffold') and i.scaffold>
+											<cfset started=true>
+											<cfset beanInstance=rc.$.getBean(i.cfc)>
+											<li><a href="./?muraAction=cArch.list&activeTab=2&entityid=#esapiEncode('url',rc.contentid)#&entityname=content&siteid=#esapiEncode('url',rc.siteid)#&relatesto=#esapiEncode('url',i.cfc)#"><i class="mi-cube"></i> #esapiEncode('html',beanInstance.pluralizeHasRefName(beanInstance.getEntityDisplayName()))# #beanInstance.getEntityDisplayName()#</a></li>
+										</cfif>
+									</cfloop>
+								</ul>
+							</div>
+						</cfoutput>
+					</cfsavecontent>
+					<cfif started>#customEntitiesNav#</cfif>
+
+					<!--- Start Actions Nav --->
 					<div class="btn-group">
-							<a class="btn dropdown-toggle" data-toggle="dropdown" href="##">
-								<i class="mi-cubes"></i> Custom Entities
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu drop-right">
-						<cfset hasManyArray=rc.contentBean.getHasManyPropArray()>
-						<cfloop array="#hasManyArray#" index="i">
-							<cfif structKeyExists(i,'scaffold') and i.scaffold>
-									<cfset started=true>
-									<cfset beanInstance=rc.$.getBean(i.cfc)>
-									<li><a href="./?muraAction=cArch.list&activeTab=2&entityid=#esapiEncode('url',rc.contentid)#&entityname=content&siteid=#esapiEncode('url',rc.siteid)#&relatesto=#esapiEncode('url',i.cfc)#"><i class="mi-cube"></i> #esapiEncode('html',beanInstance.pluralizeHasRefName(beanInstance.getEntityDisplayName()))#</a></li>
-							</cfif>
-						</cfloop>
-						<cfset hasOneArray=rc.contentBean.getHasOnePropArray()>
-						<cfloop array="#hasOneArray#" index="i">
-							<cfif structKeyExists(i,'scaffold') and i.scaffold>
-								<cfset started=true>
-								<cfset beanInstance=rc.$.getBean(i.cfc)>
-								<li><a href="./?muraAction=cArch.list&activeTab=2&entityid=#esapiEncode('url',rc.contentid)#&entityname=content&siteid=#esapiEncode('url',rc.siteid)#&relatesto=#esapiEncode('url',i.cfc)#"><i class="mi-cube"></i> #esapiEncode('html',beanInstance.pluralizeHasRefName(beanInstance.getEntityDisplayName()))# #beanInstance.getEntityDisplayName()#</a></li>
-							</cfif>
-						</cfloop>
-					</ul>
-					</div>
-				</cfoutput>
-				</cfsavecontent>
-				<cfif started>#customEntitiesNav#</cfif>
-				<div class="btn-group">
 					  <a class="btn dropdown-toggle" data-toggle="dropdown" href="##">
 					    <i class="mi-cogs"></i> Actions
 					    <span class="caret"></span>
 					  </a>
 					  <ul class="dropdown-menu drop-right">
-				<cfif (rc.contentBean.getfilename() neq '' or rc.contentid eq '00000000000000000000000000000000001')>
-					<!---<cfswitch expression="#rc.type#">
-					<cfcase value="Page,Folder,Calendar,Gallery">--->
-						<!---<li><a href="#rc.contentBean.getURL(secure=rc.$.getBean('utility').isHTTPs(),complete=1)#"><i class="mi-eye"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.view")#</a></li>--->
-						<li><a href="#rc.contentBean.getURL(secure=rc.$.getBean('utility').isHTTPs(),complete=1,queryString='previewid=#rc.contentBean.getContentHistID()#')#"><i class="mi-eye"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.viewversion")#</a></li>
-					<!---</cfcase>
-					<cfcase value="File">
-						<!---<li><a href="##" href="##" onclick="return preview('#rc.contentBean.getURL(secure=rc.$.getBean('utility').isHTTPs(),complete=1)#');"><i class="mi-eye"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.view")#</a></li>--->
-						<li><a href="##" href="##" onclick="return preview('#application.settingsManager.getSite(rc.siteid).getResourcePath(complete=1)#/index.cfm/_api/render/file/?fileID=#rc.contentBean.getFileID()#');"><i class="mi-eye"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.viewversion")#</a></li>
-					</cfcase>
-					</cfswitch>--->
+					 
+					  	<!--- View this Version --->
+							<cfif (rc.contentBean.getfilename() neq '' or rc.contentid eq '00000000000000000000000000000000001')>
+								<!---<cfswitch expression="#rc.type#">
+								<cfcase value="Page,Folder,Calendar,Gallery">--->
+									<!---<li><a href="#rc.contentBean.getURL(secure=rc.$.getBean('utility').isHTTPs(),complete=1)#"><i class="mi-eye"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.view")#</a></li>--->
+									<li><a href="#rc.contentBean.getURL(secure=rc.$.getBean('utility').isHTTPs(),complete=1,queryString='previewid=#rc.contentBean.getContentHistID()#')#"><i class="mi-eye"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.viewversion")#</a></li>
+								<!---</cfcase>
+								<cfcase value="File">
+									<!---<li><a href="##" href="##" onclick="return preview('#rc.contentBean.getURL(secure=rc.$.getBean('utility').isHTTPs(),complete=1)#');"><i class="mi-eye"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.view")#</a></li>--->
+									<li><a href="##" href="##" onclick="return preview('#application.settingsManager.getSite(rc.siteid).getResourcePath(complete=1)#/index.cfm/_api/render/file/?fileID=#rc.contentBean.getFileID()#');"><i class="mi-eye"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.viewversion")#</a></li>
+								</cfcase>
+								</cfswitch>--->
+							</cfif>
+
+							<!--- Version History --->
+							<li>
+								<a href="./?muraAction=cArch.hist&amp;contentid=#esapiEncode('url',rc.contentid)#&amp;type=#esapiEncode('url',rc.type)#&amp;parentid=#esapiEncode('url',rc.parentid)#&amp;topid=#esapiEncode('url',rc.topid)#&amp;siteid=#esapiEncode('url',rc.siteid)#&amp;startrow=#esapiEncode('url',rc.startrow)#&amp;moduleid=#esapiEncode('url',rc.moduleid)#&amp;compactDisplay=#esapiEncode('url',rc.compactdisplay)#">
+									<i class="mi-history"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.versionhistory")#
+								</a>
+							</li>
+
+							<!--- Audit Trail --->
+							<li>
+								<a href="./?muraAction=cArch.audit&amp;contentid=#esapiEncode('url',rc.contentid)#&amp;contenthistid=#rc.contentBean.getContentHistID()#&amp;type=#esapiEncode('url',rc.type)#&amp;parentid=#esapiEncode('url',rc.parentid)#&amp;topid=#esapiEncode('url',rc.topid)#&amp;siteid=#esapiEncode('url',rc.siteid)#&amp;startrow=#esapiEncode('url',rc.startrow)#&amp;moduleid=#esapiEncode('url',rc.moduleid)#&amp;compactDisplay=#esapiEncode('url',rc.compactdisplay)#">
+									<i class="mi-tasks"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.audittrail")#
+								</a>
+							</li>
+
+							<!--- Export Node --->
+							<li>
+								<a href="?muraAction=cArch.export&amp;siteid=#esapiEncode('url',rc.siteid)#&amp;contentid=#esapiEncode('url',rc.contentid)#">
+									<i class="mi-sign-out"></i> #esapiEncode('html',application.rbFactory.getKeyValue(session.rb,"sitemanager.content.exportnode"))#
+								</a>
+							</li>
+
+							<!--- Import Node --->
+							<li>
+								<a href="?muraAction=cArch.import&amp;contentid=#esapiEncode('url',rc.contentid)#&amp;moduleid=#esapiEncode('url',rc.moduleid)#&amp;siteid=#esapiEncode('url',rc.siteid)#">
+									<i class="mi-sign-in"></i> #esapiEncode('html',application.rbFactory.getKeyValue(session.rb,"sitemanager.content.importnode"))#
+								</a>
+							</li>
+
+							<!--- Delete Version --->
+							<cfif rc.compactDisplay neq 'true' and rc.contentBean.getactive()lt 1 and (rc.perm neq 'none') and not isLockedBySomeoneElse>
+								<li><a href="./?muraAction=cArch.update&contenthistid=#esapiEncode('url',rc.contenthistid)#&action=delete&contentid=#esapiEncode('url',rc.contentid)#&type=#esapiEncode('url',rc.type)#&parentid=#esapiEncode('url',rc.parentid)#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteid)#&startrow=#esapiEncode('url',rc.startrow)#&moduleid=#esapiEncode('url',rc.moduleid)#&return=#rc.return##rc.$.renderCSRFTokens(context=rc.contenthistid & 'delete',format='url')#" onclick="return confirmDialog('#esapiEncode('javascript',application.rbFactory.getKeyValue(session.rb,"sitemanager.content.deleteversionconfirm"))#',this.href)"><i class="mi-trash"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.deleteversion")#</a></li>
+							</cfif>
+
+							<!--- Permissions --->
+							<cfif (listFind(session.mura.memberships,'Admin;#application.settingsManager.getSite(rc.siteid).getPrivateUserPoolID()#;0') or listFind(session.mura.memberships,'S2'))>
+								<li><a href="./?muraAction=cPerm.main&contentid=#esapiEncode('url',rc.contentid)#&type=#rc.contentBean.gettype()#&parentid=#rc.contentBean.getparentID()#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteid)#&moduleid=#esapiEncode('url',rc.moduleid)#&startrow=#esapiEncode('url',rc.startrow)#"><i class="mi-group"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.permissions")#</a></li>
+							</cfif>
+
+							<!--- Delete --->
+							<cfif rc.deletable and not isLockedBySomeoneElse>
+								<li><a href="./?muraAction=cArch.update&action=deleteall&contentid=#esapiEncode('url',rc.contentid)#&type=#esapiEncode('url',rc.type)#&parentid=#esapiEncode('url',rc.parentid)#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteid)#&startrow=#esapiEncode('url',rc.startrow)#&moduleid=#esapiEncode('url',rc.moduleid)##rc.$.renderCSRFTokens(context=rc.contentid & 'deleteall',format='url')#"
+								<cfif listFindNoCase(nodeLevelList,rc.contentBean.getType())>onclick="return confirmDialog('#esapiEncode('javascript',application.rbFactory.getResourceBundle(session.rb).messageFormat(application.rbFactory.getKeyValue(session.rb,'sitemanager.content.deletecontentrecursiveconfirm'),rc.contentBean.getMenutitle()))#',this.href)"<cfelse>onclick="return confirmDialog('#esapiEncode('javascript',application.rbFactory.getKeyValue(session.rb,"sitemanager.content.deletecontentconfirm"))#',this.href)"</cfif>><i class="mi-trash"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.deletecontent")#</a></li>
+							</cfif>
+						</ul>
+					</div>
 				</cfif>
-
-				<!--- Version History --->
-				<li>
-					<a href="./?muraAction=cArch.hist&amp;contentid=#esapiEncode('url',rc.contentid)#&amp;type=#esapiEncode('url',rc.type)#&amp;parentid=#esapiEncode('url',rc.parentid)#&amp;topid=#esapiEncode('url',rc.topid)#&amp;siteid=#esapiEncode('url',rc.siteid)#&amp;startrow=#esapiEncode('url',rc.startrow)#&amp;moduleid=#esapiEncode('url',rc.moduleid)#&amp;compactDisplay=#esapiEncode('url',rc.compactdisplay)#">
-						<i class="mi-history"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.versionhistory")#
-					</a>
-				</li>
-
-				<!--- Audit Trail --->
-				<li>
-					<a href="./?muraAction=cArch.audit&amp;contentid=#esapiEncode('url',rc.contentid)#&amp;contenthistid=#rc.contentBean.getContentHistID()#&amp;type=#esapiEncode('url',rc.type)#&amp;parentid=#esapiEncode('url',rc.parentid)#&amp;topid=#esapiEncode('url',rc.topid)#&amp;siteid=#esapiEncode('url',rc.siteid)#&amp;startrow=#esapiEncode('url',rc.startrow)#&amp;moduleid=#esapiEncode('url',rc.moduleid)#&amp;compactDisplay=#esapiEncode('url',rc.compactdisplay)#">
-						<i class="mi-tasks"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.audittrail")#
-					</a>
-				</li>
-
-				<!--- Export Node --->
-				<li>
-					<a href="?muraAction=cArch.export&amp;siteid=#esapiEncode('url',rc.siteid)#&amp;contentid=#esapiEncode('url',rc.contentid)#">
-						<i class="mi-sign-out"></i> #esapiEncode('html',application.rbFactory.getKeyValue(session.rb,"sitemanager.content.exportnode"))#
-					</a>
-				</li>
-
-				<!--- Import Node --->
-				<li>
-					<a href="?muraAction=cArch.import&amp;contentid=#esapiEncode('url',rc.contentid)#&amp;moduleid=#esapiEncode('url',rc.moduleid)#&amp;siteid=#esapiEncode('url',rc.siteid)#">
-						<i class="mi-sign-in"></i> #esapiEncode('html',application.rbFactory.getKeyValue(session.rb,"sitemanager.content.importnode"))#
-					</a>
-				</li>
-
-				<cfif rc.compactDisplay neq 'true' and rc.contentBean.getactive()lt 1 and (rc.perm neq 'none') and not isLockedBySomeoneElse>
-					<li><a href="./?muraAction=cArch.update&contenthistid=#esapiEncode('url',rc.contenthistid)#&action=delete&contentid=#esapiEncode('url',rc.contentid)#&type=#esapiEncode('url',rc.type)#&parentid=#esapiEncode('url',rc.parentid)#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteid)#&startrow=#esapiEncode('url',rc.startrow)#&moduleid=#esapiEncode('url',rc.moduleid)#&return=#rc.return##rc.$.renderCSRFTokens(context=rc.contenthistid & 'delete',format='url')#" onclick="return confirmDialog('#esapiEncode('javascript',application.rbFactory.getKeyValue(session.rb,"sitemanager.content.deleteversionconfirm"))#',this.href)"><i class="mi-trash"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.deleteversion")#</a></li>
-				</cfif>
-
-				<cfif (listFind(session.mura.memberships,'Admin;#application.settingsManager.getSite(rc.siteid).getPrivateUserPoolID()#;0') or listFind(session.mura.memberships,'S2'))>
-					<li><a href="./?muraAction=cPerm.main&contentid=#esapiEncode('url',rc.contentid)#&type=#rc.contentBean.gettype()#&parentid=#rc.contentBean.getparentID()#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteid)#&moduleid=#esapiEncode('url',rc.moduleid)#&startrow=#esapiEncode('url',rc.startrow)#"><i class="mi-group"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.permissions")#</a></li>
-				</cfif>
-				<cfif rc.deletable and not isLockedBySomeoneElse>
-					<li><a href="./?muraAction=cArch.update&action=deleteall&contentid=#esapiEncode('url',rc.contentid)#&type=#esapiEncode('url',rc.type)#&parentid=#esapiEncode('url',rc.parentid)#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteid)#&startrow=#esapiEncode('url',rc.startrow)#&moduleid=#esapiEncode('url',rc.moduleid)##rc.$.renderCSRFTokens(context=rc.contentid & 'deleteall',format='url')#"
-					<cfif listFindNoCase(nodeLevelList,rc.contentBean.getType())>onclick="return confirmDialog('#esapiEncode('javascript',application.rbFactory.getResourceBundle(session.rb).messageFormat(application.rbFactory.getKeyValue(session.rb,'sitemanager.content.deletecontentrecursiveconfirm'),rc.contentBean.getMenutitle()))#',this.href)"<cfelse>onclick="return confirmDialog('#esapiEncode('javascript',application.rbFactory.getKeyValue(session.rb,"sitemanager.content.deletecontentconfirm"))#',this.href)"</cfif>><i class="mi-trash"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.deletecontent")#</a></li>
-				</cfif>
-				</div>
-			</cfif>
 			</cfcase>
+
 			<cfcase value="hist,audit">
 
 				<cfif rc.contentBean.exists()>
@@ -310,26 +322,26 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 						<span class="caret"></span>
 					  </a>
 				  <ul class="dropdown-menu drop-right">
-				<cfif rc.originalfuseaction eq 'hist'>
-					<!--- Clear Version History --->
-					<cfif rc.perm neq 'none' and not isLockedBySomeoneElse>
-						<li>
-							<a href="./?muraAction=cArch.update&action=deletehistall&contentid=#esapiEncode('url',rc.contentid)#&type=#esapiEncode('url',rc.type)#&parentid=#esapiEncode('url',rc.parentid)#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteid)#&startrow=#esapiEncode('url',rc.startrow)#&moduleid=#esapiEncode('url',rc.moduleid)#&compactDisplay=#esapiEncode('url',rc.compactdisplay)##rc.$.renderCSRFTokens(context=rc.contentid & 'deletehistall',format='url')#" onclick="return confirmDialog('#esapiEncode('javascript',application.rbFactory.getKeyValue(session.rb,'sitemanager.content.clearversionhistoryconfirm'))#',this.href)">
-								<i class="mi-eraser"></i> #application.rbFactory.getKeyValue(session.rb,'sitemanager.content.clearversionhistory')#
-							</a>
-						</li>
+					<cfif rc.originalfuseaction eq 'hist'>
+						<!--- Clear Version History --->
+						<cfif rc.perm neq 'none' and not isLockedBySomeoneElse>
+							<li>
+								<a href="./?muraAction=cArch.update&action=deletehistall&contentid=#esapiEncode('url',rc.contentid)#&type=#esapiEncode('url',rc.type)#&parentid=#esapiEncode('url',rc.parentid)#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteid)#&startrow=#esapiEncode('url',rc.startrow)#&moduleid=#esapiEncode('url',rc.moduleid)#&compactDisplay=#esapiEncode('url',rc.compactdisplay)##rc.$.renderCSRFTokens(context=rc.contentid & 'deletehistall',format='url')#" onclick="return confirmDialog('#esapiEncode('javascript',application.rbFactory.getKeyValue(session.rb,'sitemanager.content.clearversionhistoryconfirm'))#',this.href)">
+									<i class="mi-eraser"></i> #application.rbFactory.getKeyValue(session.rb,'sitemanager.content.clearversionhistory')#
+								</a>
+							</li>
+						</cfif>
+						<!--- /Clear Version History --->
+					<cfelse>
+						<li><a href="./?muraAction=cArch.hist&contentid=#esapiEncode('url',rc.contentid)#&type=#esapiEncode('url',rc.type)#&parentid=#esapiEncode('url',rc.parentid)#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteid)#&startrow=#esapiEncode('url',rc.startrow)#&moduleid=#esapiEncode('url',rc.moduleid)#&compactDisplay=#esapiEncode('url',rc.compactdisplay)#"><i class="mi-history"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.versionhistory")#</a></li>
 					</cfif>
-					<!--- /Clear Version History --->
-				<cfelse>
-					<li><a href="./?muraAction=cArch.hist&contentid=#esapiEncode('url',rc.contentid)#&type=#esapiEncode('url',rc.type)#&parentid=#esapiEncode('url',rc.parentid)#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteid)#&startrow=#esapiEncode('url',rc.startrow)#&moduleid=#esapiEncode('url',rc.moduleid)#&compactDisplay=#esapiEncode('url',rc.compactdisplay)#"><i class="mi-history"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.versionhistory")#</a></li>
-				</cfif>
-				<cfif rc.deletable and rc.compactDisplay neq 'true' and not isLockedBySomeoneElse>
-					<li><a href="./?muraAction=cArch.update&action=deleteall&contentid=#esapiEncode('url',rc.contentid)#&type=#esapiEncode('url',rc.type)#&parentid=#esapiEncode('url',rc.parentid)#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteid)#&startrow=#esapiEncode('url',rc.startrow)#&moduleid=#esapiEncode('url',rc.moduleid)#&compactDisplay=#esapiEncode('url',rc.compactdisplay)##rc.$.renderCSRFTokens(context=rc.contentid & 'deleteall',format='url')#"
-						<cfif listFindNoCase(nodeLevelList,rc.contentBean.getType()) >onclick="return confirmDialog('#esapiEncode('javascript',application.rbFactory.getResourceBundle(session.rb).messageFormat(application.rbFactory.getKeyValue(session.rb,'sitemanager.content.deletecontentrecursiveconfirm'),rc.contentBean.getMenutitle()))#',this.href)"<cfelse>onclick="return confirmDialog('#esapiEncode('javascript',application.rbFactory.getKeyValue(session.rb,'sitemanager.content.deletecontentconfirm'))#',this.href)"</cfif> ><i class="mi-trash"></i> #application.rbFactory.getKeyValue(session.rb,'sitemanager.content.deletecontent')#</a></li>
-				</cfif>
-				<cfif listFind(session.mura.memberships,'Admin;#application.settingsManager.getSite(rc.siteid).getPrivateUserPoolID()#;0') or listFind(session.mura.memberships,'S2')>
-					<li><a href="./?muraAction=cPerm.main&contentid=#esapiEncode('url',rc.contentid)#&type=#esapiEncode('url',rc.type)#&parentid=#esapiEncode('url',rc.parentid)#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteid)#&moduleid=#esapiEncode('url',rc.moduleid)#&startrow=#esapiEncode('url',rc.startrow)#"><i class="mi-group"></i> #application.rbFactory.getKeyValue(session.rb,'sitemanager.content.permissions')#</a></li>
-				</cfif>
+					<cfif rc.deletable and rc.compactDisplay neq 'true' and not isLockedBySomeoneElse>
+						<li><a href="./?muraAction=cArch.update&action=deleteall&contentid=#esapiEncode('url',rc.contentid)#&type=#esapiEncode('url',rc.type)#&parentid=#esapiEncode('url',rc.parentid)#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteid)#&startrow=#esapiEncode('url',rc.startrow)#&moduleid=#esapiEncode('url',rc.moduleid)#&compactDisplay=#esapiEncode('url',rc.compactdisplay)##rc.$.renderCSRFTokens(context=rc.contentid & 'deleteall',format='url')#"
+							<cfif listFindNoCase(nodeLevelList,rc.contentBean.getType()) >onclick="return confirmDialog('#esapiEncode('javascript',application.rbFactory.getResourceBundle(session.rb).messageFormat(application.rbFactory.getKeyValue(session.rb,'sitemanager.content.deletecontentrecursiveconfirm'),rc.contentBean.getMenutitle()))#',this.href)"<cfelse>onclick="return confirmDialog('#esapiEncode('javascript',application.rbFactory.getKeyValue(session.rb,'sitemanager.content.deletecontentconfirm'))#',this.href)"</cfif> ><i class="mi-trash"></i> #application.rbFactory.getKeyValue(session.rb,'sitemanager.content.deletecontent')#</a></li>
+					</cfif>
+					<cfif listFind(session.mura.memberships,'Admin;#application.settingsManager.getSite(rc.siteid).getPrivateUserPoolID()#;0') or listFind(session.mura.memberships,'S2')>
+						<li><a href="./?muraAction=cPerm.main&contentid=#esapiEncode('url',rc.contentid)#&type=#esapiEncode('url',rc.type)#&parentid=#esapiEncode('url',rc.parentid)#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteid)#&moduleid=#esapiEncode('url',rc.moduleid)#&startrow=#esapiEncode('url',rc.startrow)#"><i class="mi-group"></i> #application.rbFactory.getKeyValue(session.rb,'sitemanager.content.permissions')#</a></li>
+					</cfif>
 				</ul>
 				</div>
 					<cfif rc.compactDisplay neq 'true'>
