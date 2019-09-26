@@ -56,6 +56,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 	</cfif>
 
 	<cfswitch expression="#rc.moduleid#">
+		<!--- 0003 = components, 0004 = forms, 0099 = remote variations --->
 		<cfcase value="00000000000000000000000000000000003,00000000000000000000000000000000004,00000000000000000000000000000000099">
 			<cfswitch expression="#rc.originalfuseaction#">
 				<cfcase value="list">
@@ -74,21 +75,21 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 					</cfif>
 				</cfcase>
 				<cfcase value="datamanager">
-				<a class="btn" href="./?muraAction=cArch.list&siteid=#esapiEncode('url',rc.siteid)#&topid=#esapiEncode('url',rc.moduleid)#&parentid=#esapiEncode('url',rc.moduleid)#&moduleid=#esapiEncode('url',rc.moduleid)#"><i class="mi-arrow-circle-left"></i>
-						#application.rbFactory.getKeyValue(session.rb,'sitemanager.backtoforms')#
-					</a>
-				<a class="btn" href="./?muraAction=cArch.hist&contentid=#esapiEncode('url',rc.contentid)#&type=Form&parentid=00000000000000000000000000000000004&topid=00000000000000000000000000000000004&siteid=#esapiEncode('url',rc.siteid)#&startrow=#esapiEncode('url',rc.startrow)#&moduleid=00000000000000000000000000000000004"><i class="mi-history"></i> #application.rbFactory.getKeyValue(session.rb,'sitemanager.content.versionhistory')#</a>
-				<cfif rc.action neq ''>
-				<a class="btn" title="#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.managedate')#" href="./?muraAction=cArch.datamanager&contentid=#esapiEncode('url',rc.contentid)#&type=Form&topid=00000000000000000000000000000000004&siteid=#esapiEncode('url',rc.siteid)#&moduleid=00000000000000000000000000000000004&parentid=00000000000000000000000000000000004"><i class="mi-wrench"></i> #application.rbFactory.getKeyValue(session.rb,'sitemanager.content.managedata')#</a>
-				</cfif>
-				<cfif rc.perm eq 'editor' and not isLockedBySomeoneElse>
-				<a class="btn" title="#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.editdisplay')#" href="./?muraAction=cArch.datamanager&contentid=#esapiEncode('url',rc.contentid)#&type=Form&action=display&topid=00000000000000000000000000000000004&siteid=#esapiEncode('url',rc.siteid)#&moduleid=00000000000000000000000000000000004&parentid=00000000000000000000000000000000004"><i class="mi-pencil"></i> #application.rbFactory.getKeyValue(session.rb,'sitemanager.content.editdisplay')#</a>
-				<a class="btn" title="#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.delete')#" href="./?muraAction=cArch.update&contentid=#esapiEncode('url',rc.contentid)#&type=Form&action=deleteall&topid=00000000000000000000000000000000004&siteid=#esapiEncode('url',rc.siteid)#&moduleid=00000000000000000000000000000000004&parentid=00000000000000000000000000000000004#rc.$.renderCSRFTokens(context=rc.contentid & 'deleteall',format='url')#" onClick="return confirmDialog('#esapiEncode('javascript',application.rbFactory.getKeyValue(session.rb,'sitemanager.content.deleteformconfirm'))#',this.href)"><i class="mi-trash"></i> #application.rbFactory.getKeyValue(session.rb,'sitemanager.content.deleteform')#</a>
-				</cfif>
-				<cfif listFind(session.mura.memberships,'Admin;#application.settingsManager.getSite(rc.siteid).getPrivateUserPoolID()#;0') or listFind(session.mura.memberships,'S2')>
-					<a class="btn" href="./?muraAction=cPerm.main&contentid=#esapiEncode('url',rc.contentid)#&type=Form&parentid=00000000000000000000000000000000004&topid=00000000000000000000000000000000004&siteid=#esapiEncode('url',rc.siteid)#&moduleid=00000000000000000000000000000000004&startrow=#esapiEncode('url',rc.startrow)#"><i class="mi-group"></i> #application.rbFactory.getKeyValue(session.rb,'sitemanager.content.permissions')#</a>
-				</cfif>
-			</cfcase>
+					<a class="btn" href="./?muraAction=cArch.list&siteid=#esapiEncode('url',rc.siteid)#&topid=#esapiEncode('url',rc.moduleid)#&parentid=#esapiEncode('url',rc.moduleid)#&moduleid=#esapiEncode('url',rc.moduleid)#"><i class="mi-arrow-circle-left"></i>
+							#application.rbFactory.getKeyValue(session.rb,'sitemanager.backtoforms')#
+						</a>
+					<a class="btn" href="./?muraAction=cArch.hist&contentid=#esapiEncode('url',rc.contentid)#&type=Form&parentid=00000000000000000000000000000000004&topid=00000000000000000000000000000000004&siteid=#esapiEncode('url',rc.siteid)#&startrow=#esapiEncode('url',rc.startrow)#&moduleid=00000000000000000000000000000000004"><i class="mi-history"></i> #application.rbFactory.getKeyValue(session.rb,'sitemanager.content.versionhistory')#</a>
+					<cfif rc.action neq ''>
+					<a class="btn" title="#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.managedate')#" href="./?muraAction=cArch.datamanager&contentid=#esapiEncode('url',rc.contentid)#&type=Form&topid=00000000000000000000000000000000004&siteid=#esapiEncode('url',rc.siteid)#&moduleid=00000000000000000000000000000000004&parentid=00000000000000000000000000000000004"><i class="mi-wrench"></i> #application.rbFactory.getKeyValue(session.rb,'sitemanager.content.managedata')#</a>
+					</cfif>
+					<cfif rc.perm eq 'editor' and not isLockedBySomeoneElse>
+					<a class="btn" title="#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.editdisplay')#" href="./?muraAction=cArch.datamanager&contentid=#esapiEncode('url',rc.contentid)#&type=Form&action=display&topid=00000000000000000000000000000000004&siteid=#esapiEncode('url',rc.siteid)#&moduleid=00000000000000000000000000000000004&parentid=00000000000000000000000000000000004"><i class="mi-pencil"></i> #application.rbFactory.getKeyValue(session.rb,'sitemanager.content.editdisplay')#</a>
+					<a class="btn" title="#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.delete')#" href="./?muraAction=cArch.update&contentid=#esapiEncode('url',rc.contentid)#&type=Form&action=deleteall&topid=00000000000000000000000000000000004&siteid=#esapiEncode('url',rc.siteid)#&moduleid=00000000000000000000000000000000004&parentid=00000000000000000000000000000000004#rc.$.renderCSRFTokens(context=rc.contentid & 'deleteall',format='url')#" onClick="return confirmDialog('#esapiEncode('javascript',application.rbFactory.getKeyValue(session.rb,'sitemanager.content.deleteformconfirm'))#',this.href)"><i class="mi-trash"></i> #application.rbFactory.getKeyValue(session.rb,'sitemanager.content.deleteform')#</a>
+					</cfif>
+					<cfif listFind(session.mura.memberships,'Admin;#application.settingsManager.getSite(rc.siteid).getPrivateUserPoolID()#;0') or listFind(session.mura.memberships,'S2')>
+						<a class="btn" href="./?muraAction=cPerm.main&contentid=#esapiEncode('url',rc.contentid)#&type=Form&parentid=00000000000000000000000000000000004&topid=00000000000000000000000000000000004&siteid=#esapiEncode('url',rc.siteid)#&moduleid=00000000000000000000000000000000004&startrow=#esapiEncode('url',rc.startrow)#"><i class="mi-group"></i> #application.rbFactory.getKeyValue(session.rb,'sitemanager.content.permissions')#</a>
+					</cfif>
+				</cfcase>
 				<cfcase value="edit,update">
 					<cfset started=false>
 					<cfif rc.compactDisplay neq 'true'>
@@ -104,22 +105,17 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 					</a>
 					</cfif>
 					<cfif rc.contentBean.exists()>
-						<cfswitch expression="#rc.type#">
-						<cfcase value="Form">
 							<cfif listFind(session.mura.memberships,'S2IsPrivate')>
 							<cfset started=true>
 							<a class="btn" href="./?muraAction=cArch.datamanager&contentid=#esapiEncode('url',rc.contentid)#&siteid=#esapiEncode('url',rc.siteid)#&topid=#esapiEncode('url',rc.topid)#&moduleid=#esapiEncode('url',rc.moduleid)#&type=Form&parentid=#esapiEncode('url',rc.moduleid)#"><i class="mi-wrench"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.managedata")#</a></li>
 							</cfif>
-						</cfcase>
-						</cfswitch>
-						<cfif rc.contentBean.exists()>
-						<cfif started>
-						<div class="btn-group">
-						</cfif>
-							  <a class="btn dropdown-toggle" data-toggle="dropdown" href="##">
-							    <i class="mi-cogs"></i> Actions
-							    <span class="caret"></span>
-							  </a>
+							<cfif started>
+							<div class="btn-group">
+							</cfif>
+						  <a class="btn dropdown-toggle" data-toggle="dropdown" href="##">
+						    <i class="mi-cogs"></i> Actions
+						    <span class="caret"></span>
+						  </a>
 					 	 <ul class="dropdown-menu">
 					 	 <cfif rc.type eq 'Variation'>
 					 	 	<li><a href="#esapiEncode('url','#rc.contentBean.getRemoteURL()#?previewid=#rc.contentBean.getContentHistID()#')#"><i class="mi-eye"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.viewversion")#</a></li>
@@ -136,20 +132,21 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 							<li><a href="./?muraAction=cArch.update&action=deleteall&contentid=#esapiEncode('url',rc.contentid)#&type=#esapiEncode('url',rc.type)#&parentid=#esapiEncode('url',rc.parentid)#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteid)#&startrow=#esapiEncode('url',rc.startrow)#&moduleid=#esapiEncode('url',rc.moduleid)##rc.$.renderCSRFTokens(context=rc.contentid & 'deleteall',format='url')#"
 							<cfif listFindNoCase(nodeLevelList,rc.contentBean.getType())>onclick="return confirmDialog('#esapiEncode('javascript',application.rbFactory.getResourceBundle(session.rb).messageFormat(application.rbFactory.getKeyValue(session.rb,'sitemanager.content.deletecontentrecursiveconfirm'),rc.contentBean.getMenutitle()))#',this.href)"<cfelse>onclick="return confirmDialog('#esapiEncode('javascript',application.rbFactory.getKeyValue(session.rb,"sitemanager.content.deletecontentconfirm"))#',this.href)"</cfif>><i class="mi-trash"></i>  #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.deletecontent")#</a></li>
 						</cfif>
-						<cfif rc.contentBean.get('type') eq 'Form' and !rc.contentBean.get('isNew')>
-							<li><a href="./?muraAction=cForm.export&contentid=#esapiEncode('url',rc.contentid)#"><i class="mi-save"></i>  #esapiEncode('html',application.rbFactory.getKeyValue(session.rb,"sitemanager.content.exportnode"))#</a></li>
-							<li><a href="./?muraAction=cForm.importform"><i class="mi-upload"></i>  #esapiEncode('html',application.rbFactory.getKeyValue(session.rb,"sitemanager.content.importnode"))#</a></li>
-						</cfif>
-						<cfif rc.contentBean.get('type') eq 'Component' and !rc.contentBean.get('isNew')>
-							<li><a href="./?muraAction=cArch.exportcomponent&contentid=#esapiEncode('url',rc.contentid)#"><i class="mi-save"></i>  #esapiEncode('html',application.rbFactory.getKeyValue(session.rb,"sitemanager.content.exportnode"))#</a></li>
-							<li><a href="./?muraAction=cArch.importcomponent"><i class="mi-upload"></i>  #esapiEncode('html',application.rbFactory.getKeyValue(session.rb,"sitemanager.content.importnode"))#</a></li>
+						<cfif !rc.contentBean.get('isNew')>
+							<cfif rc.contentBean.get('type') eq 'Form'>
+								<li><a href="./?muraAction=cForm.export&contentid=#esapiEncode('url',rc.contentid)#"><i class="mi-save"></i>  #esapiEncode('html',application.rbFactory.getKeyValue(session.rb,"sitemanager.content.exportnode"))#</a></li>
+								<li><a href="./?muraAction=cForm.importform"><i class="mi-upload"></i>  #esapiEncode('html',application.rbFactory.getKeyValue(session.rb,"sitemanager.content.importnode"))#</a></li>
+							<cfelseif rc.contentBean.get('type') eq 'Component'>
+								<li><a href="./?muraAction=cArch.exportcomponent&contentid=#esapiEncode('url',rc.contentid)#"><i class="mi-save"></i>  #esapiEncode('html',application.rbFactory.getKeyValue(session.rb,"sitemanager.content.exportnode"))#</a></li>
+								<li><a href="./?muraAction=cArch.importcomponent"><i class="mi-upload"></i>  #esapiEncode('html',application.rbFactory.getKeyValue(session.rb,"sitemanager.content.importnode"))#</a></li>
+							</cfif>
 						</cfif>
 						</ul>
 						<cfif started>
 						</div>
 						</cfif>
 
-						</cfif>
+		
 					</cfif>
 				</cfcase>
 				<cfcase value="hist,audit">
@@ -169,7 +166,6 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 							<span class="caret"></span>
 						  </a>
 					  <ul class="dropdown-menu drop-right">
-
 
 					<cfswitch expression="#rc.type#">
 					<cfcase value="Form">
@@ -208,6 +204,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 				</cfcase>
 			</cfswitch>
 		</cfcase>
+	<!--- all other content types (!= form, components, remote var) --->
 	<cfdefaultcase>
 		<cfswitch expression="#rc.originalfuseaction#">
 			<cfcase value="edit,update">
