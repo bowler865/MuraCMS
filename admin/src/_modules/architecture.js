@@ -489,10 +489,11 @@ buttons: {
 
 		}
 
-		// append action links
+		// get list of existing action links
 		var actionLinks = obj.parentNode.parentNode.getElementsByClassName("actions")[0].getElementsByTagName("ul")[0].getElementsByTagName("li");
+		// get list of hidden action links to be inserted 
 		var optionList = document.getElementById('newContentOptions');
-		// remove old links
+		// remove old actions links
 		var oldLinks = optionList.getElementsByClassName("li-action");
 		var l;
 		while ((l = oldLinks[0])) {
@@ -509,9 +510,14 @@ buttons: {
 	        item.className = 'li-action ' + actionLinks[i].className;
 	        link.removeAttribute("title");
 	        link.innerHTML = link.innerHTML + titleStr;
-	        if(actionLinks[i].className.indexOf('edit') >= 0){
+	        // insert edit link before other options
+	        if(actionLinks[i].className.indexOf('edit') >= 0 && actionLinks[i].className.indexOf('edit-') < 0){
 	        	optionList.insertBefore(item, newZoom.nextSibling);
+					// insert edit layout link directly after edit
+	        } else if(actionLinks[i].className.indexOf('edit-layout') >= 0){
+	        	optionList.insertBefore(item, document.getElementById('newContent'));
 	        } else {
+	        // append other links after
         		optionList.appendChild(item);
 	        }
         }

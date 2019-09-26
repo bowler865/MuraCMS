@@ -273,8 +273,10 @@ version 2 without this exception.  You may, if you choose, apply this exception 
        <li class="edit<cfif isLockedBySomeoneElse> disabled</cfif>"><a onclick="draftprompt.call(this,event);return false;" data-siteid="#attributes.siteid#" data-contentid="#rsnest.contentid#" data-contenthistid="#rsnest.contenthistid#" title="#application.rbFactory.getKeyValue(session.rb,"sitemanager.edit")#" href="" data-href="./?muraAction=cArch.edit&contenthistid=#rsnest.ContentHistID#&contentid=#rsnest.ContentID#&type=#rsnest.type#&parentid=#rsnest.parentID#&topid=#esapiEncode('url',attributes.topid)#&siteid=#esapiEncode('url',attributes.siteid)#&moduleid=#esapiEncode('url',rsnest.moduleid)#&startrow=#esapiEncode('url',attributes.startrow)#"><i class="mi-pencil"></i></a></li>
 	   <cfif rsnest.moduleid eq '00000000000000000000000000000000000' or (rsnest.moduleid eq '00000000000000000000000000000000099' and rsnest.type eq 'Variation')>
 	   <cfswitch expression="#rsnest.type#">
-		   <cfcase value="Page,Folder,Calendar,Gallery">
-		   		<li class="edit-layout"><a title="#application.rbFactory.getKeyValue(session.rb,"sitemanager.content.edit-layout")#" href="#application.settingsManager.getSite(attributes.siteid).getWebPath(complete=1)##$.getURLStem(attributes.siteid,rsnest.filename)#"><i class="mi-th"></i></a></li>
+				<cfcase value="Page,Folder,Calendar,Gallery">
+			   	<cfif $.getContentRenderer().useLayoutManager()>
+			   		<li class="edit-layout"><a title="#application.rbFactory.getKeyValue(session.rb,"sitemanager.content.edit-layout")#" href="#application.settingsManager.getSite(attributes.siteid).getWebPath(complete=1)##$.getURLStem(attributes.siteid,rsnest.filename)#"><i class="mi-th"></i></a></li>
+			   	</cfif>	
 		   		<li class="preview"><a title="#application.rbFactory.getKeyValue(session.rb,"sitemanager.view")#" href="#application.settingsManager.getSite(attributes.siteid).getWebPath(complete=1)##$.getURLStem(attributes.siteid,rsnest.filename)#"><i class="mi-globe"></i></a></li>
 		   </cfcase>
 		   <cfcase value="File,Link">

@@ -353,24 +353,28 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 		<cfif rc.rstop.type neq 'Module' and not listFindNoCase('none,read',perm)>
   	  <cfset isLockedBySomeoneElse=$.siteConfig('hasLockableNodes') and len(rc.rsTop.lockid) and rc.rsTop.lockid neq session.mura.userid>
       <li class="edit<cfif isLockedBySomeoneElse> disabled</cfif>"><a onclick="draftprompt.call(this,event);return false;" data-siteid="#rc.siteid#" data-contentid="#rc.rstop.contentid#" data-contenthistid="#rc.rstop.contenthistid#" title="#application.rbFactory.getKeyValue(session.rb,"sitemanager.edit")#" href="" data-href="./?muraAction=cArch.edit&contenthistid=#rc.rstop.ContentHistID#&siteid=#esapiEncode('url',rc.siteid)#&contentid=#rc.topid#&topid=#esapiEncode('url',rc.topid)#&type=#rc.rstop.type#&parentid=#rc.rstop.parentid#&moduleid=#rc.rstop.moduleid#"><i class="mi-pencil"></i></a></li>
+     
       <cfif rc.rstop.moduleid eq '00000000000000000000000000000000000' 
       	or (rc.rstop.moduleid eq '00000000000000000000000000000000099' and rc.rstop.type eq 'Variation')>
         <cfswitch expression="#rc.rstop.type#">
-    		 <cfcase value="Page,Folder,Calendar,Gallery">
-    		 <li class="edit-layout"><a title="#application.rbFactory.getKeyValue(session.rb,"sitemanager.content.edit-layout")#" href="#application.settingsManager.getSite(rc.siteid).getWebPath(complete=1)##$.getURLStem(rc.siteid,rc.rstop.filename)#"><i class="mi-th"></i></a></li>
-    		 <li class="preview"><a title="#application.rbFactory.getKeyValue(session.rb,"sitemanager.view")#" href="#application.settingsManager.getSite(rc.siteid).getWebPath(complete=1)##$.getURLStem(rc.siteid,rc.rstop.filename)#"><i class="mi-globe"></i></a></li>
-    		 </cfcase>
-    		 <cfcase value="File,Link">
-    		 <li class="preview"><a title="#application.rbFactory.getKeyValue(session.rb,"sitemanager.view")#" href="##" onclick="return preview('#application.settingsManager.getSite(rc.siteid).getWebPath(complete=1)##$.getURLStem(rc.siteid,rc.rstop.filename)#','#esapiEncode('javascript',rc.rstop.targetParams)#');"><i class="mi-globe"></i></a></li>
-    		 </cfcase>
-    		 <cfcase value="Variation">
-    		 <li class="preview"><a title="#application.rbFactory.getKeyValue(session.rb,"sitemanager.view")#" href="#esapiEncode('url',rc.rstop.remoteurl)#"><i class="mi-globe"></i></a></li>
-    		 </cfcase>
-    		 <cfdefaultcase>
-    		 <li class="preview disabled"><a><i class="mi-globe"></i></a></li>
-    		 </cfdefaultcase>
-    		</cfswitch>
+					<cfcase value="Page,Folder,Calendar,Gallery">
+				  	<cfif $.getContentRenderer().useLayoutManager()>
+							<li class="edit-layout"><a title="#application.rbFactory.getKeyValue(session.rb,"sitemanager.content.edit-layout")#" href="#application.settingsManager.getSite(rc.siteid).getWebPath(complete=1)##$.getURLStem(rc.siteid,rc.rstop.filename)#"><i class="mi-th"></i></a></li>
+						</cfif>	
+	    		 <li class="preview"><a title="#application.rbFactory.getKeyValue(session.rb,"sitemanager.view")#" href="#application.settingsManager.getSite(rc.siteid).getWebPath(complete=1)##$.getURLStem(rc.siteid,rc.rstop.filename)#"><i class="mi-globe"></i></a></li>
+    		 	</cfcase>
+					<cfcase value="File,Link">
+						<li class="preview"><a title="#application.rbFactory.getKeyValue(session.rb,"sitemanager.view")#" href="##" onclick="return preview('#application.settingsManager.getSite(rc.siteid).getWebPath(complete=1)##$.getURLStem(rc.siteid,rc.rstop.filename)#','#esapiEncode('javascript',rc.rstop.targetParams)#');"><i class="mi-globe"></i></a></li>
+					</cfcase>
+					<cfcase value="Variation">
+						<li class="preview"><a title="#application.rbFactory.getKeyValue(session.rb,"sitemanager.view")#" href="#esapiEncode('url',rc.rstop.remoteurl)#"><i class="mi-globe"></i></a></li>
+					</cfcase>
+					<cfdefaultcase>
+						<li class="preview disabled"><a><i class="mi-globe"></i></a></li>
+					</cfdefaultcase>
+				</cfswitch>
       </cfif>
+
     	<li class="version-history"><a title="#application.rbFactory.getKeyValue(session.rb,"sitemanager.versionhistory")#" href="./?muraAction=cArch.hist&contentid=#rc.rstop.ContentID#&type=#rc.rstop.type#&parentid=#rc.rstop.parentID#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteid)#&moduleid=#rc.rstop.moduleid#"><i class="mi-history"></i></a></li>
       <cfif rc.rstop.type eq 'Form'>
     		<li class="manage-data"><a title="#application.rbFactory.getKeyValue(session.rb,"sitemanager.content.managedata")#"  href="./?muraAction=cArch.datamanager&contentid=#esapiEncode('url',rc.rstop.contentid)#&siteid=#esapiEncode('url',rc.rstop.siteid)#&topid=#esapiEncode('url',rc.topid)#&moduleid=#esapiEncode('url',rc.rstop.moduleid)#&type=Form&parentid=#esapiEncode('url',rc.rstop.parentid)#"><i class="mi-wrench"></i></a></li>

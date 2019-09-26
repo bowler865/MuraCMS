@@ -618,7 +618,9 @@ if(len($.siteConfig('customTagGroups'))){
 							</cfcase>
 							<cfdefaultcase>
 							<cfif listFindNoCase("Page,Folder,Calendar,Gallery",item.gettype())>
-								<li class="edit-layout"><a title="#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.edit-layout')#" href="#item.getURL(complete=1)#"><i class="mi-th"></i></a></li>
+						   	<cfif $.getContentRenderer().useLayoutManager()>
+									<li class="edit-layout"><a title="#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.edit-layout')#" href="#item.getURL(complete=1)#"><i class="mi-th"></i></a></li>
+								</cfif>
 							</cfif>
 							<li class="preview"><a title="#application.rbFactory.getKeyValue(session.rb,'sitemanager.view')#" href="#item.getURL(complete=1)#"><i class="mi-globe"></i></a></li>
 							</cfdefaultcase>
