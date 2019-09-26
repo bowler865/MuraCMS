@@ -506,10 +506,10 @@ buttons: {
 	        item.innerHTML = actionLinks[i].innerHTML;
 	        var link = item.getElementsByTagName("a")[0];
 	        var titleStr = link.getAttribute("title");
-	        item.className = 'li-action ' + titleStr.toLowerCase();
+	        item.className = 'li-action ' + actionLinks[i].className;
 	        link.removeAttribute("title");
 	        link.innerHTML = link.innerHTML + titleStr;
-	        if(titleStr.toLowerCase() == 'edit'){
+	        if(actionLinks[i].className.indexOf('edit') == 1){
 	        	optionList.insertBefore(item, newZoom.nextSibling);
 	        } else {
         		optionList.appendChild(item);
