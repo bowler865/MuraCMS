@@ -502,19 +502,21 @@ buttons: {
 		// create new links
 		var newZoom = document.getElementById('newZoom');
 	  for (var i = 0; i < actionLinks.length; i++ ) {
-        if(actionLinks[i].className.indexOf('disabled') < 0){
+	  		var listEl = actionLinks[i];
+        if(listEl.className.indexOf('disabled') < 0){
 	        var item = document.createElement("li");
-	        item.innerHTML = actionLinks[i].innerHTML;
+	        item.innerHTML = listEl.innerHTML;
 	        var link = item.getElementsByTagName("a")[0];
 	        var titleStr = link.getAttribute("title");
-	        item.className = 'li-action ' + actionLinks[i].className;
+	        // add existing classes of li and a
+	        item.className = 'li-action ' + listEl.className + ' ' + link.className;
 	        link.removeAttribute("title");
 	        link.innerHTML = link.innerHTML + titleStr;
 	        // insert edit link before other options
-	        if(actionLinks[i].className.indexOf('edit') >= 0 && actionLinks[i].className.indexOf('edit-') < 0){
+	        if(listEl.className.indexOf('edit') >= 0 && listEl.className.indexOf('edit-') < 0){
 	        	optionList.insertBefore(item, newZoom.nextSibling);
 					// insert edit layout link directly after edit
-	        } else if(actionLinks[i].className.indexOf('edit-layout') >= 0){
+	        } else if(listEl.className.indexOf('edit-layout') >= 0){
 	        	optionList.insertBefore(item, document.getElementById('newContent'));
 	        } else {
 	        // append other links after
