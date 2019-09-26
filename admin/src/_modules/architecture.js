@@ -509,7 +509,7 @@ buttons: {
 	        item.className = 'li-action ' + actionLinks[i].className;
 	        link.removeAttribute("title");
 	        link.innerHTML = link.innerHTML + titleStr;
-	        if(actionLinks[i].className.indexOf('edit') == 1){
+	        if(actionLinks[i].className.indexOf('edit') >= 0){
 	        	optionList.insertBefore(item, newZoom.nextSibling);
 	        } else {
         		optionList.appendChild(item);
