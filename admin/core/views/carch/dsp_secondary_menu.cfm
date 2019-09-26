@@ -297,6 +297,9 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 						 
 						  	<!--- view this version --->
 								<cfif (rc.contentBean.getfilename() neq '' or rc.contentid eq '00000000000000000000000000000000001')>
+									<cfif listFind("Page,Folder,Calendar,Gallery",rc.type)>
+									<li><a href="#rc.contentBean.getURL(secure=rc.$.getBean('utility').isHTTPs(),complete=1,queryString='previewid=#rc.contentBean.getContentHistID()#')#"><i class="mi-th"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.content.edit-layout")#</a></li>
+									</cfif>
 									<!---<cfswitch expression="#rc.type#">
 									<cfcase value="Page,Folder,Calendar,Gallery">--->
 										<!---<li><a href="#rc.contentBean.getURL(secure=rc.$.getBean('utility').isHTTPs(),complete=1)#"><i class="mi-eye"></i> #application.rbFactory.getKeyValue(session.rb,"sitemanager.view")#</a></li>--->
@@ -406,7 +409,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 				<cfcase value="imagedetails,multiFileUpload">
 					<cfif isdefined('rc.contentBean')>
 
-						<!--- Back To Site Manager --->
+						<!--- back to site manager --->
 						<cfif rc.compactdisplay neq 'true'>
 							<cfif listFindNoCase(session.mura.memberships,'S2IsPrivate;#rc.siteid#') or listFindNoCase(session.mura.memberships,'S2')>
 								<a class="btn" href="./?&muraAction=cArch.list&siteid=#esapiEncode('url',rc.siteid)#&moduleid=00000000000000000000000000000000000">
@@ -415,7 +418,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 								</a>
 							</cfif>
 
-						<!--- View Content --->
+						<!--- view content --->
 						<cfelse>
 							<cfscript>
 								viewContentURL = StructKeyExists(rc, 'homeid') && Len(rc.homeid)
@@ -430,7 +433,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 
 					<cfelseif rc.compactDisplay eq 'false'>
 						
-						<!--- Back --->
+						<!--- back --->
 						<a class="btn" href="##" title="#esapiEncode('html_attr',application.rbFactory.getKeyValue(session.rb,'sitemanager.back'))#" onclick="window.history.back(); return false;"><i class="mi-arrow-circle-left"></i> #esapiEncode('html',application.rbFactory.getKeyValue(session.rb,'sitemanager.back'))#</a>
 					</cfif>
 				</cfcase>
