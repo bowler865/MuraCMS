@@ -95,7 +95,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 	<cfset m=rc.$>
 	<cfset Mura=rc.$>
 
-	<cfset $.event('contentBean',$.getBean('content').loadBy(contehistid=rc.contenthistid))>
+	<cfset $.event('contentBean',$.getBean('content').loadBy(contenthistid=rc.contenthistid))>
 	<cfset request.$=$>
 
 	<cfif rc.classid eq "category_summary" and not application.configBean.getValue(property='allowopenfeeds',defaultValue=false)>
