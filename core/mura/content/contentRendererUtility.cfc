@@ -1042,6 +1042,7 @@
 		<cfargument name="include" required="true" default="false">
 		<cfargument name="returnFormat" required="true" default="html">
 		<cfargument name="RenderingAsRegion" required="true" default="false">
+		<cfargument name="targetattr" required="true" default="">
 
 		<cfset var event=arguments.renderer.getEvent()>
 		<cfset var $=arguments.renderer.getMuraScope()>
@@ -1059,6 +1060,10 @@
 			<cfset arguments.params=deserializeJSON(arguments.params)>
 		<cfelseif not isStruct(arguments.params)>
 			<cfset arguments.params={}>
+		</cfif>
+
+		<cfif isDefined('arguments.targetattr') and len(arguments.targetattr)>
+			<cfset arguments.params.targetattr=arguments.targetattr>
 		</cfif>
 
 		<cfset request.muraValidObject=true>
