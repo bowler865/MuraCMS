@@ -2368,6 +2368,7 @@ Display Objects
 	<cfargument name="cacheKey" type="string" required="false" default="">
 	<cfargument name="objectname" default="">
 	<cfargument name="returnFormat" required="true" default="html">
+	<cfargument name="targetattr" required="true" default="">
 	<cfset arguments.renderer=this>
 	<cfset arguments.showEditableObjects=this.showEditableObjects>
 	<cfset arguments.layoutmanager=this.layoutmanager>

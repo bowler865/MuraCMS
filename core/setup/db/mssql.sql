@@ -1013,12 +1013,8 @@ GO
  CREATE  INDEX [IX_tclassextendsets_1] ON [dbo].[tclassextendsets]([subTypeID]) ON [PRIMARY]
 GO
 
-SET QUOTED_IDENTIFIER OFF
-GO
 SET ANSI_NULLS ON
 GO
-
-
 
 
 INSERT INTO [dbo].[tsystemobjects] ([Object],[SiteID],[Name],[OrderNo]) VALUES ('event_reminder_form','default','Event Reminder Form',12);
