@@ -274,6 +274,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 	   <cfif rsnest.moduleid eq '00000000000000000000000000000000000' or (rsnest.moduleid eq '00000000000000000000000000000000099' and rsnest.type eq 'Variation')>
 	   <cfswitch expression="#rsnest.type#">
 		   <cfcase value="Page,Folder,Calendar,Gallery">
+		   		<li class="edit-layout"><a title="#application.rbFactory.getKeyValue(session.rb,"sitemanager.content.edit-layout")#" href="#application.settingsManager.getSite(attributes.siteid).getWebPath(complete=1)##$.getURLStem(attributes.siteid,rsnest.filename)#"><i class="mi-th"></i></a></li>
 		   		<li class="preview"><a title="#application.rbFactory.getKeyValue(session.rb,"sitemanager.view")#" href="#application.settingsManager.getSite(attributes.siteid).getWebPath(complete=1)##$.getURLStem(attributes.siteid,rsnest.filename)#"><i class="mi-globe"></i></a></li>
 		   </cfcase>
 		   <cfcase value="File,Link">
