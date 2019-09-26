@@ -227,8 +227,6 @@
 
 @navSiteHeight:					  66px;
 
-
-
 // Hero unit
 // -------------------------
 @heroUnitBackground:              @grayLighter;
@@ -304,5 +302,14 @@
     &-inverse           { background-color: @grayDark !important; }
     &-inverse[href]     { background-color: darken(@grayDark, 10%) !important; }
   }
+
+}
+
+// Custom Admin Elements
+// add top border to list item with this class 
+/* (note: use 'nav-divider' instead when inserting an actual divider element)*/
+.mura-nav-divider{
+  border-top: 1px solid #E8E8E8;
+}
 
 }

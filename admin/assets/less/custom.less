@@ -413,7 +413,7 @@ header .btn i{
   .clearfix(); // Adding clearfix to allow for .pull-right button containers
   display: flex;
   justify-content: center;
-  &> .btn{
+  > .btn{
     background-color: #DEDEDE;
     border: 0;
     border-color: #BCBCBC;
@@ -434,7 +434,7 @@ header .btn i{
     }
 
   }
-  &> .form-actions-toolbar .btn{
+  > .form-actions-toolbar .btn{
      background-color: @mura-red !important;
       color:#FFF !important;
 
@@ -767,7 +767,7 @@ form .mura-control-group > * + .help-block{
   margin-right: 8px;
   text-transform:none;
 
-  &> i{
+  > i{
     color: #7f7f7f;
     margin-right: 4px;
   }
@@ -1340,6 +1340,20 @@ a.no-link{
       color: #545454 !important;
     }
   }
+}
+
+.mura-header .nav-module-specific .dropdown-menu{
+  padding-bottom: 0;
+    >li>a{
+      display: block;
+      font-size: 13px;
+      line-height: 24px;
+      margin: 0; 
+      padding: 3px 12px;
+      > i{
+        margin-right: 3px;
+      }
+    }
 }
 
 .sidebar-buttons .btn{

@@ -489,10 +489,11 @@ buttons: {
 
 		}
 
-		// append action links
+		// get list of existing action links
 		var actionLinks = obj.parentNode.parentNode.getElementsByClassName("actions")[0].getElementsByTagName("ul")[0].getElementsByTagName("li");
+		// get list of hidden action links to be inserted 
 		var optionList = document.getElementById('newContentOptions');
-		// remove old links
+		// remove old actions links
 		var oldLinks = optionList.getElementsByClassName("li-action");
 		var l;
 		while ((l = oldLinks[0])) {
@@ -501,17 +502,24 @@ buttons: {
 		// create new links
 		var newZoom = document.getElementById('newZoom');
 	  for (var i = 0; i < actionLinks.length; i++ ) {
-        if(actionLinks[i].className.indexOf('disabled') < 0){
+	  		var listEl = actionLinks[i];
+        if(listEl.className.indexOf('disabled') < 0){
 	        var item = document.createElement("li");
-	        item.innerHTML = actionLinks[i].innerHTML;
+	        item.innerHTML = listEl.innerHTML;
 	        var link = item.getElementsByTagName("a")[0];
 	        var titleStr = link.getAttribute("title");
-	        item.className = 'li-action ' + titleStr.toLowerCase();
+	        // add existing classes of li and a
+	        item.className = 'li-action ' + listEl.className + ' ' + link.className;
 	        link.removeAttribute("title");
 	        link.innerHTML = link.innerHTML + titleStr;
-	        if(titleStr.toLowerCase() == 'edit'){
+	        // insert edit link before other options
+	        if(listEl.className.indexOf('edit') >= 0 && listEl.className.indexOf('edit-') < 0){
 	        	optionList.insertBefore(item, newZoom.nextSibling);
+					// insert edit layout link directly after edit
+	        } else if(listEl.className.indexOf('edit-layout') >= 0){
+	        	optionList.insertBefore(item, document.getElementById('newContent'));
 	        } else {
+	        // append other links after
         		optionList.appendChild(item);
 	        }
         }
