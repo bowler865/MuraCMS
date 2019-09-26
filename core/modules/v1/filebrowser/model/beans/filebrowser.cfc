@@ -113,6 +113,7 @@ component
 				throw(message="Illegal file path",errorcode ="invalidParameters");
 			}
 
+
 			var sourceImage = ImageNew(filePath);
 			var response = {};
 
@@ -131,7 +132,7 @@ component
 					return response;
 				}
 				response.stuff = "HEIGHT!";
-				ImageResize(sourceImage,'',int(arguments.dimensions.height),'');
+				ImageResize(sourceImage,'',int(arguments.dimensions.height));
 			}
 			else if(arguments.dimensions.aspect eq "width") {
 				if(!isNumeric(arguments.dimensions.width) || arguments.dimensions.width < 1) {
@@ -140,7 +141,7 @@ component
 					return response;
 				}
 				response.stuff = "WIDTH!";
-				ImageResize(sourceImage,int(arguments.dimensions.width),'');
+				ImageResize(sourceImage,int(arguments.dimensions.width));
 			}
 			else {
 				if(!isNumeric(arguments.dimensions.width) || !isNumeric(arguments.dimensions.height) || arguments.dimensions.width < 1 || arguments.dimensions.height < 1) {
@@ -840,11 +841,20 @@ component
 				// list of allowable editable files and files displayed as "images"
 				var editfilelist = listToArray(m.globalConfig().getValue(property='filebrowsereditlist',defaultValue="txt,cfm,cfc,hbs,html,htm,cfml,min.js,js,min.css,css,json,xml.cfm,js.cfm,less,properties,scss,xml,yml")); // settings.ini.cfm: filebrowsereditlist
 				var imagelist = listToArray(m.globalConfig().get(property='filebrowserimagelist',defaultValue="gif,jpg,jpeg,png,svg")); // settings.ini.cfm: filebrowserimagelist
+				var ratios = listToArray(m.globalConfig().get(property='filebrowseraspectratios',defaultValue="4:3:1.3333,2:3:0.6666,1:1:1"));
+
+				var aspectratios = [];
+
+				for(var x = 1;x<=ArrayLen(ratios);x++) {
+					aspectratios[x] = ListToArray(ratios[x],":");
+				}
+
 				var rb = getResourceBundle(arguments.siteid);
 				response.settings = {
 					editfilelist: editfilelist,
 					imagelist: imagelist,
-					rb: rb
+					rb: rb,
+					aspectratios: aspectratios
 				}
 			}
 

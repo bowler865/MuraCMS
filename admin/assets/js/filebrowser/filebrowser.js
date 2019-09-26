@@ -1084,10 +1084,10 @@ config: {
   });
 
   Vue.component('imageeditwindow', {
-    props: ["currentFile","currentIndex","total"],
+    props: ["currentFile","currentIndex","total","settings"],
     template: `
     <div class="fileviewer-modal">
-      <imageeditmenu class="fileviewer-gallery" :currentFile="currentFile" :currentIndex="currentIndex" v-click-outside="closewindow"></imageeditmenu>
+      <imageeditmenu class="fileviewer-gallery" :settings="settings" :currentFile="currentFile" :currentIndex="currentIndex" v-click-outside="closewindow"></imageeditmenu>
     </div>
     `,
     data() {
@@ -1104,7 +1104,7 @@ config: {
   });
 
   Vue.component('imageeditmenu', {
-    props: ["currentFile","currentIndex","imageEditTarget"],
+    props: ["currentFile","currentIndex","imageEditTarget","settings"],
     template: `
        <div>
        <div v-if="this.editmode  == 'RESIZE'" class="fileviewer-image" id="imagediv" :style="{ 'background-image': 'url(' + encodeURI(currentFile.url) + '?' + Math.ceil(Math.random()*100000) + ')' }"></div>
@@ -1113,11 +1113,11 @@ config: {
           <label class="fileinfo">{{currentFile.fullname}} ({{currentFile.size}}kb {{currentFile.info.width}}x{{currentFile.info.height}})</label>
           <!-- MAIN -->
           <div class="form-actions" v-if="editmode==''">
-            
+
             <a class="btn mura-primary" @click="resize()"><i class="mi-expand"></i>Resize</a>
             <a class="btn mura-primary" @click="saveImage()"><i class="mi-check"></i>Confirm</a>
             <a class="btn" @click="cancel()"><i class="mi-ban"></i>Cancel</a>
-            
+
             <div class="form-actions-toolbar">
 
               <div class="btn-group d-flex flex-nowrap">
@@ -1133,27 +1133,15 @@ config: {
               </div>
 
               <div class="btn-group d-flex flex-nowrap">
-                <label class="btn mura-primary" title="Aspect Ratio: 4/3" :class="{ 'active': cropaspect == 1.3333 }">
-                  <input type="radio" class="sr-only" id="cropaspect1" name="cropaspect" v-model="cropaspect" value="1.3333">
-                  <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="aspectRatio: 4 / 3">
-                    4:3
+                <label v-for="aspect in settings.aspectratios" class="btn mura-primary" title="Aspect Ratio: {{aspect[0]}} / {{aspect[1]}}" :class="{ 'active': cropaspect == aspect[2] }">
+                  <input type="radio" class="sr-only" id="cropaspect1" name="cropaspect" v-model="cropaspect" :value="aspect[2]">
+                  <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="aspectRatio: {{aspect[0]}} / {{aspect[1]}}">
+                    {{aspect[0]}}:{{aspect[1]}}
                   </span>
                 </label>
-                <label class="btn mura-primary" title="Aspect Ratio: 2/3" :class="{ 'active': cropaspect == 0.6666 }">
-                  <input type="radio" class="sr-only" id="cropaspect4" name="cropaspect" v-model="cropaspect" value="0.6666">
-                  <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="aspectRatio: 2 / 3">
-                    2:3
-                  </span>
-                </label>
-                <label class="btn mura-primary" title="Aspect Ratio: Square" :class="{ 'active': cropaspect == 1 }">
-                  <input type="radio" class="sr-only" id="cropaspect3" name="cropaspect" v-model="cropaspect" value="1">
-                  <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="aspectRatio: 1 / 1">
-                    1:1
-                  </span>
-                </label>
-                <label class="btn mura-primary" title="Free Selection" :class="{ 'active': cropaspect == NaN }">
+                <label class="btn mura-primary" title="Aspect Ratio: Free" :class="{ 'active': cropaspect == NaN }">
                   <input type="radio" class="sr-only" id="cropaspect5" name="cropaspect" v-model="cropaspect" value="NaN">
-                  <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="aspectRatio: NaN">
+                  <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="aspectRatio: Free">
                     Free
                   </span>
                 </label>
@@ -1194,7 +1182,7 @@ config: {
             aspect: 'none',
           },
           showpreview: 0,
-          cropaspect: 4/3
+          cropaspect: "4:3"
         };
     }
     , watch: {
