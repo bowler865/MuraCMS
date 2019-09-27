@@ -49,7 +49,9 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 				#application.rbFactory.getKeyValue(session.rb,"sitemanager.content.type")#
 			</label>
 				<select name="typeSelector" onchange="siteManager.resetExtendedAttributes('#rc.contentBean.getcontentID()#','#rc.contentBean.getcontentHistID()#',this.value,'#esapiEncode("Javascript",rc.siteID)#','#application.configBean.getContext()#','#application.settingsManager.getSite(rc.siteID).getThemeAssetPath()#');">
+				<cfset primaryContentTypes=rc.$.getContentRenderer().primaryContentTypes>
 				<cfloop list="#baseTypeList#" index="t">
+				<cfif t eq rc.contentBean.getType() or (not len(primaryContentTypes) or listFindNoCase(primaryContentTypes,t))>
 				<cfsilent>
 					<cfquery name="rsst" dbtype="query">
 						select * from rsSubTypes where type=<cfqueryparam cfsqltype="cf_sql_varchar"  value="#t#"> and subtype not in ('Default','default')
@@ -76,6 +78,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 							</cfif>
 						</cfloop>
 					</cfif>
+				</cfif>
 				</cfloop>
 			</select>
 			</div>
