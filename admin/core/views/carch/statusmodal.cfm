@@ -60,7 +60,9 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 </cfsilent>
 <cfoutput>
 <cfif rc.mode eq 'frontend'>
-	<h1>#application.rbFactory.getKeyValue(session.rb,'layout.status')#</h1>
+	<div class="mura-header">
+		<h1>#application.rbFactory.getKeyValue(session.rb,'layout.status')#</h1>
+	</div>
 	<cfif $.siteConfig('hasLockableNodes')>
 		<cfset stats=content.getStats()>
 		<cfif stats.getLockType() eq 'node'>

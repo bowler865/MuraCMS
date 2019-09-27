@@ -1,6 +1,7 @@
 // Used in Status Modal Only as Now (Approval Chains); Move when used for anything else
 .mura-list-grid {
-
+	margin-left: -2%;
+	margin-right: -2%;
 	vertical-align: top;
 	
 	dl {
@@ -9,7 +10,7 @@
 		width: 46%;
 		min-height: 100px;
 		.box-sizing(border-box);
-		margin: @baseLineHeight/2 2%;
+		margin: @baseLineHeight/2 2% @baseLineHeight;
 		.border-radius(2px);
 		vertical-align: top;
 		
@@ -49,7 +50,6 @@
 			color: @grayLighter;
 			line-height: 1;
 			padding: 8px 1em;
-			text-transform: uppercase;
 			font-size: 13px;
 			text-align: left;
 			font-weight: normal;
@@ -59,10 +59,10 @@
 		dd {
 			.bold-font;
 			color: lighten(@grayDarker,25%);
-			font-size: 16px;
-			line-height: 24px;
+			font-size: 14px;
+			line-height: 18px;
 			padding: 1em;
-			text-shadow: 0 1px 0 rgba(255,255,255,.75);
+			text-shadow: none;
 			text-align: left;
 			
 			i {
