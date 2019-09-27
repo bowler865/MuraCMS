@@ -36,7 +36,7 @@ component
 			return pathRoot;
 		}
 
-		private function getBaseResourcePath( siteid,resourcePath ) {
+		private function getBaseResourcePath( siteid,resourcePath,complete=1 ) {
 			arguments.resourcePath == "" ? "User_Assets" : arguments.resourcePath;
 
 			var pathRoot = "";
@@ -44,11 +44,11 @@ component
 			var currentSite = application.settingsManager.getSite(arguments.siteid);
 
 			if(arguments.resourcePath == "Site_Files") {
-				pathRoot = currentSite.getAssetPath(complete=1);
+				pathRoot = currentSite.getAssetPath(complete=arguments.complete);
 			} else if (arguments.resourcePath == "Application_Root") {
-				pathRoot = currentSite.getRootPath(complete=1);
+				pathRoot = currentSite.getRootPath(complete=arguments.complete);
 			} else {
-				pathRoot = currentSite.getFileAssetPath(complete=1) & '/assets';
+				pathRoot = currentSite.getFileAssetPath(complete=arguments.complete) & '/assets';
 			}
 
 			return pathRoot;
@@ -878,7 +878,7 @@ component
 			}
 
 			// move to getBaseResourcePath() --> getFileAssetPath()
-			var assetPath = getBaseResourcePath(arguments.siteid,arguments.resourcePath) & replace(arguments.directory,"\","/","all");
+			var assetPath = getBaseResourcePath(arguments.siteid,arguments.resourcePath,m.siteConfig('isremote')) & replace(arguments.directory,"\","/","all");
 
 			var frow = {};
 
@@ -952,7 +952,7 @@ component
 				frow['lastmodified'] = rsFiles['datelastmodified'][x];
 				frow['lastmodifiedshort'] = LSDateFormat(rsFiles['datelastmodified'][x],m.getShortDateFormat());
 				frow['url'] = assetPath & "/" & frow['fullname'];
-				frow['url'] = assetPath & "/" & frow['fullname'];
+			
 				ArrayAppend(response['items'],frow,true);
 			}
 

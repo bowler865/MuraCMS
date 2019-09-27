@@ -97,9 +97,12 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 		<cfset var rstplugins="">
 		<cfset var bundleAssetPath="">
 		<cfset var bundleContext="">
+		<cfset var bundleWebPath="">
+		<cfset var bundleFileAssetPath="">
 		<cfset var rssite="">
 		<cfset var themeDir="">
 		<cfset var doFindAndReplace=false>
+		<cfset var toSite=getBean('settingsManger').getSite(arguments.tosite)>
 
 		<cfsetting requestTimeout = "7200">
 
@@ -194,6 +197,8 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 			<cfset rssite=arguments.Bundle.getValue("rssite")>
 			<cfif rssite.recordcount and isDefined("rssite.siteID")>
 				<cfset bundleAssetPath=arguments.Bundle.getValue("assetPath")>
+				<cfset bundleWebPath=arguments.Bundle.getValue("webPath")>
+				<cfset bundleFileAssetPath=arguments.Bundle.getValue("fileAssetPath")>
 
 				<cfif isSimpleValue(bundleAssetPath)>
 					<cfif bundleAssetPath neq application.configBean.getAssetPath()>
