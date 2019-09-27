@@ -149,7 +149,15 @@
     outline: 0
 }
 
-.mura-quickEdit .nice-select{
+.mura-quickEdit .form-actions{
+  margin: 8px 0 0 0;
+  padding: 10px 0 4px;
+}
+
+#sm-modify-view,
+.mura-quickEdit{
+  
+  .nice-select{
     border-color: #ebebeb !important;
     .border-radius(1px);
     height: 24px;
@@ -176,6 +184,12 @@
          }
       }
     }
+  }
+
+  .nice-select + select + .nice-select{
+    margin-top: 4px;
+  }
+
 }
 
 .nice-select.disabled,

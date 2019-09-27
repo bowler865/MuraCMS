@@ -14,41 +14,64 @@
 
 #sm-modify-view {
 	margin-top: -28px !important;
-}
 
-#sm-modify-view .dropdown-menu,
-#filter-view .dropdown-menu {
+	.dropdown-menu {
 
-	padding: 10px;
-	min-width: 112px;
+		padding: 10px;
+		min-width: 112px;
+		
+		.mura-control-group{
+			margin-bottom: 3px;
+		  overflow: hidden;
+	    white-space: nowrap;
+		}
 
-	form {
-		margin-bottom: 0;
+		.mura-control-group + .mura-control-group{
+			margin-top: 12px;
+		}
+		form {
+			margin-bottom: 0;
+		}
 
-		label {
+		label{		
 			display: block;
 			margin-bottom: 0;
+
+			select {
+				.form-control;
+				cursor: pointer;
+				display: inline-block;
+				height: 24px;
+				margin-bottom: 0;
+				margin-top: 8px;
+		    padding: 0px 4px;
+				width: 100%;
 			}
+
+			input.text {
+				margin: 0 0 0 4px;
+				padding: 2px 4px;
+				height: 24px;
+			}
+
+			.numeric{
+				max-width: 4em;
+			}
+
 		}
 
-	input.text {
-		margin: 0 0 8px 2px;
+		label + select {
+			margin-top: 4px;
 		}
 
-	select {
-		margin-bottom: 0;
-		margin-top: 8px;
-		.make-xs-column(12);
-	}
-	label + select {
-		margin-top: 4px;
-	}
+		.btn {
+			margin-top: 12px;
+		}
 
-	.btn {
-		margin-top: 12px;
 	}
 
 }
+
 
 #sitemgr-reorder {
 
@@ -1428,7 +1451,7 @@
 
 			.form-actions{
 				clear:both;
-				padding: 4px 8px;
+				padding: 4px 8px !important;
 				margin: 6px auto;
 			}
 
