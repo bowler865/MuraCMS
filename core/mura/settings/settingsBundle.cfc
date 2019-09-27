@@ -1625,8 +1625,11 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 				</cfquery>
 
 				<cfset setValue("rstimagesizes",rstimagesizes)>
+				
+				<cfset var site=getBean('settingsManager').getSite(arguments.siteID)>
 
 				<cfset setValue("assetPath",application.configBean.getAssetPath())>
+				<cfset setValue("fileAssetPath",site.getFileAssetPath(complete=site.get('isRemote')))>
 				<cfset setValue("context",application.configBean.getContext())>
 			</cfif>
 

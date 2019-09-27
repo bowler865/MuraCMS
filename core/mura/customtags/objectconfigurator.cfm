@@ -104,7 +104,7 @@
 			
 			$=request.$;
 
-			request.assocatedImageURL=$.content().getImageURL(complete=1);
+			request.assocatedImageURL=$.content().getImageURL(complete=$.siteConfig('isRemote'));
 
 			attributes.globalparams = [
 				'backgroundcolor'

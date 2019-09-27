@@ -7,6 +7,14 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 		var configBean=getBean('configBean');
 		var context=configBean.getContext();
 		var site=getBean('settingsManager').getSite(variables.siteid);
+		var renderer=site.getContentRenderer();
+		
+		variables.useDataNamespaceForAPI=configBean.getValue(property='useDataNamespaceForAPI',defaultValue=true);
+
+		if(isDefined('renderer.useDataNamespaceForAPI') && isBoolean(renderer.useDataNamespaceForAPI)){
+			variables.useDataNamespaceForAPI=renderer.useDataNamespaceForAPI;
+		}
+
 
 		/*
 		if( getBean('utility').isHTTPS() || YesNoFormat(site.getUseSSL()) ){
@@ -1395,6 +1403,11 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 		$.event('response',arguments.response);
 		$.announceEvent('onApiResponse');
 		
+		if(!variables.useDataNamespaceForAPI && structKeyExists(arguments.response,'data') && isStruct(arguments.response.data)){
+			structAppend(arguments.response,arguments.response.data);
+			structDelete(arguments.response,'data');
+		}
+
 		if(application.configBean.getValue(property='suppressAPIParams',defaultValue=true) && isDefined('response.params')){
 			structDelete(response,'params');
 		}
