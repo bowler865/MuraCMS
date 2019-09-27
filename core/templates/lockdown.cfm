@@ -11,19 +11,22 @@
 <style type="text/css">
 
 body {
-	background: #f1f1f1;
+	background: #fff;
+	color: #646464;
 	font-family: "Helvetica", "Arial", sans-serif;
-	color: #343434;
 	margin: 0; padding: 0;
 }
 
 #wrapper {
-	width: 300px;
+	background: #FFF;
+	border: 2px solid #ECEEEF;
+  border-radius: 1px;
 	margin: 100px auto;
-	background: #FCFCFC;
-	padding: 25px;
-	border: 1px solid #ccc;
-	-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
+	width: 360px;
+}
+
+#inner {
+	margin: 30px 40px;
 }
 
 .alert {
@@ -34,44 +37,38 @@ body {
 form label {
 	display: block;
 	width: 100%;
-	font-size: 14px;
+	font-size: 13px;
+}
+
+form input, 
+form input.text, 
+form select{
+  background-color: #fff;
+  background-image: none;
+	border: 1px solid #e6e6e6 !important;
+  border-radius: 3px !important;
+  color: #646464;
+  display: block;
+	font-size: 13px;
+  line-height: 1.6;
+	margin: 5px 0 25px;
+  padding: 6px 15px;
+  position: relative;
+	transition: all .15s ease-out;
 }
 
 form input.text {
-	font-size: 12px;
-	width: 288px;
-	margin: 5px 0 25px;
-	padding: 6px;
-	border: 1px solid #ccc;
-	-moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
-	transition: border 100ms linear;
-	-moz-transition: border 100ms linear; /* Firefox 4 */
-	-webkit-transition: border 100ms linear; /* Safari and Chrome */
-	-o-transition: border 100ms linear; /* Opera */
+	margin: 5px auto 25px;
+	width: 89%;
 
 }
 
 form input.text:focus {
 	outline: 0;
-	border: 1px solid #959595;
-}
-
-form select {
-	font-size: 12px;
-	margin: 5px 0 25px;
-	padding: 6px;
-	border: 1px solid #ccc;
-	-moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
-	transition: border 100ms linear;
-	-moz-transition: border 100ms linear; /* Firefox 4 */
-	-webkit-transition: border 100ms linear; /* Safari and Chrome */
-	-o-transition: border 100ms linear; /* Opera */
-
 }
 
 form select {
 	outline: 0;
-	border: 1px solid #959595;
 }
 
 form input.submit {
@@ -82,7 +79,7 @@ form input.submit {
     display: block;
     width: 100%;
     border: none;
-    background-color: #ff3405;
+    background-color: #e34a36;
     color: #fff!important;
     height: 35px;
     margin-left: 0;
@@ -95,11 +92,23 @@ form p#submitWrap {
 }
 
 form p#error {
-	color: #A70001;
-	padding: 5px 10px;
-	font-size: 12px;
-	margin: 0;
-	float: left;
+		background-color: #fff;
+		background-image: none;
+		border: 1px solid #e65e4c !important;
+    border-radius: 2px!important;
+    box-shadow: none!important;
+    color: #e65e4c;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 1.4em;
+    margin-bottom: 8px;
+    min-height: 32px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    position: relative;
+    text-align: center;
 }
 
 .text-divider {
@@ -178,61 +187,63 @@ h3.mura-login-auth-heading{
 <cfoutput>
 <body>
 	<div id="wrapper">
-		<cfif application.settingsManager.getSite(request.siteID).getEnableLockdown() eq "maintenance">
-			<div class="alert">#application.settingsManager.getSite(request.siteID).getSite()# is currently undergoing maintenance.</div>
+		<div id="inner">
+			<cfif application.settingsManager.getSite(request.siteID).getEnableLockdown() eq "maintenance">
+				<div class="alert">#application.settingsManager.getSite(request.siteID).getSite()# is currently undergoing maintenance.</div>
 
-		<cfelseif application.settingsManager.getSite(request.siteID).getEnableLockdown() eq "development">
-			<form method="post" action="<cfif application.configBean.getLockdownHTTPS() eq true>#replacenocase(arguments.$.getContentRenderer().createHREF(siteid = request.siteid, filename = arguments.event.getScope().currentfilename, complete = true), "http:", "https:")#</cfif>">
+			<cfelseif application.settingsManager.getSite(request.siteID).getEnableLockdown() eq "development">
+				<form method="post" action="<cfif application.configBean.getLockdownHTTPS() eq true>#replacenocase(arguments.$.getContentRenderer().createHREF(siteid = request.siteid, filename = arguments.event.getScope().currentfilename, complete = true), "http:", "https:")#</cfif>">
 
-					<cfif listFindNoCase($.globalConfig().getEnableOauth(), 'google') or listFindNoCase($.globalConfig().getEnableOauth(), 'facebook') >
+						<cfif listFindNoCase($.globalConfig().getEnableOauth(), 'google') or listFindNoCase($.globalConfig().getEnableOauth(), 'facebook') >
 
-						<!--- Use Google oAuth Button --->
-						<cfif listFindNoCase($.globalConfig().getEnableOauth(), 'google')>
-							<div style="padding-bottom: 5px" class="center">
-								<a href="#$.getBean('googleLoginProvider').generateAuthUrl(session.urltoken)#" title="#$.rbKey('login.loginwithgoogle')#" class="mura-login-auth-btn ggl">
-				        	<i class="icon icon-lg icon-google-plus mi-google"></i>
-				        	<span>#$.rbKey('login.loginwithgoogle')#</span>
-								</a>
-							</div>
+							<!--- Use Google oAuth Button --->
+							<cfif listFindNoCase($.globalConfig().getEnableOauth(), 'google')>
+								<div style="padding-bottom: 5px" class="center">
+									<a href="#$.getBean('googleLoginProvider').generateAuthUrl(session.urltoken)#" title="#$.rbKey('login.loginwithgoogle')#" class="mura-login-auth-btn ggl">
+					        	<i class="icon icon-lg icon-google-plus mi-google"></i>
+					        	<span>#$.rbKey('login.loginwithgoogle')#</span>
+									</a>
+								</div>
+							</cfif>
+							<!--- Use Facebook oAuth Button --->
+							<cfif listFindNoCase($.globalConfig().getEnableOauth(), 'facebook')>
+								<div style="padding-bottom: 5px" class="center">
+									<a href="#$.getBean('facebookLoginProvider').generateAuthUrl(session.urltoken)#" title="#$.rbKey('login.loginwithfacebook')#" class="mura-login-auth-btn fb">
+						      	<i class="icon icon-lg icon-facebook mi-facebook"></i>
+						      	<span>#$.rbKey('login.loginwithfacebook')#</span>
+									</a>
+								</div>
+							</cfif>
+
+		          <div class="text-divider"><span>#$.rbKey('login.or')#</span></div>
+							<h3 class="center mura-login-auth-heading">#$.rbKey('login.loginwithcredentials')#</h3>
+
 						</cfif>
-						<!--- Use Facebook oAuth Button --->
-						<cfif listFindNoCase($.globalConfig().getEnableOauth(), 'facebook')>
-							<div style="padding-bottom: 5px" class="center">
-								<a href="#$.getBean('facebookLoginProvider').generateAuthUrl(session.urltoken)#" title="#$.rbKey('login.loginwithfacebook')#" class="mura-login-auth-btn fb">
-					      	<i class="icon icon-lg icon-facebook mi-facebook"></i>
-					      	<span>#$.rbKey('login.loginwithfacebook')#</span>
-								</a>
-							</div>
-						</cfif>
 
-	          <div class="text-divider"><span>#$.rbKey('login.or')#</span></div>
-						<h3 class="center mura-login-auth-heading">#$.rbKey('login.loginwithcredentials')#</h3>
+					<label for="locku">Username</label>
+					<input type="text" name="locku" id="locku" class="text" />
 
+					<label for="lockp">Password</label>
+					<input type="password" name="lockp" id="lockp" class="text" />
+					<cfif not $.globalConfig().getValue(property="sessionBasedLockdown",defaultValue=false)>
+					<label for="expires">Log me in for:</label>
+						<select name="expires">
+							<option value="session">Session</option>
+							<option value="1">One Day</option>
+							<option value="7">One Week</option>
+							<option value="30">One Month</option>
+							<option value="10950">Forever</option>
+						</select>
 					</cfif>
 
-				<label for="locku">Username</label>
-				<input type="text" name="locku" id="locku" class="text" />
-
-				<label for="lockp">Password</label>
-				<input type="password" name="lockp" id="lockp" class="text" />
-				<cfif not $.globalConfig().getValue(property="sessionBasedLockdown",defaultValue=false)>
-				<label for="expires">Log me in for:</label>
-					<select name="expires">
-						<option value="session">Session</option>
-						<option value="1">One Day</option>
-						<option value="7">One Week</option>
-						<option value="30">One Month</option>
-						<option value="10950">Forever</option>
-					</select>
-				</cfif>
-
-				<input type="hidden" name="locks" value="true" />
-				<cfif len(event.getValue('locks'))>
-					<p id="error">Login failed!</p>
-				</cfif>
-				<p id="submitWrap"><input type="submit" name="submit" value="#$.rbKey('login.login')#" class="submit" /></p>
-			</form>
-		</cfif>
+					<input type="hidden" name="locks" value="true" />
+					<cfif len(event.getValue('locks'))>
+						<p id="error">Login failed!</p>
+					</cfif>
+					<p id="submitWrap"><input type="submit" name="submit" value="#$.rbKey('login.login')#" class="submit" /></p>
+				</form>
+			</cfif>
+		</div>
 	</div>
 </body>
 </cfoutput>
