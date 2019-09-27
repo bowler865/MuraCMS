@@ -1402,8 +1402,13 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 		var $=getBean('$').init(variables.siteid);
 		$.event('response',arguments.response);
 		$.announceEvent('onApiResponse');
-		
-		if(!variables.useDataNamespaceForAPI && structKeyExists(arguments.response,'data') && isStruct(arguments.response.data)){
+
+		if(isBoolean($.event('useDataNamespace')) ){
+			if(!$.event('useDataNamespace')){
+				structAppend(arguments.response,arguments.response.data);
+				structDelete(arguments.response,'data');
+			}
+		} else if(!variables.useDataNamespaceForAPI && structKeyExists(arguments.response,'data') && isStruct(arguments.response.data)){
 			structAppend(arguments.response,arguments.response.data);
 			structDelete(arguments.response,'data');
 		}
