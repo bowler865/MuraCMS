@@ -1403,14 +1403,16 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 		$.event('response',arguments.response);
 		$.announceEvent('onApiResponse');
 
-		if(isBoolean($.event('useDataNamespace')) ){
-			if(!$.event('useDataNamespace')){
+		if(structKeyExists(arguments.response,'data') && isStruct(arguments.response.data)){
+			if(isBoolean($.event('useDataNamespace')) ){
+				if(!$.event('useDataNamespace')){
+					structAppend(arguments.response,arguments.response.data);
+					structDelete(arguments.response,'data');
+				}
+			} else if(!variables.useDataNamespaceForAPI){
 				structAppend(arguments.response,arguments.response.data);
 				structDelete(arguments.response,'data');
 			}
-		} else if(!variables.useDataNamespaceForAPI && structKeyExists(arguments.response,'data') && isStruct(arguments.response.data)){
-			structAppend(arguments.response,arguments.response.data);
-			structDelete(arguments.response,'data');
 		}
 
 		if(application.configBean.getValue(property='suppressAPIParams',defaultValue=true) && isDefined('response.params')){
