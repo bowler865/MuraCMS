@@ -101,7 +101,6 @@ html.mura-edit-mode #frontEndTools > ul > li.dropdown:hover > ul.dropdown-menu {
 
 	// Base CSS
 	@import "bootstrap/type.less";
-	@import "bootstrap/buttons.less";
 
 	//Icons
 	@import "admin/icons.less";
@@ -123,9 +122,15 @@ html.mura-edit-mode #frontEndTools > ul > li.dropdown:hover > ul.dropdown-menu {
 	@import "mobile-preview.less";
 	@import "admin/iconmap.less";
 	@import "admin/add-content-ui.less";
-	@import "ckeditor-override.less";
 	@import "admin-frontend-custom.less";
 
 } //  /.mura
+
+.cke_reset_all{
+
+	@import "bootstrap/buttons.less";
+	@import "ckeditor-override.less";
+
+}
 
 @import "mura-editable-custom.less";
