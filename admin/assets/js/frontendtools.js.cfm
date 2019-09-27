@@ -1829,7 +1829,7 @@
 							if(typeof $ != 'undefined' && $.support){
 								$.support.cors = true;
 							}
-
+				
 							utility.ajax({
 					        type: "POST",
 					        xhrFields: { withCredentials: true },
@@ -2368,6 +2368,7 @@
 				Mura.currentObjectInstanceID='';
 				MuraInlineEditor.resetEditableAttributes();
 				Mura('.mura-object-selected').removeClass('mura-object-selected');
+				Mura('.mura-object-select').removeClass('mura-object-select');
 				Mura('.mura-editable-attribute.mura-active').removeClass('mura-active');
 				Mura('.mura-container-active').removeClass('mura-container-active');
 				Mura('#mura-sidebar-configurator').hide();
