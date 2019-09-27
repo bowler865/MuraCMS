@@ -97,7 +97,6 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 		<cfset var rstplugins="">
 		<cfset var bundleAssetPath="">
 		<cfset var bundleContext="">
-		<cfset var bundleWebPath="">
 		<cfset var bundleFileAssetPath="">
 		<cfset var rssite="">
 		<cfset var themeDir="">
@@ -197,10 +196,15 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 			<cfset rssite=arguments.Bundle.getValue("rssite")>
 			<cfif rssite.recordcount and isDefined("rssite.siteID")>
 				<cfset bundleAssetPath=arguments.Bundle.getValue("assetPath")>
-				<cfset bundleWebPath=arguments.Bundle.getValue("webPath")>
 				<cfset bundleFileAssetPath=arguments.Bundle.getValue("fileAssetPath")>
 
-				<cfif isSimpleValue(bundleAssetPath)>
+				<cfif isSimpleValue(bundleFileAssetPath) and len(bundleFileAssetPath)>
+					<cfset var isremote=(isdefined('rssite.isremote') and isBoolean(rssite.isremote) and rssite.isremote)>
+					<cfif bundleFileAssetPath neq toSite.getfileAssetPath(complete=rssite.isremote)>
+						<cfset application.contentUtility.findAndReplace("#bundleFileAssetPath#/cache/", "#toSite.getfileAssetPath(complete=isremote)#/cache/", arguments.toSiteID)>
+						<cfset application.contentUtility.findAndReplace("#bundleFileAssetPath#/assets/", "#toSite.getfileAssetPath(complete=isremote)#/assets/", arguments.toSiteID)>
+					</cfif>
+				<cfelseif isSimpleValue(bundleAssetPath)>
 					<cfif bundleAssetPath neq application.configBean.getAssetPath()>
 						<cfset application.contentUtility.findAndReplace("#bundleAssetPath#/#rssite.siteID#/cache/", "#application.configBean.getAssetPath()#/#arguments.toSiteID#/cache/", arguments.toSiteID)>
 						<cfset application.contentUtility.findAndReplace("#bundleAssetPath#/#rssite.siteID#/assets/", "#application.configBean.getAssetPath()#/#arguments.toSiteID#/assets/", arguments.toSiteID)>

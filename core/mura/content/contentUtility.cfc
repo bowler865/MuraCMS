@@ -1155,6 +1155,20 @@ and parentID is null
 	<cfset var jsonReplace ="" />
 
 	<cfif len(arguments.find) and arguments.find neq "/">
+
+		<cfif isNumeric(arguments.find)>
+			<cfset jsonFind=arguments.find>
+		<cfelse>
+			<cfset jsonFind=serializeJSON(arguments.find)>
+			<cfset jsonFind=mid(jsonFind,2,len(jsonFind)-2)>
+		</cfif>
+		<cfif isNumeric(arguments.replace)>
+			<cfset jsonReplace=arguments.replace>
+		<cfelse>
+			<cfset jsonReplace=serializeJSON(arguments.replace)>
+			<cfset jsonReplace=mid(jsonReplace,2,len(jsonReplace)-2)>
+		</cfif>
+
 		<cfquery name="rs" datasource="#variables.configBean.getDatasource()#"  username="#variables.configBean.getDBUsername()#" password="#variables.configBean.getDBPassword()#">
 		select contentID, contentHistID, siteID, filename from tcontent
 		where siteid= <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.siteID#"/>
@@ -1171,12 +1185,17 @@ and parentID is null
 		</cfloop>
 
 		<cfquery datasource="#variables.configBean.getReadOnlyDatasource()#" name="rs"  username="#variables.configBean.getReadOnlyDbUsername()#" password="#variables.configBean.getReadOnlyDbPassword()#">
-			select contenthistid, body from tcontent where body like <cfqueryparam value="%#arguments.find#%" cfsqltype="cf_sql_varchar"> and siteID = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.siteID#"/>
+			select contenthistid, body from tcontent where siteID = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.siteID#"/>
 			and type in ('Page','Calendar','Folder','Gallery','Link','Component','Form')
+			and (
+				body like <cfqueryparam value="%#arguments.find#%" cfsqltype="cf_sql_varchar"> 
+				or body like <cfqueryparam value="%#arguments.jsonFind#%" cfsqltype="cf_sql_varchar"> 
+			)
 		</cfquery>
 
 		<cfloop query="rs">
 			<cfset newbody = replaceNoCase(BODY,"#arguments.find#","#arguments.replace#","ALL")>
+			<cfset newbody = replaceNoCase(BODY,"#arguments.jsonFind#","#arguments.jsonReplace#","ALL")>
 			<cfquery datasource="#variables.configBean.getDatasource()#" username="#variables.configBean.getDBUsername()#" password="#variables.configBean.getDBPassword()#">
 			update tcontent set body = <cfqueryparam value="#newBody#" cfsqltype="cf_sql_longvarchar"> where contenthistid = <cfqueryparam cfsqltype="cf_sql_varchar" value="#rs.contenthistID#"/>
 			</cfquery>
@@ -1193,19 +1212,6 @@ and parentID is null
 			update tcontent set summary = <cfqueryparam value="#newSummary#" cfsqltype="cf_sql_longvarchar"> where contenthistid = <cfqueryparam cfsqltype="cf_sql_varchar" value="#rs.contenthistID#"/>
 			</cfquery>
 		</cfloop>
-
-		<cfif isNumeric(arguments.find)>
-			<cfset jsonFind=arguments.find>
-		<cfelse>
-			<cfset jsonFind=serializeJSON(arguments.find)>
-			<cfset jsonFind=mid(jsonFind,2,len(jsonFind)-2)>
-		</cfif>
-		<cfif isNumeric(arguments.replace)>
-			<cfset jsonReplace=arguments.replace>
-		<cfelse>
-			<cfset jsonReplace=serializeJSON(arguments.replace)>
-			<cfset jsonReplace=mid(jsonReplace,2,len(jsonReplace)-2)>
-		</cfif>
 		
 		<cfquery datasource="#variables.configBean.getReadOnlyDatasource()#" name="rs"  username="#variables.configBean.getReadOnlyDbUsername()#" password="#variables.configBean.getReadOnlyDbPassword()#">
 			select * from tcontentobjects where params like <cfqueryparam value="%#jsonFind#%" cfsqltype="cf_sql_varchar"> and siteID = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.siteID#"/>
@@ -1230,13 +1236,18 @@ and parentID is null
 			where
 			tclassextendattributes.siteid=<cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.siteID#"/>
 			and tclassextendattributes.type='HTMLEditor'
-			and tclassextenddata.attributevalue like <cfqueryparam value="%#arguments.find#%" cfsqltype="cf_sql_varchar">
+			and (
+				tclassextenddata.attributevalue like <cfqueryparam value="%#arguments.find#%" cfsqltype="cf_sql_varchar">
+				or tclassextenddata.attributevalue like <cfqueryparam value="%#arguments.jsonFind#%" cfsqltype="cf_sql_varchar">
+			)
 		</cfquery>
 		
 
 		<cfloop query="rs">
 			<cfset newAttributeValue = replaceNoCase(rs.attributeValue,"#arguments.find#","#arguments.replace#","ALL")>
-			<cfset newStringValue=replace(rs.stringvalue,"#arguments.find#","#arguments.replace#","ALL")>
+			<cfset newAttributeValue = replaceNoCase(rs.attributeValue,"#arguments.jsonFind#","#arguments.jsonReplace#","ALL")>
+			<cfset newStringValue=replaceNoCase(rs.stringvalue,"#arguments.find#","#arguments.replace#","ALL")>
+			<cfset newStringValue=replaceNoCase(rs.stringvalue,"#arguments.jsonFind#","#arguments.jsonReplace#","ALL")>
 
 			<cfquery>
 				update tclassextenddata set
