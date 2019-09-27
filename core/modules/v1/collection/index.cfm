@@ -197,9 +197,23 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 				<cfif not len(objectParams.sortDirection)>
 					<cfset objectParams.sortDirection=$.content('sortDirection')>
 				</cfif>
+				<cfset args={
+					parentid=$.content('contentid'),
+					siteid=$.content('siteid'),
+					aggregation="false",
+					applyPermFilter="false",
+					size="0", 
+					sortBy=$.content('sortby'),  
+					sortDirection=$.content('sortDirection'), 
+					nextN=$.content('nextN'), 
+					today=now(), 
+					categoryid='', 
+					type='Folder',
+					useCategoryIntersect=false
+				}>
+				<cfset structAppend(args,objectParams)>
 
-				<cfset iterator=$.content().set(objectParams).setType('Folder').getKidsIterator(argumentCollection=objectParams)>
-				<cfset iterator.setNextN(objectParams.nextn)>
+				<cfset iterator=$.getBean('contentManager').getKidsIterator(argumentCollection=args)>
 				<cfset iterator.setStartRow(variables.$.event('startrow'))>
 
 			</cfcase>
