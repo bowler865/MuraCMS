@@ -97,7 +97,8 @@ function getDropDirection(e, target) {
     if (targetClass.indexOf('mura-prepend')){
         startDir = 'prepend';
     }
-    if (elemBottom == elemTop){
+
+    if (elemBottom <= elemTop + 30){
         return startDir;
     } else if (e.clientY <= divide) {
         return 'prepend';
