@@ -141,7 +141,7 @@ component
 					return response;
 				}
 				response.stuff = "WIDTH!";
-				ImageResize(sourceImage,int(arguments.dimensions.width));
+				ImageResize(sourceImage,int(arguments.dimensions.width),'');
 			}
 			else {
 				if(!isNumeric(arguments.dimensions.width) || !isNumeric(arguments.dimensions.height) || arguments.dimensions.width < 1 || arguments.dimensions.height < 1) {
@@ -200,7 +200,7 @@ component
 				throw(message="Illegal file path",errorcode ="invalidParameters");
 			}
 
-			var item = fileUpload(destination=tempDir,fileField='croppedImage',nameConflict="Overwrite");
+			var item = fileUpload(tempDir,'croppedImage','',"Overwrite",false);
 
 			if(listFindNoCase(allowedExtensions,item.serverfileext)) {
 					if(fileExists(expandPath(filePath) & m.globalConfig().getFileDelim() & item.serverfile)) {
