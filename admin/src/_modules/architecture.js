@@ -395,15 +395,25 @@ siteManager = {
 
 	openNewContentMenu: function(contentid, siteid, topid, parentid, type, moduleid) {
 
+		var w = parseInt(Mura('#mura-content').width()) - 120;
+		if(w > 1200){w = 1200};
 		$("#newContentMenuContainer").remove();
 		$("body").append('<div id="newContentMenuContainer" title="Loading..." style="display:none"><div id="newContentMenu"><div class="load-inline"></div></div></div>');
-
+		console.log(getDialogPosition());
 		$("#newContentMenuContainer").dialog({
-			resizable: false,
+			resizable: !1,
 			modal: true,
-			width: 552,
+			width: w,
+			minWidth: 712,
 			title: newContentMenuTitle,
-			position: getDialogPosition(),
+			position: {
+        my: "center",
+        at: "top+120",
+        of: "#mura-content",
+        collision: "fit"
+    },
+    	// original method centers vertically
+			//position: getDialogPosition(),
 			/*
 buttons: {
 					Cancel: function() {
@@ -419,7 +429,7 @@ buttons: {
 				$.get(url + "?" + pars, function(data) {
 					$('#newContentMenuContainer .load-inline').spin(false);
 					$('#newContentMenuContainer').html(data);
-					$("#newContentMenuContainer").dialog("option", "position",{ my: "center", at: "center", of: window });
+				//	$("#newContentMenuContainer").dialog("option", "position",{ my: "center", at: "center", of: window });
 					setToolTips('.add-content-ui');
 
 				});
