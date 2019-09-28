@@ -85,7 +85,6 @@
 		<cfif not arrayFind(objectParams.items,variables.$.content('contentid'))>
 			<cfset arrayPrepend(objectParams.items,variables.$.content('contentid'))>
 		</cfif>
-		<cfset corepath=$.siteConfig().getcorepath(complete=$.siteConfig('isremote'))>
 	</cfsilent>
 	<cfif objectParams.format eq 'list'>
 		<cfset objectParams.sourcetype='calendar'>
@@ -200,12 +199,12 @@
 			$('.mura-calender__filters').show();
 
 			Mura.loader()
-				.loadcss("#corepath#/vendor/fullcalendar/fullcalendar.css",{media:'all'})
-				.loadcss("#corepath#/vendor/fullcalendar/fullcalendar.print.css",{media:'print'})
+				.loadcss("#$.siteConfig('corepath')#/vendor/fullcalendar/fullcalendar.css",{media:'all'})
+				.loadcss("#$.siteConfig('corepath')#/vendor/fullcalendar/fullcalendar.print.css",{media:'print'})
 				.loadjs(
-					"#corepath#/vendor/fullcalendar/lib/moment-with-locales.min.js",
-					"#corepath#/vendor/fullcalendar/fullcalendar.min.js",
-					"#corepath#/vendor/fullcalendar/gcal.js",
+					"#$.siteConfig('corepath')#/vendor/fullcalendar/lib/moment-with-locales.min.js",
+					"#$.siteConfig('corepath')#/vendor/fullcalendar/fullcalendar.min.js",
+					"#$.siteConfig('corepath')#/vendor/fullcalendar/gcal.js",
 					function(){
 						$('##mura-calendar').fullCalendar({
 							timezone: 'local'
