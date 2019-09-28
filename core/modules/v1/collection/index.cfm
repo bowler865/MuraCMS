@@ -212,8 +212,8 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 					<cfset args.size=variables.maxPortalItems>
 				</cfif>
 
-			
 				<cfset iterator=$.getBean('contentManager').getKidsIterator(argumentCollection=args)>
+				<cfset iterator.setNextN(objectParams.nextN)>
 				<cfset iterator.setStartRow(variables.$.event('startrow'))>
 
 			</cfcase>
