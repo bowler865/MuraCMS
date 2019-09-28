@@ -83,21 +83,21 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 					<cfif not len($availableSubTypes) or listFindNoCase($availableSubTypes,'#i#/Default')>
 						<cfif i neq 'Form'>
 							<li class="new#i#">
-								<cfif len(rsItemTypes.description)>
+								<cfif false and len(rsItemTypes.description)>
 									<a href="##" rel="tooltip" data-original-title="#esapiEncode('html_attr',rsItemTypes.description)#"><i class="mi-question-circle"></i></a>
 								</cfif>
 								<a href="./?muraAction=cArch.edit&contentid=&parentid=#esapiEncode('url',rc.contentid)#&parenthistid=#esapiEncode('url',rc.contenthistid)#&type=#i#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteID)#&moduleid=#esapiEncode('url',rc.moduleid)#&ptype=#esapiEncode('url',rc.ptype)#&frontend=#esapiEncode('url',rc.compactDisplay)#" target="_top" id="new#i#Link"><i class="#$.iconClassByContentType(type=i,subtype='default',siteid=rc.siteid)#"></i> <span>#application.rbFactory.getKeyValue(session.rb,"sitemanager.add#lcase(i)#")#</span></a>
 							</li>
 						<cfelse>
 							<li class="new#i#">
-								<cfif len(rsItemTypes.description)>
+								<cfif false and len(rsItemTypes.description)>
 									<a href="##" rel="tooltip" data-original-title="#esapiEncode('html_attr',rsItemTypes.description)#"><i class="mi-question-circle"></i></a>
 								</cfif>
 								<a href="./?muraAction=cArch.edit&contentid=&parentid=#esapiEncode('url',rc.contentid)#&parenthistid=#esapiEncode('url',rc.contenthistid)#&type=#i#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteID)#&moduleid=#esapiEncode('url',rc.moduleid)#&ptype=#esapiEncode('url',rc.ptype)#&frontend=#esapiEncode('url',rc.compactDisplay)#&formType=builder" target="_top" id="new#i#Link"><i class="#$.iconClassByContentType(type=i,subtype='default',siteid=rc.siteid)#"></i> <span>#application.rbFactory.getKeyValue(session.rb,"sitemanager.addform")#</span></a>
 							</li>
 							<cfif application.configBean.getValue('allowSimpleHTMLForms')>
 							<li class="new#i#simple">
-								<cfif len(rsItemTypes.description)>
+								<cfif false and len(rsItemTypes.description)>
 									<a href="##" rel="tooltip" data-original-title="#esapiEncode('html_attr',rsItemTypes.description)#"><i class="mi-question-circle"></i></a>
 								</cfif>
 								<a href="./?muraAction=cArch.edit&contentid=&parentid=#esapiEncode('url',rc.contentid)#&parenthistid=#esapiEncode('url',rc.contenthistid)#&type=#i#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteID)#&moduleid=#esapiEncode('url',rc.moduleid)#&ptype=#esapiEncode('url',rc.ptype)#&frontend=#esapiEncode('url',rc.compactDisplay)#&formType=editor" target="_top" id="new#i#Link"><i class="#$.iconClassByContentType(type=i,subtype='default',siteid=rc.siteid)#"></i> <span>#application.rbFactory.getKeyValue(session.rb,"sitemanager.addformsimple")#</span></a>
@@ -123,7 +123,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 								#output#
 							<cfelse>
 								<li class="new#i#">
-									<cfif len(rsItemTypes.description)><a href="##" rel="tooltip" data-original-title="#esapiEncode('html_attr',rsItemTypes.description)#"><i class="mi-question-circle"></i></a></cfif>
+									<cfif false and len(rsItemTypes.description)><a href="##" rel="tooltip" data-original-title="#esapiEncode('html_attr',rsItemTypes.description)#"><i class="mi-question-circle"></i></a></cfif>
 									<a href="./?muraAction=cArch.edit&contentid=&parentid=#esapiEncode('url',rc.contentid)#&parenthistid=#esapiEncode('url',rc.contenthistid)#&type=#i#&subType=#rsItemTypes.subType#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteID)#&moduleid=#esapiEncode('url',rc.moduleid)#&ptype=#esapiEncode('url',rc.ptype)#&frontend=#esapiEncode('url',rc.compactDisplay)#" target="_top" id="new#i#Link"><i class="#$.iconClassByContentType(type=i,subtype=rsItemTypes.subtype,siteid=rc.siteID)#"></i> <span> <!--- #application.rbFactory.getKeyValue(session.rb,"sitemanager.add#lcase(i)#")#/ --->#rsItemTypes.subType#</span></a>
 								</li>
 							</cfif>
@@ -142,7 +142,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 					))>
 					<cfif not len($availableSubTypes) or listFindNoCase($availableSubTypes,'#i#/Default')>
 						<li class="new#i#">
-							<cfif len(rsItemTypes.description)>
+							<cfif false and len(rsItemTypes.description)>
 								<a href="##" rel="tooltip" data-original-title="#esapiEncode('html_attr',rsItemTypes.description)#"><i class="mi-question-circle"></i></a>
 							</cfif>
 							<a href="./?muraAction=cArch.edit&contentid=&parentid=#esapiEncode('url',rc.contentid)#&parenthistid=#esapiEncode('url',rc.contenthistid)#&type=#i#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteID)#&moduleid=#esapiEncode('url',rc.moduleid)#&ptype=#esapiEncode('url',rc.ptype)#&frontend=#esapiEncode('url',rc.compactDisplay)#" target="_top" id="new#i#Link"><i class="#$.iconClassByContentType(type=i,subtype='default',siteid=rc.siteid)#"></i> <span>#application.rbFactory.getKeyValue(session.rb,"sitemanager.add#lcase(i)#")#</span></a>
@@ -166,7 +166,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 								#output#
 							<cfelse>
 								<li class="new#i#">
-									<cfif len(rsItemTypes.description)><a href="##" rel="tooltip" data-original-title="#esapiEncode('html_attr',rsItemTypes.description)#"><i class="mi-question-circle"></i></a></cfif>
+									<cfif false and len(rsItemTypes.description)><a href="##" rel="tooltip" data-original-title="#esapiEncode('html_attr',rsItemTypes.description)#"><i class="mi-question-circle"></i></a></cfif>
 									<a href="./?muraAction=cArch.edit&contentid=&parentid=#esapiEncode('url',rc.contentid)#&parenthistid=#esapiEncode('url',rc.contenthistid)#&type=#i#&subType=#rsItemTypes.subType#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteID)#&moduleid=#esapiEncode('url',rc.moduleid)#&ptype=#esapiEncode('url',rc.ptype)#&frontend=#esapiEncode('url',rc.compactDisplay)#" target="_top" id="new#i#Link"><i class="#$.iconClassByContentType(type=i,subtype=rsItemTypes.subtype,siteid=rc.siteID)#"></i> <span> <!--- #application.rbFactory.getKeyValue(session.rb,"sitemanager.add#lcase(i)#")#/ --->#rsItemTypes.subType#</span></a>
 								</li>
 							</cfif>
@@ -185,7 +185,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 						))>
 						<cfif not len($availableSubTypes) or listFindNoCase($availableSubTypes,'#i#/Default')>
 							<li class="new#i#">
-								<cfif len(rsItemTypes.description)>
+								<cfif false and len(rsItemTypes.description)>
 									<a href="##" rel="tooltip" data-original-title="#esapiEncode('html_attr',rsItemTypes.description)#"><i class="mi-question-circle"></i></a>
 								</cfif>
 								<a href="./?muraAction=cArch.edit&contentid=&parentid=#esapiEncode('url',rc.contentid)#&parenthistid=#esapiEncode('url',rc.contenthistid)#&type=#i#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteID)#&moduleid=#esapiEncode('url',rc.moduleid)#&ptype=#esapiEncode('url',rc.ptype)#&frontend=#esapiEncode('url',rc.compactDisplay)#" target="_top" id="new#i#Link"><i class="#$.iconClassByContentType(type=i,subtype='default',siteid=rc.siteid)#"></i> <span>#application.rbFactory.getKeyValue(session.rb,"sitemanager.add#lcase(i)#")#</span></a>
@@ -209,7 +209,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 									#output#
 								<cfelse>
 									<li class="new#i#">
-										<cfif len(rsItemTypes.description)><a href="##" rel="tooltip" data-original-title="#esapiEncode('html_attr',rsItemTypes.description)#"><i class="mi-question-circle"></i></a></cfif>
+										<cfif false and len(rsItemTypes.description)><a href="##" rel="tooltip" data-original-title="#esapiEncode('html_attr',rsItemTypes.description)#"><i class="mi-question-circle"></i></a></cfif>
 										<a href="./?muraAction=cArch.edit&contentid=&parentid=#esapiEncode('url',rc.contentid)#&parenthistid=#esapiEncode('url',rc.contenthistid)#&type=#i#&subType=#rsItemTypes.subType#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteID)#&moduleid=#esapiEncode('url',rc.moduleid)#&ptype=#esapiEncode('url',rc.ptype)#&frontend=#esapiEncode('url',rc.compactDisplay)#" target="_top" id="new#i#Link"><i class="#$.iconClassByContentType(type=i,subtype=rsItemTypes.subtype,siteid=rc.siteID)#"></i> <span> <!--- #application.rbFactory.getKeyValue(session.rb,"sitemanager.add#lcase(i)#")#/ --->#rsItemTypes.subType#</span></a>
 									</li>
 								</cfif>
@@ -234,7 +234,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 					))>
 					<cfif not len($availableSubTypes) or listFindNoCase($availableSubTypes,'#i#/Default')>
 						<li class="new#i#">
-							<cfif len(rsItemTypes.description)>
+							<cfif false and len(rsItemTypes.description)>
 								<a href="##" rel="tooltip" data-original-title="#esapiEncode('html_attr',rsItemTypes.description)#"><i class="mi-question-circle"></i></a>
 							</cfif>
 							<a href="./?muraAction=cArch.edit&contentid=&parentid=#esapiEncode('url',rc.contentid)#&parenthistid=#esapiEncode('url',rc.contenthistid)#&type=#i#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteID)#&moduleid=00000000000000000000000000000000000&ptype=#esapiEncode('url',rc.ptype)#&frontend=#esapiEncode('url',rc.compactDisplay)#" target="_top" id="new#i#Link"><i class="#$.iconClassByContentType(type=i,subtype='default',siteid=rc.siteid)#"></i> <span>#application.rbFactory.getKeyValue(session.rb,"sitemanager.add#lcase(i)#")#</span></a>
@@ -257,7 +257,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 							#output#
 						<cfelse>
 							<li class="new#i#">
-								<cfif len(rsItemTypes.description)><a href="##" rel="tooltip" data-original-title="#esapiEncode('html_attr',rsItemTypes.description)#"><i class="mi-question-circle"></i></a></cfif>
+								<cfif false and len(rsItemTypes.description)><a href="##" rel="tooltip" data-original-title="#esapiEncode('html_attr',rsItemTypes.description)#"><i class="mi-question-circle"></i></a></cfif>
 								<a href="./?muraAction=cArch.edit&contentid=&parentid=#esapiEncode('url',rc.contentid)#&parenthistid=#esapiEncode('url',rc.contenthistid)#&type=#i#&subType=#rsItemTypes.subType#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteID)#&moduleid=00000000000000000000000000000000000&ptype=#esapiEncode('url',rc.ptype)#&frontend=#esapiEncode('url',rc.compactDisplay)#" target="_top" id="new#i#Link"><i class="#$.iconClassByContentType(type=i,subtype=rsItemTypes.subtype,siteid=rc.siteID)#"></i> <span> <!--- #application.rbFactory.getKeyValue(session.rb,"sitemanager.add#lcase(i)#")#/ --->#rsItemTypes.subType#</span></a>
 							</li>
 						</cfif>
@@ -293,7 +293,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 						#output#
 					<cfelse>
 						<li class="newFile">
-							<cfif len(rsItemTypes.description)>
+							<cfif false and len(rsItemTypes.description)>
 								<a href="##" rel="tooltip" data-original-title="#esapiEncode('html_attr',rsItemTypes.description)#"><i class="mi-question-circle"></i></a>
 							</cfif>
 							<a href="./?muraAction=cArch.edit&contentid=&parentid=#esapiEncode('url',rc.contentid)#&parenthistid=#esapiEncode('url',rc.contenthistid)#&type=File&subType=#rsItemTypes.subType#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteID)#&moduleid=00000000000000000000000000000000000&ptype=#esapiEncode('url',rc.ptype)#&frontend=#esapiEncode('url',rc.compactDisplay)#" target="_top" id="newGalleryItem"><i class="#$.iconClassByContentType(type='GalleryItem',subtype='default',siteid=rc.siteid)#"></i> <span><!--- #application.rbFactory.getKeyValue(session.rb,"sitemanager.addgalleryItem")#/ --->#rsItemTypes.subType#</span></a>
