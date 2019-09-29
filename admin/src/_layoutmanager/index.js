@@ -695,7 +695,9 @@ function initLayoutManager(el) {
             item.data('perm', 'editor');
         }
     });
-
+   
+	Mura('label.mura-editable-label').show()
+	
     obj.find('.mura-region-local[data-inited="false"]').each(function() {
 
         var region = Mura(this);
