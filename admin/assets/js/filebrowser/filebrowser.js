@@ -1089,8 +1089,7 @@ config: {
     <div class="fileviewer-modal">
       <imageeditmenu class="fileviewer-gallery" :settings="settings" :currentFile="currentFile" :currentIndex="currentIndex" v-click-outside="closewindow"></imageeditmenu>
     </div>
-    `,
-    data() {
+    `, data() {
       return {
       };
     }
@@ -1107,6 +1106,7 @@ config: {
     props: ["currentFile","currentIndex","imageEditTarget","settings"],
     template: `
        <div>
+       |{{this.fixedwidth}}|
        <div v-if="this.editmode  == 'RESIZE'" class="fileviewer-image" id="imagediv" :style="{ 'background-image': 'url(' + encodeURI(currentFile.url) + '?' + Math.ceil(Math.random()*100000) + ')' }"></div>
        <div v-if="this.editmode == ''" class="fileviewer-image-edit"><img style="min-height: 100%" id="fileviewer-image-editable" :src="currentFile.url"></div>
         <div class="fileviewer-edit-menu mura-actions">
@@ -1137,6 +1137,12 @@ config: {
                   <input type="radio" class="sr-only" id="cropaspect1" name="cropaspect" v-model="cropaspect" :value="aspect[2]">
                   <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="aspectRatio: {{aspect[0]}} / {{aspect[1]}}">
                     {{aspect[0]}}:{{aspect[1]}}
+                    </label>
+                  </span>
+                  <label class="btn mura-primary" title="Aspect Ratio: Fixed" :class="{ 'active': cropaspect == fixedwidth }">
+                  <input type="radio" class="sr-only" id="cropaspect5" name="cropaspect" v-model="cropaspect" :value="fixedwidth">
+                  <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="aspectRatio: Fixed">
+                    Fixed
                   </span>
                 </label>
                 <label class="btn mura-primary" title="Aspect Ratio: Free" :class="{ 'active': cropaspect == NaN }">
@@ -1182,7 +1188,8 @@ config: {
             aspect: 'none',
           },
           showpreview: 0,
-          cropaspect: "4:3"
+          cropaspect: "4:3",
+          fixedwidth: 1
         };
     }
     , watch: {
@@ -1195,6 +1202,9 @@ config: {
       this.resizedimensions.height = this.currentFile.info.height;
       this.$root.isDisplayContext = 0;
       this.editmode = '';
+      this.fixedwidth = Math.ceil( this.currentFile.info.width / this.currentFile.info.height * 10000 ) / 10000;
+      console.log(this.fixedwidth);
+      console.log(this);
       this.initCropper();
 
     }
