@@ -1203,8 +1203,6 @@ config: {
       this.$root.isDisplayContext = 0;
       this.editmode = '';
       this.fixedwidth = Math.ceil( this.currentFile.info.width / this.currentFile.info.height * 10000 ) / 10000;
-      console.log(this.fixedwidth);
-      console.log(this);
       this.initCropper();
 
     }
