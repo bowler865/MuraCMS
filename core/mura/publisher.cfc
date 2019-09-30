@@ -200,7 +200,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 
 				<cfif isSimpleValue(bundleFileAssetPath) and len(bundleFileAssetPath)>
 					<cfset var isremote=(isdefined('rssite.isremote') and isBoolean(rssite.isremote) and rssite.isremote)>
-					<cfif bundleFileAssetPath neq toSite.getfileAssetPath(complete=rssite.isremote)>
+					<cfif bundleFileAssetPath neq toSite.getfileAssetPath(complete=isremote)>
 						<cfset application.contentUtility.findAndReplace("#bundleFileAssetPath#/cache/", "#toSite.getfileAssetPath(complete=isremote)#/cache/", arguments.toSiteID)>
 						<cfset application.contentUtility.findAndReplace("#bundleFileAssetPath#/assets/", "#toSite.getfileAssetPath(complete=isremote)#/assets/", arguments.toSiteID)>
 					</cfif>

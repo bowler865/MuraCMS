@@ -1616,7 +1616,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 					smallImageWidth,smallImageHeight,
 					mediumImageWidth,mediumImageHeight,
 					columnCount,columnNames,primaryColumn,baseID,customtaggroups,
-					placeholderImgID,placeholderImgExt
+					placeholderImgID,placeholderImgExt,isremote
 				    from tsettings where siteid = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.siteID#"/>
 				</cfquery>
 
