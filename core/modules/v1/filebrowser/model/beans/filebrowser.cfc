@@ -18,7 +18,7 @@ component
 				pathRoot = currentSite.getIncludePath();
 			}
 			else if(arguments.resourcePath == "Application_Root") {
-				pathRoot = "/murawrm";
+				pathRoot = "/muraWRM";
 			}
 			else {
 				/*

@@ -90,7 +90,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 </div>
 --->
 </cfsilent>
-<cfinclude template="/murawrm/admin/core/views/carch/js.cfm">
+<cfinclude template="/muraWRM/admin/core/views/carch/js.cfm">
 <cfoutput>
 <div class="mura-header">
  <h1>Select Associated Image</h1>

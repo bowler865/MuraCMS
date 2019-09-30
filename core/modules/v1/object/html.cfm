@@ -7,7 +7,7 @@
     <cfset $.event('label','Edit ' & $.event('target'))>
 </cfif>
 </cfsilent>
-<cfinclude template="/murawrm/admin/core/views/carch/js.cfm">
+<cfinclude template="/muraWRM/admin/core/views/carch/js.cfm">
 <cfoutput>
 <div class="mura-header">
 	<h1>#esapiEncode('html',$.event('label'))#</h1>
