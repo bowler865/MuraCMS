@@ -63,7 +63,20 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 </cfif>
 <cfset $=request.event.getValue("MuraScope")>
 <script>
-	$(document).ready(function(){setToolTips('.add-content-ui');});
+	$(document).ready(function(){
+		setToolTips('.add-content-ui');
+		$('#mura-content-options li.template-parent').each(function(){
+			$(this).clone().insertAfter($(this)).removeClass('template-parent').addClass('template-link').find('span').text('No Template');
+			}).addClass('closed').on('click',function(){
+				var nextOptions = $(this).nextUntil('li:not(.template-link)');
+				if ($(this).hasClass('closed')){
+					$(this).siblings('li.template-parent.open').trigger('click');
+				}
+				$(this).toggleClass('open').toggleClass('closed');
+				$(nextOptions).toggle();
+				return false;
+			});
+	});
 </script>
 <cfoutput>
 <div class="mura">
@@ -75,7 +88,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 
 	<div class="block-content">
 		<div class="add-content-ui">
-			<ul>
+			<ul id="mura-content-options">
 			<cfif rc.moduleid eq '00000000000000000000000000000000004'>
 				<cfloop list="Form,Folder" index="i">
 					<cfquery name="rsItemTypes" dbtype="query">
@@ -241,19 +254,17 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 						or rc.$.currentUser().isSuperUser()
 						))>
 						<cfif not len($availableSubTypes) or listFindNoCase($availableSubTypes,'#i#/Default')>
-
-
-							<li class="new#i#">
+							<cfquery name="rsSubTemplates" dbtype="query">
+								select * from rsTemplates where lower(type)='#lcase(i)#' and lower(subtype) = 'default'
+							</cfquery>							
+							<li class="new#i#<cfif rsSubTemplates.recordcount> template-parent</cfif>">
 								<cfif len(rsItemTypes.description)>
 									<a href="##" rel="tooltip" data-original-title="#esapiEncode('html_attr',rsItemTypes.description)#"><i class="mi-question-circle"></i></a>
 								</cfif>
 								<a href="./?muraAction=cArch.edit&contentid=&parentid=#esapiEncode('url',rc.contentid)#&parenthistid=#esapiEncode('url',rc.contenthistid)#&type=#i#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteID)#&moduleid=00000000000000000000000000000000000&ptype=#esapiEncode('url',rc.ptype)#&frontend=#esapiEncode('url',rc.compactDisplay)#" target="_top" id="new#i#Link"><i class="#$.iconClassByContentType(type=i,subtype='default',siteid=rc.siteid)#"></i> <span>#application.rbFactory.getKeyValue(session.rb,"sitemanager.add#lcase(i)#")#</span></a>
 							</li>
-							<cfquery name="rsSubTemplates" dbtype="query">
-							select * from rsTemplates where lower(type)='#lcase(i)#' and lower(subtype) = 'default'
-							</cfquery>							
 								<cfloop query="#rsSubTemplates#">
-									<li class="new#i#">
+									<li class="new#i# template-link">
 										<a href="./?muraAction=cArch.edit&contentid=&parentid=#esapiEncode('url',rc.contentid)#&parenthistid=#esapiEncode('url',rc.contenthistid)#&type=#i#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteID)#&moduleid=00000000000000000000000000000000000&ptype=#esapiEncode('url',rc.ptype)#&frontend=#esapiEncode('url',rc.compactDisplay)#&templateid=#rsSubTemplates.contentID#" target="_top" id="newTemplateLink#rsSubTemplates.filename#"><i class="#$.iconClassByContentType(type=i,subtype='default',siteid=rc.siteid)#"></i> <span>Template: #rsSubTemplates.title#</span></a>
 								</li>
 								</cfloop>
@@ -274,16 +285,16 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 							<cfif len(output)>
 								#output#
 							<cfelse>
-								<li class="new#i#">
+								<cfquery name="rsSubTemplates" dbtype="query">
+									select * from rsTemplates where lower(type)='#lcase(i)#' and lower(subtype) = '#rsItemTypes.subType#'
+								</cfquery>
+								<li class="new#i#<cfif rsSubTemplates.recordcount> template-parent</cfif>">
 									<cfif len(rsItemTypes.description)><a href="##" rel="tooltip" data-original-title="#esapiEncode('html_attr',rsItemTypes.description)#"><i class="mi-question-circle"></i></a></cfif>
 									<a href="./?muraAction=cArch.edit&contentid=&parentid=#esapiEncode('url',rc.contentid)#&parenthistid=#esapiEncode('url',rc.contenthistid)#&type=#i#&subType=#rsItemTypes.subType#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteID)#&moduleid=00000000000000000000000000000000000&ptype=#esapiEncode('url',rc.ptype)#&frontend=#esapiEncode('url',rc.compactDisplay)#" target="_top" id="new#i#Link"><i class="#$.iconClassByContentType(type=i,subtype=rsItemTypes.subtype,siteid=rc.siteID)#"></i> <span> <!--- #application.rbFactory.getKeyValue(session.rb,"sitemanager.add#lcase(i)#")#/ --->#rsItemTypes.subType#</span></a>
 								</li>
 
-								<cfquery name="rsSubTemplates" dbtype="query">
-									select * from rsTemplates where lower(type)='#lcase(i)#' and lower(subtype) = '#rsItemTypes.subType#'
-								</cfquery>
 								<cfloop query="#rsSubTemplates#">
-									<li class="new#i#">
+									<li class="new#i# template-link">
 									<a href="./?muraAction=cArch.edit&contentid=&parentid=#esapiEncode('url',rc.contentid)#&parenthistid=#esapiEncode('url',rc.contenthistid)#&type=#i#&subType=#rsItemTypes.subType#&topid=#esapiEncode('url',rc.topid)#&siteid=#esapiEncode('url',rc.siteID)#&moduleid=00000000000000000000000000000000000&ptype=#esapiEncode('url',rc.ptype)#&frontend=#esapiEncode('url',rc.compactDisplay)#&templateid=#rsSubTemplates.contentID#" target="_top" id="newTemplateLink#rsSubTemplates.filename#"><i class="#$.iconClassByContentType(type=i,subtype=rsItemTypes.subtype,siteid=rc.siteID)#"></i> <span>Template: #rsSubTemplates.title#</span></a>
 								</li>
 								</cfloop>

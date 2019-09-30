@@ -17,9 +17,10 @@
             font-size: 14px;
             font-weight: 400;
             margin: 0;
+            position: relative;
             width: 100%;
 
-            a {
+            a:not([rel="tooltip"]) {
                 background-color: transparent !important;
                 color: #d8d8d8;
                 display: block;
@@ -45,7 +46,6 @@
 
                 &:hover {
                     text-decoration: none;
-                    #gradient .vertical(darken(#414141, 10%), darken(#323232, 10%));
 
                     i {
                         color: @white;
@@ -80,6 +80,37 @@
 
             }
 
+            &.template-link{
+                display:none;
+                padding-left: 25px;
+            }
+            &.template-parent{
+                &:after{
+                    display: inline-block;
+                    position: absolute;
+                    font-family: FontAwesome;
+                    font-size: 15px;
+                    font-weight: 700;
+                    top: 50%;
+                    transform: translateY(50%);
+                    -webkit-transform: translateY(-50%);
+                }
+                &.open{
+                    > a > i{
+                        color: @white;
+                    }
+                }
+                &.open:after{
+                    color: #bfbfbf;
+                    content: "\f107";
+                    right: 12px;
+                }
+               &.closed:after{
+                    color: #8b8b8b;
+                    content: "\f105";
+                    right: 16px;
+                }
+            }
         }
 
     }
