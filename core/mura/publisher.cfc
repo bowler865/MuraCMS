@@ -101,7 +101,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 		<cfset var rssite="">
 		<cfset var themeDir="">
 		<cfset var doFindAndReplace=false>
-		<cfset var toSite=getBean('settingsManger').getSite(arguments.tosite)>
+		<cfset var toSite=getBean('settingsManager').getSite(arguments.tosite)>
 
 		<cfsetting requestTimeout = "7200">
 
