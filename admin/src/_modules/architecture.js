@@ -396,7 +396,7 @@ siteManager = {
 	openNewContentMenu: function(contentid, siteid, topid, parentid, type, moduleid) {
 
 		var w = parseInt(Mura('#mura-content').width()) - 120;
-		if(w > 1200){w = 1200};
+		if(w > 570){w = 570};
 		$("#newContentMenuContainer").remove();
 		$("body").append('<div id="newContentMenuContainer" title="Loading..." style="display:none"><div id="newContentMenu"><div class="load-inline"></div></div></div>');
 		console.log(getDialogPosition());
@@ -404,7 +404,7 @@ siteManager = {
 			resizable: !1,
 			modal: true,
 			width: w,
-			minWidth: 712,
+			minWidth: 570,
 			title: newContentMenuTitle,
 			position: {
         my: "center",
