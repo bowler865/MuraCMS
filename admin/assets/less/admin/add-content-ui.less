@@ -1,60 +1,64 @@
 .add-content-ui {
-
     ul {
-    	display: inline;
+        display: inline;
         list-style: none;
         margin: 0;
         padding: 0;
 
         li {
             .box-sizing(border-box);
-					  background-color: #565656 !important;
-						border: solid 2px #fff;
-						border-top: none;
-						border-left: none;
-					  color: #d8d8d8;
-					  display: block;
-					  float: left;
-					  font-size: 14px;
-					  font-weight: 400;
-					  margin: 0;
-				    width: ~"calc(33% - 2px)";
-				    
+            background-color: #565656 !important;
+            border: solid 2px #fff;
+            border-top: none;
+            border-left: none;
+            color: #d8d8d8;
+            display: block;
+            float: left;
+            font-size: 14px;
+            font-weight: 400;
+            margin: 0;
+            width: ~"calc(33% - 2px)";
+
             a {
-								background-color: transparent !important;
+                background-color: transparent !important;
                 color: #d8d8d8;
                 display: block;
-							  padding: 10px 16px;
+                padding: 10px 16px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
 
                 i {
-
                     color: #898989;
                     display: block;
-								    font-family: FontAwesome!important;
-								    font-size: 1em;
-										height: 1em;
+                    font-family: FontAwesome !important;
+                    font-size: 1em;
+                    height: 1em;
                     line-height: 1;
                     padding: 0;
-								    padding-right: 1em;
-								    width: auto;
-								    float: left;
-										margin: 4px 6px 0 0;
+                    padding-right: 1em;
+                    width: auto;
+                    float: left;
+                    margin: 4px 6px 0 0;
                     width: 18px;
-	
                 }
 
                 &:hover {
                     text-decoration: none;
                     #gradient .vertical(darken(#414141, 10%), darken(#323232, 10%));
+
                     i {
                         color: @white;
                     }
+
                     span {
                         color: @gray;
                     }
+
                 }
+
             }
-          
+
             a[rel="tooltip"] {
                 position: absolute;
                 top: 4px;
@@ -64,6 +68,7 @@
                 background: transparent;
                 border: 0;
                 z-index: 10;
+
                 i {
                     font-size: 15px;
                     color: @grayDark;
@@ -72,7 +77,11 @@
                     line-height: 1;
                     .inline-block;
                 }
+
             }
+
         }
+
     }
+
 }
