@@ -1138,7 +1138,8 @@ config: {
                     {{aspect[0]}}:{{aspect[1]}}
                     </label>
                   </span>
-                  <label class="btn mura-primary" title="Aspect Ratio: Fixed" :class="{ 'active': cropaspect == fixedwidth }">
+                </label>
+                <label class="btn mura-primary" title="Aspect Ratio: Fixed" :class="{ 'active': cropaspect == fixedwidth }">
                   <input type="radio" class="sr-only" id="cropaspect5" name="cropaspect" v-model="cropaspect" :value="fixedwidth">
                   <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="aspectRatio: Fixed">
                     Fixed
