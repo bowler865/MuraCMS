@@ -1214,22 +1214,9 @@ and parentID is null
 		</cfloop>
 		
 		<cfquery datasource="#variables.configBean.getReadOnlyDatasource()#" name="rs"  username="#variables.configBean.getReadOnlyDbUsername()#" password="#variables.configBean.getReadOnlyDbPassword()#">
-			select * from tcontentobjects where params like <cfqueryparam value="%#jsonFind#%" cfsqltype="cf_sql_varchar"> and siteID = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.siteID#"/>
+			update tcontentobjects set params=replace(params,<cfqueryparam value="#jsonFind#" cfsqltype="cf_sql_varchar">,<cfqueryparam value="#jsonFind#" cfsqltype="cf_sql_varchar">) where params like <cfqueryparam value="%#jsonFind#%" cfsqltype="cf_sql_varchar"> and siteID = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.siteID#"/>
 		</cfquery>
 	
-		<cfloop query="rs">
-			<cfset newParams = replaceNoCase(rs.params,"#jsonFind#","#jsonReplace#","ALL")>
-			<cfquery datasource="#variables.configBean.getDatasource()#" username="#variables.configBean.getDBUsername()#" password="#variables.configBean.getDBPassword()#">
-			update tcontentobjects set params = <cfqueryparam value="#newParams#" cfsqltype="cf_sql_longvarchar"> 
-			where contenthistid = <cfqueryparam cfsqltype="cf_sql_varchar" value="#rs.contenthistID#"/>
-			and siteid = <cfqueryparam cfsqltype="cf_sql_varchar" value="#rs.contenthistID#"/>
-			and object = <cfqueryparam cfsqltype="cf_sql_varchar" value="#rs.object#"/>
-			and objectid = <cfqueryparam cfsqltype="cf_sql_varchar" value="#rs.objectid#"/>
-			and columnid = <cfqueryparam cfsqltype="cf_sql_numeric" value="#rs.columnid#"/>
-			and orderno = <cfqueryparam cfsqltype="cf_sql_numeric" value="#rs.orderno#"/>
-			</cfquery>
-		</cfloop>
-
 		<cfquery datasource="#variables.configBean.getReadOnlyDatasource()#" name="rs">
 			select tclassextenddata.dataid, tclassextenddata.attributevalue, tclassextenddata.stringvalue from tclassextenddata
 			inner join tclassextendattributes on (tclassextenddata.attributeid=tclassextendattributes.attributeid)
