@@ -245,7 +245,7 @@ General Classes
 <cfset this.formButtomSubmitclass = this.formButtonSubmitclass>
 <cfset this.formButtonSubmitLabel = "Submit">
 <cfset this.formButtonSubmitWaitLabel = "Please Wait...">
-<cfset this.formButtonNextlClass = "form-nav">
+<cfset this.formButtonNextClass = "form-nav">
 <cfset this.formButtonNextLabel = "Next">
 <cfset this.formButtonBackClass = "form-nav">
 <cfset this.formButtonBackLabel = "Back">
@@ -687,8 +687,8 @@ Display Objects
     generalwrapperbodyclass = this.generalwrapperbodyclass,
     formWrapperClass=this.formWrapperClass,
   	formWrapperBodyClass=this.formWrapperBodyClass,
-		formErrorWrapperClass=this.formErrorWrapperClass,
-		formResponseWrapperClass=this.formResponseWrapperClass,
+	formErrorWrapperClass=this.formErrorWrapperClass,
+	formResponseWrapperClass=this.formResponseWrapperClass,
   	formFieldWrapperClass = this.formFieldWrapperClass,
   	formFieldLabelClass = this.formFieldLabelClass,
   	formGeneralControlClass = this.formGeneralControlClass,
@@ -698,25 +698,25 @@ Display Objects
   	formFileClass = this.formFileClass,
   	formCheckboxClass = this.formCheckboxClass,
   	formCheckboxLabelClass = this.formCheckboxLabelClass,
-		formCheckboxWrapperClass = this.formCheckboxWrapperClass,
-		formRadioWrapperClass = this.formRadioWrapperClass,
+	formCheckboxWrapperClass = this.formCheckboxWrapperClass,
+	formRadioWrapperClass = this.formRadioWrapperClass,
   	formRadioClass = this.formRadioClass,
   	formRadioLabelClass = this.formRadioLabelClass,
   	formButtonWrapperClass = this.formButtonWrapperClass,
   	formButtonInnerClass=this.formButtonInnerClass,
   	formButtonClass = this.formButtonClass,
   	formRequiredWrapperClass = this.formRequiredWrapperClass,
-		formButtomSubmitclass = this.formButtomSubmitclass,
-		formButtonSubmitclass = this.formButtonSubmitclass,
-		formButtonSubmitLabel = this.formButtonSubmitLabel,
-		formButtonSubmitWaitLabel = this.formButtonSubmitWaitLabel,
-		formButtonNextlClass = this.formButtonNextlClass,
-		formButtonNextLabel = this.formButtonNextLabel,
-		formButtonBackClass = this.formButtonBackClass,
-		formButtonBackLabel = this.formButtonBackLabel,
-		formButtonCancelLabel = this.formButtonCancelLabel,
-		formButtonCancelClass = this.formButtonCancelClass,
-		formRequiredLabel = this.formRequiredLabel
+	formButtomSubmitclass = this.formButtomSubmitclass,
+	formButtonSubmitclass = this.formButtonSubmitclass,
+	formButtonSubmitLabel = this.formButtonSubmitLabel,
+	formButtonSubmitWaitLabel = this.formButtonSubmitWaitLabel,
+	formButtonNextClass = this.formButtonNextClass,
+	formButtonNextLabel = this.formButtonNextLabel,
+	formButtonBackClass = this.formButtonBackClass,
+	formButtonBackLabel = this.formButtonBackLabel,
+	formButtonCancelLabel = this.formButtonCancelLabel,
+	formButtonCancelClass = this.formButtonCancelClass,
+	formRequiredLabel = this.formRequiredLabel
   }>
 
 </cffunction>
