@@ -858,7 +858,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 	<cfif isDefined("sessionData.mura.showTrace") and sessionData.mura.showTrace and listFindNoCase(sessionData.mura.memberships,"S2IsPrivate")>
 		<cfset response=replaceNoCase(response,"</html>","#application.utility.dumpTrace()#</html>")>
 	</cfif>
-
+	
 	<cfif isdefined('response')>
 		<cfif arguments.event.getContentRenderer().getSuppressWhitespace()>
 			<cfsavecontent variable="response"><cfprocessingdirective suppressWhitespace="true"><cfoutput>#response#</cfoutput></cfprocessingdirective></cfsavecontent>
