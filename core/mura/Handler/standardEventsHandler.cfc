@@ -427,59 +427,61 @@
 	<cfargument name="event" required="true">
 	<cfargument name="$" required="true">
 
-	<cfif arguments.event.getValue("contentBean").getIsNew()>
-		<cfset getPluginManager().announceEvent(eventToAnnounce="onSite404",currentEventObject=arguments.event,objectid=arguments.event.getValue('contentBean').getContentID())>
-	</cfif>
+	<cfif not (len($.event('display')) and listFindNoCase('search,editprofile,createprofile,login',$.event('display')))>
+		<cfif arguments.event.getValue("contentBean").getIsNew()>
+			<cfset getPluginManager().announceEvent(eventToAnnounce="onSite404",currentEventObject=arguments.event,objectid=arguments.event.getValue('contentBean').getContentID())>
+		</cfif>
 
-	<cfif arguments.event.getValue("contentBean").getIsNew()>
-		<cfset request.mura404=true>
-		<cfset var local.filename=arguments.event.getValue('currentFilenameAdjusted')>
+		<cfif arguments.event.getValue("contentBean").getIsNew()>
+			<cfset request.mura404=true>
+			<cfset var local.filename=arguments.event.getValue('currentFilenameAdjusted')>
 
-		<cfloop condition="listLen(local.filename,'/')">
-			<cfset var archived=getBean('contentFilenameArchive').loadBy(filename=local.filename,siteid=event.getValue('siteid'))>
-			<cfif not archived.getIsNew()>
-				<cfset var archiveBean=getBean('content').loadBy(contentid=archived.getContentID(),siteid=event.getValue('siteid'))>
-				<cfif not archiveBean.getIsNew()>
-					<cfif local.filename eq event.getValue('currentFilenameAdjusted')>
-						<cfif request.returnFormat eq 'JSON'>
-							<cfset request.muraJSONRedirectURL=archiveBean.getURL()>
-							<cfreturn true>
-						<cfelse>
-							<cflocation url="#archiveBean.getURL()#" addtoken="false" statuscode="301">
-						</cfif>
-					<cfelse>
-						<cfset archiveBean=getBean('content').loadBy(filename=replace(arguments.event.getValue('currentFilenameAdjusted'),local.filename,archiveBean.getFilename()),siteid=event.getValue('siteid'))>
-						<cfif not archiveBean.getIsNew()>
+			<cfloop condition="listLen(local.filename,'/')">
+				<cfset var archived=getBean('contentFilenameArchive').loadBy(filename=local.filename,siteid=event.getValue('siteid'))>
+				<cfif not archived.getIsNew()>
+					<cfset var archiveBean=getBean('content').loadBy(contentid=archived.getContentID(),siteid=event.getValue('siteid'))>
+					<cfif not archiveBean.getIsNew()>
+						<cfif local.filename eq event.getValue('currentFilenameAdjusted')>
 							<cfif request.returnFormat eq 'JSON'>
 								<cfset request.muraJSONRedirectURL=archiveBean.getURL()>
 								<cfreturn true>
 							<cfelse>
 								<cflocation url="#archiveBean.getURL()#" addtoken="false" statuscode="301">
 							</cfif>
+						<cfelse>
+							<cfset archiveBean=getBean('content').loadBy(filename=replace(arguments.event.getValue('currentFilenameAdjusted'),local.filename,archiveBean.getFilename()),siteid=event.getValue('siteid'))>
+							<cfif not archiveBean.getIsNew()>
+								<cfif request.returnFormat eq 'JSON'>
+									<cfset request.muraJSONRedirectURL=archiveBean.getURL()>
+									<cfreturn true>
+								<cfelse>
+									<cflocation url="#archiveBean.getURL()#" addtoken="false" statuscode="301">
+								</cfif>
+							</cfif>
 						</cfif>
+					<cfelse>
+						<cfset archived.delete()>
 					</cfif>
-				<cfelse>
-					<cfset archived.delete()>
 				</cfif>
+
+				<cfset local.filename=listDeleteAt(local.filename,listLen(local.filename,'/'),'/')>
+			</cfloop>
+		</cfif>
+
+		<cfif not isdefined('request.muraJSONRedirectURL') and arguments.event.getValue("contentBean").getIsNew()>
+			<cfset arguments.event.setValue('contentBean',application.contentManager.getActiveContentByFilename("404",arguments.event.getValue('siteid'),true)) />
+
+			<cfif len(arguments.event.getValue('previewID'))>
+				<cfset arguments.event.getContentBean().setBody("The requested version of this content could not be found.")>
+			</cfif>
+			<cfif request.returnFormat neq 'json' and request.muraFrontEndRequest >
+				<cfheader statuscode="404" statustext="Content Not Found" />
 			</cfif>
 
-			<cfset local.filename=listDeleteAt(local.filename,listLen(local.filename,'/'),'/')>
-		</cfloop>
-	</cfif>
-
-	<cfif not isdefined('request.muraJSONRedirectURL') and arguments.event.getValue("contentBean").getIsNew()>
-		<cfset arguments.event.setValue('contentBean',application.contentManager.getActiveContentByFilename("404",arguments.event.getValue('siteid'),true)) />
-
-		<cfif len(arguments.event.getValue('previewID'))>
-			<cfset arguments.event.getContentBean().setBody("The requested version of this content could not be found.")>
-		</cfif>
-		<cfif request.returnFormat neq 'json' and request.muraFrontEndRequest >
-			<cfheader statuscode="404" statustext="Content Not Found" />
-		</cfif>
-
-		<cfset var renderer=arguments.$.getContentRenderer()>
-		<cfif isDefined('renderer.noIndex')>
-			<cfset renderer.noIndex()>
+			<cfset var renderer=arguments.$.getContentRenderer()>
+			<cfif isDefined('renderer.noIndex')>
+				<cfset renderer.noIndex()>
+			</cfif>
 		</cfif>
 	</cfif>
 
