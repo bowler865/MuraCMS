@@ -444,8 +444,6 @@ if ( application.setupComplete ) {
 		}
 	}
 
-	new mura.content.contentServer();
-
 	if(	isdefined('url.applyDBUpdates')
 			&& isDefined('application.muraExternalConfig.global.entities')
 			&& isArray(application.muraExternalConfig.global.entities)
