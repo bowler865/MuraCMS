@@ -245,7 +245,8 @@ component extends="mura.bean.beanExtendable" entityName="content" table="tconten
 		variables.instance.objectParams={};
 		variables.instance.canonicalURL='';
 		variables.displayRegions = structNew();
-		variables.isTemplate=0;
+		variables.instance.istemplate=0;
+
 		return this;
 	}
 
