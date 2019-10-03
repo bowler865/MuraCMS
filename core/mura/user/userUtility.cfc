@@ -800,7 +800,7 @@ Thanks for using #contactName#</cfoutput>
 		</cfif>
 
 		<!--- Make sure bean is valid --->
-		<cfif redirect.exists() && redirect.getCreated() GTE dateAdd("d",-variables.configBean.get('mfadayslinkvalid'),now()) && arguments.$.event('returnUserID') == redirect.getUserID() >
+		<cfif redirect.exists() and redirect.getCreated() GTE dateAdd("d",-variables.configBean.get('mfadayslinkvalid'),now()) and arguments.$.event('returnUserID') eq redirect.getUserID() >
 			<cfset var userUtility = getBean('userUtility') />
 			<cfset var user=redirect.getUser() />
 			<cfset 	var sessionData = getSession() />

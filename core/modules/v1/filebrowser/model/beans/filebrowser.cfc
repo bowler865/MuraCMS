@@ -520,7 +520,7 @@ component
 				throw(message="Illegal file path",errorcode ="invalidParameters");
 			}
 
-			var dirlist = directoryList(path=filePath,listinfo='name',type="dir");
+			var dirlist = directoryList(filePath,false,'name','','',"dir");
 
 			if(ArrayLen(dirlist)) {
 				response.folders = dirlist;
@@ -701,7 +701,7 @@ component
 				var info = getFileInfo ( path );
 
 				if( info.type == "directory") {
-					var list = directoryList( path=path,listinfo="query" );
+					var list=directoryList(path,false,'query');
 
 					if(list.recordcount) {
 							response.message = "Directory is not empty.";
@@ -851,11 +851,11 @@ component
 
 				var rb = getResourceBundle(arguments.siteid);
 				response.settings = {
-					editfilelist: editfilelist,
-					imagelist: imagelist,
-					rb: rb,
-					aspectratios: aspectratios
-				}
+					editfilelist=editfilelist,
+					imagelist=imagelist,
+					rb=rb,
+					aspectratios=aspectratios
+				};
 			}
 
 			// m.siteConfig().getFileDir() ... OS file path (no siteid)
@@ -899,7 +899,7 @@ component
 			var sqlString = "SELECT * from sourceQuery";
 
 			var qObj = new query();
-			qObj.setName("files")
+			qObj.setName("files");
 			qObj.setDBType("query");
 			qObj.setAttributes(sourceQuery=rsDirectory);
 
