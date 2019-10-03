@@ -313,6 +313,7 @@ component extends="controller" output="false" {
 			structDelete(templateData,'contentid');
 			structDelete(templateData,'filename');
 			structDelete(templateData,'path');
+			templateData.istemplate=0;
 			arguments.rc.contentBean.set(templateData);
 		}
 		if ( arguments.rc.type != 'Variation' && arguments.rc.contentid != ''  && arguments.rc.contenthistid != '' && arguments.rc.contentBean.getIsNew() == 1 && !len(arguments.rc.instanceid) ) {
