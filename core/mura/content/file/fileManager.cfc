@@ -1030,7 +1030,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 
 		<cfset cropper=imageRead(source)>
 
-		<!-- -
+		<!---
 			This a workaround to ensure jpegs can be process 
 			https://luceeserver.atlassian.net/browse/LDEV-1874
 		--->
