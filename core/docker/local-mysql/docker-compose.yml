@@ -3,7 +3,7 @@ version: '3.5'
 services:
   #Mura Server
   mura_mysql_cfml:
-    image: ortussolutions/commandbox:adobe2016
+    image: ortussolutions/commandbox:lucee5
     depends_on:
       - mura_mysql
     environment:
