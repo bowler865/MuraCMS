@@ -706,8 +706,8 @@ component extends="mura.bean.beanFeed" entityName="feed" table="tcontentfeeds" o
 	}
 
 	public function getAvailableDisplayList(listCol="attribute") output=false {
-		var attrList="Date,Title,Image,Summary,Body,ReadMore,Credits,Comments,Tags,Rating";
-		var labelList="Date,Title,Image,Summary,Body,Read More,Credits,Comments,Tags,Rating";
+		var attrList="Date,Title,Image,Summary,Body,ReadMore,Credits,Comments,Tags,Type,SubType,Rating";
+		var labelList="Date,Title,Image,Summary,Body,Read More,Credits,Comments,Tags,Type,SubType,Rating";
 
 		var i=0;
 		var finder=0;

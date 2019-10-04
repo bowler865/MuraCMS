@@ -843,9 +843,9 @@ component extends="mura.bean.beanExtendable" entityName="content" table="tconten
 		var rsExtend=variables.configBean.getClassExtensionManager().getExtendedAttributeList(variables.instance.siteID,"tcontent");
 
 		if ( variables.instance.type != "Gallery" ) {
-			returnList="Date,Title,Image,Summary,Body,ReadMore,Credits,Comments,Tags,Rating";
+			returnList="Date,Title,Image,Summary,Body,ReadMore,Credits,Comments,Tags,Type,SubType,Rating";
 		} else {
-			returnList="Date,Title,Image,Summary,ReadMore,Credits,Comments,Tags,Rating";
+			returnList="Date,Title,Image,Summary,ReadMore,Credits,Comments,Tags,Type,SubType,Rating";
 		}
 		if ( rsExtend.recordcount ) {
 			var qs=getQueryService();
