@@ -3496,6 +3496,8 @@ buttons: {
 			src=src + "&" + p + "=" + encodeURIComponent($params[p]);
 		}
 
+		src=src + '&cacheid=' + Math.random();
+
 		frontEndProxy.post({
 			cmd:'openModal',
 			src:src
@@ -3580,7 +3582,7 @@ buttons: {
 									}
 
 									if(item.attr('id') && typeof CKEDITOR.instances[item.attr('id')] != 'undefined'){
-										CKEDITOR.instances[item.attr('id')].updateElement();
+										CKEDITOR.instances[item.attr('id')].setData(item.val());
 									}
 								}
 
@@ -3588,7 +3590,7 @@ buttons: {
 						}
 
 					});
-
+					//alert(JSON.stringify(params))
 					siteManager.initConfiguratorParams();
 					callback(params);
 				}
