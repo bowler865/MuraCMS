@@ -78,7 +78,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 				var cmd={cmd:'setLocation',location:encodeURIComponent("#esapiEncode('javascript',href)#")};
 			</cfif>
 
-			frontEndProxy = new Porthole.WindowProxy("#esapiEncode('javascript',session.frontEndProxyLoc)##application.configBean.getContext()##application.configBean.getAdminDir()#/assets/js/porthole/proxy.html");
+			frontEndProxy = new Porthole.WindowProxy("#esapiEncode('javascript',session.frontEndProxyLoc)##application.configBean.getContext()##application.configBean.getAdminDir()#/assets/js/porthole/proxy.html?cacheid=" + Math.random());
 
 			if (jQuery("##ProxyIFrame").length) {
 				jQuery("##ProxyIFrame").load(function(){
