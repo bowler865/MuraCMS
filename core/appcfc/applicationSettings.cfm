@@ -81,6 +81,23 @@ if(!structKeyExists(server,'lucee')){
 }
 */
 
+jvmProps=createObject('java','java.lang.System').getProperties();
+
+for(key in jvmProps){
+	if(UCASE(LEFT(key, 5)) eq "MURA_"){
+		request.muraJVMProperties['#key#']=jvmProps['#key#'];
+	}
+}
+
+if(!StructIsEmpty(request.muraJVMProperties)){
+	tempVars={};
+	structAppend(tempVars, request.muraSysEnv);
+	structAppend(tempVars, request.muraJVMProperties);
+	request.muraSysEnv = tempVars;
+}
+
+structDelete(request, 'muraJVMProperties');
+
 if (structKeyExists(request.muraSysEnv, "MURA_GLOBAL_SECRETS")) {
     // Confirm that file exist and is JSON
     if (fileExists('/run/secrets/' & request.muraSysEnv["MURA_GLOBAL_SECRETS"])) {
@@ -112,17 +129,6 @@ if(!StructIsEmpty(request.muraSecrets)){
 
 structDelete(request,'muraSecrets');
 
-request.muraJVMProperties = StructFilter(createObject('java','java.lang.System').getProperties(), function(key, value) {
-  return UCASE(LEFT(key, 5)) eq "MURA_";
-});
-if(!StructIsEmpty(request.muraJVMProperties)){
-	tempVars={};
-	structAppend(tempVars, request.muraSysEnv);
-	structAppend(tempVars, request.muraJVMProperties);
-	request.muraSysEnv = tempVars;
-}
-
-structDelete(request, 'muraJVMProperties');
 
 request.muraInDocker=len(getSystemEnvironmentSetting('MURA_DATASOURCE'));
 this.configPath=getDirectoryFromPath(getCurrentTemplatePath());
