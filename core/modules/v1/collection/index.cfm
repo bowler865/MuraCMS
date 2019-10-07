@@ -202,16 +202,17 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 				<cfset args.siteid=$.content('siteid')>
 				<cfset args.type='Folder'>
 
-				<cfif isNumeric(objectParams.maxItems)>
+				<cfif not (structkeyExists(objectParams,'targetattr') and objectParams.targetattr eq 'objectparams') and isNumeric(objectParams.maxItems)>
 					<cfset args.size=objectParams.maxItems>
 				<cfelse>
 					<cfset args.size=variables.maxPortalItems>
+					<cfset objectParams.maxItems="">
 				</cfif>
 
 				<cfif not isNumeric(args.size) or not args.size or args.size gt variables.maxPortalItems>
 					<cfset args.size=variables.maxPortalItems>
 				</cfif>
-
+				
 				<cfset iterator=$.getBean('contentManager').getKidsIterator(argumentCollection=args)>
 				<cfset iterator.setNextN(objectParams.nextN)>
 				<cfset iterator.setStartRow(variables.$.event('startrow'))>
