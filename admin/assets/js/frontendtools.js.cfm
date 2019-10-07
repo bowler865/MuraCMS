@@ -34,7 +34,7 @@
 	</cfif>
 
 	<cfif len($.globalConfig('admindomain')) or $.event('contenttype') eq 'variation' or ($.siteConfig('isRemote') and len($.siteConfig().getValue('resourceDomain')))>
-		var adminProxyLoc="#$.siteConfig().getAdminPath(complete=1)#/assets/js/porthole/proxy.html";
+		var adminProxyLoc="#$.siteConfig().getAdminPath(complete=1)#/assets/js/porthole/proxy.html?cacheid=" + Math.random();
 		var adminLoc="#$.siteConfig().getAdminPath(complete=1)#/";
 		var coreLoc="#$.siteConfig().getCorePath(complete=1)#/";
 		var resourceLoc="#$.siteConfig().getResourcePath(complete=1)#/";
@@ -44,7 +44,7 @@
 			frontEndProxyLoc+=':' + location.port;
 		}
 	<cfelse>
-		var adminProxyLoc="#$.globalConfig('context')##$.globalConfig('adminDir')#/assets/js/porthole/proxy.html";
+		var adminProxyLoc="#$.globalConfig('context')##$.globalConfig('adminDir')#/assets/js/porthole/proxy.html?cacheid=" + Math.random();
 		var adminLoc="#$.globalConfig('context')##$.globalConfig('adminDir')#/";
 		var coreLoc="#$.globalConfig('context')#/core/";
 		var resourceLoc="#$.globalConfig('context')#/";
