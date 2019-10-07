@@ -184,7 +184,7 @@
 						}
 					}
 
-					frontEndProxy = new Porthole.WindowProxy("#esapiEncode('javascript',session.frontEndProxyLoc)##application.configBean.getContext()##application.configBean.getAdminDir()#/assets/js/porthole/proxy.html");
+					frontEndProxy = new Porthole.WindowProxy("#esapiEncode('javascript',session.frontEndProxyLoc)##application.configBean.getContext()##application.configBean.getAdminDir()#/assets/js/porthole/proxy.html?cacheid=" + Math.random());
 					frontEndProxy.post({
 						cmd:'setHeight',
 						height:getHeight(),
