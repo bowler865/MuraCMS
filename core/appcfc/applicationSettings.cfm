@@ -71,6 +71,7 @@ param name="request.muraPointInTime" default="";
 param name="request.muraTemplateMissing" default=false;
 param name="request.muraSysEnv" default="#createObject('java','java.lang.System').getenv()#";
 param name="request.muraSecrets" default={};
+param name="request.muraJVMProperties" default={};
 
 //https://www.bennadel.com/blog/2824-gethttprequestdata-may-break-your-request-in-coldfusion-but-gethttprequestdata-false-may-not.htm
 //Throws error in Lucee 5.2.4.37
@@ -110,6 +111,18 @@ if(!StructIsEmpty(request.muraSecrets)){
 }
 
 structDelete(request,'muraSecrets');
+
+request.muraJVMProperties = StructFilter(createObject('java','java.lang.System').getProperties(), function(key, value) {
+  return UCASE(LEFT(key, 5)) eq "MURA_";
+});
+if(!StructIsEmpty(request.muraJVMProperties)){
+	tempVars={};
+	structAppend(tempVars, request.muraSysEnv);
+	structAppend(tempVars, request.muraJVMProperties);
+	request.muraSysEnv = tempVars;
+}
+
+structDelete(request, 'muraJVMProperties');
 
 request.muraInDocker=len(getSystemEnvironmentSetting('MURA_DATASOURCE'));
 this.configPath=getDirectoryFromPath(getCurrentTemplatePath());
