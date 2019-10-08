@@ -375,7 +375,7 @@
 	<cfset var headers=getHttpRequestData().headers>
 
 	<cfif StructKeyExists(headers,"X-Forwarded-For") and len(headers["X-Forwarded-For"])>
-		<cfreturn headers["X-Forwarded-Host"]>
+		<cfreturn headers["X-Forwarded-For"]>
 	<cfelse>
 		<cfreturn cgi.Remote_Addr>
 	</cfif>
