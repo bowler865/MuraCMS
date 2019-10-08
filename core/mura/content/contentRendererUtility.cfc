@@ -1062,6 +1062,10 @@
 			<cfset arguments.params={}>
 		</cfif>
 
+		<cfparam name="arguments.params.instanceid" default="#createUUID()#">
+
+		<cfset cacheKeyContentId=cacheKeyContentId & arguments.params.instanceid>
+		
 		<cfif isDefined('arguments.targetattr') and len(arguments.targetattr)>
 			<cfset arguments.params.targetattr=arguments.targetattr>
 		</cfif>
