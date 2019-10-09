@@ -823,6 +823,7 @@
 		},
 		init: function(){
 			if(typeof Mura != 'undefined'){
+				Mura(document).trigger('beforeLayoutManagerInit')
 				var sheet=Mura.getStyleSheet('mura-inline-editor');
 				sheet.insertRule(
 					'.mura-region-local, .mura-region-inherited, .mura-object {	min-height: 30px;	}',
