@@ -1691,45 +1691,49 @@
 
 						});
 						
+						processedRegions={};
 						
 						utility('.mura-region-local[data-inited="true"]:not([data-loose="true"])').each(
 							function(){
-								var objectlist=[];
+								if(typeof processedRegions['objectlist' + this.getAttribute('data-regionid')] =='undefined'){
+									var objectlist=[];
 
-								utility(this).children('.mura-object').each(function(){
+									utility(this).children('.mura-object').each(function(){
 
-									if(mura && Mura.resetAsyncObject){
-										Mura.resetAsyncObject(this);
-										var item=Mura(this);
-									} else {
-										var item=utility(this);
-										item.html('');
-									}
+										if(mura && Mura.resetAsyncObject){
+											Mura.resetAsyncObject(this);
+											var item=Mura(this);
+										} else {
+											var item=utility(this);
+											item.html('');
+										}
 
-									var params=item.data();
-									var objectid='';
+										var params=item.data();
+										var objectid='';
 
-									delete params['instanceid'];
-									delete params['objectid'];
-									delete params['isconfigurator'];
-									delete params['perm'];
-									delete params['async'];
-									delete params['forcelayout'];
-									delete params['isbodyobject'];
-									delete params['runtime'];
+										delete params['instanceid'];
+										delete params['objectid'];
+										delete params['isconfigurator'];
+										delete params['perm'];
+										delete params['async'];
+										delete params['forcelayout'];
+										delete params['isbodyobject'];
+										delete params['runtime'];
 
-									if(!item.data('objectname')){
-										item.data('objectname',Mura.firstToUpperCase(item.data('object')));
-									}
+										if(!item.data('objectname')){
+											item.data('objectname',Mura.firstToUpperCase(item.data('object')));
+										}
 
-									objectid=item.data('objectid') || 'NA';
+										objectid=item.data('objectid') || 'NA';
 
-									objectlist.push(item.data('object') + '~' + item.data('objectname') + '~' + objectid + '~' + JSON.stringify(params))
+										objectlist.push(item.data('object') + '~' + item.data('objectname') + '~' + objectid + '~' + JSON.stringify(params))
 
-								});
+									});
 
-								MuraInlineEditor.data['objectlist' + this.getAttribute('data-regionid')]=objectlist.join('^');
-								count++;
+									processedRegions['objectlist' + this.getAttribute('data-regionid')]=true;
+									MuraInlineEditor.data['objectlist' + this.getAttribute('data-regionid')]=objectlist.join('^');
+									count++;
+								}
 							}
 						);
 
