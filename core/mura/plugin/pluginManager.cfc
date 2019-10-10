@@ -118,8 +118,9 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 
 	<cfquery attributeCollection="#variables.configBean.getReadOnlyQRYAttrs(name='variables.rsSettings')#">
 		select * from tpluginsettings
+		where 1=1
 		<cfif arguments.safeMode>
-			where 0=1
+			and 0=1
 		</cfif>
 		<cfif len(missingDirectoryModuleIds)>
 			and tpluginsettings.moduleid not in (<cfqueryparam cfsqltype="cf_sql_varchar" list="true" value="#missingDirectoryModuleIds#">)
