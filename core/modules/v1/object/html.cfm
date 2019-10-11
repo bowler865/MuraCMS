@@ -33,7 +33,9 @@
 		var target='#esapiEncode('javascript',$.event('target'))#';
 
         siteManager.setDisplayObjectModalWidth(800);
-        siteManager.requestDisplayObjectParams(function(params){});
+        siteManager.requestDisplayObjectParams(function(params){
+			CKEDITOR.instances[target].setData(params[target])
+		});
 
         m("##updateBtn").click(function(){
             var params={};

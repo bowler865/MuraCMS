@@ -850,6 +850,8 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 			   }
 			}
 
+			structDelete(params,'access_token');
+			structDelete(url,'access_token');
 			structAppend(form,params);
 
 			param name="sessionData.siteid" default=variables.siteid;
@@ -894,7 +896,7 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 
 				if(isDefined('#params.method#')){
 
-					getBean('$').init(variables.siteid).announceEvent('onApiRequest');
+					getBean('$').init(structCopy(params)).announceEvent('onApiRequest');
 	
 					result=evaluate('#params.method#(argumentCollection=params)');
 
@@ -927,7 +929,7 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 				throw(type="invalidParameters");
 			}
 
-			getBean('$').init(variables.siteid).announceEvent('onApiRequest');
+			getBean('$').init(structCopy(params)).announceEvent('onApiRequest');
 
 			if(arrayLen(pathInfo) > 1){
 				if(isDefined(pathInfo[2]) && pathInfo[2] != 'file'){

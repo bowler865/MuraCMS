@@ -23,64 +23,20 @@
 </div> <!-- /.block-constrain -->
 
 <script>
-$(function(){
-	$('##updateBtn').click(function(){
+	Mura(function(m){
+		var target='source';
 
-		frontEndProxy.post({
-			cmd:'setObjectParams',
-			reinit:true,
-			instanceid:'#esapiEncode("javascript",rc.instanceid)#',
-			params:{
-				source:CKEDITOR.instances['source'].getData(),
-				render:'client',
-				async:false,
-				sourcetype:'custom'
-			},
-			complete:false
-			});
-	});
+        siteManager.setDisplayObjectModalWidth(800);
+		
+        siteManager.requestDisplayObjectParams(function(params){
+			CKEDITOR.instances[target].setData(params[target])
+		});
 
-	function initConfiguratorProxy(){
-
-		function onFrontEndMessage(messageEvent){
-
-			var parameters=messageEvent.data;
-
-			if (parameters["cmd"] == "setObjectParams") {
-
-				if(parameters["params"]){
-					originParams=parameters["params"];
-				}
-
-				//console.log(parameters)
-
-				if(parameters["params"].sourcetype == 'custom'){}
-					$('##source').val(parameters["params"].source);
-					if(typeof CKEDITOR.instances['source'] != 'undefined'){
-						CKEDITOR.instances['source'].setData(parameters["params"].source);
-					}
-				}
-
-		}
-
-		frontEndProxy.addEventListener(onFrontEndMessage);
-		frontEndProxy.post({cmd:'setWidth',width:800});
-		frontEndProxy.post({
-			cmd:'requestObjectParams',
-			instanceid:'#esapiEncode("javascript",rc.instanceid)#',
-			targetFrame:'modal'
-			}
-		);
-
-
-	}
-
-	if($("##ProxyIFrame").length){
-		$("##ProxyIFrame").load(initConfiguratorProxy);
-	} else {
-		initConfiguratorProxy();
-	}
-
-});
+        m("##updateBtn").click(function(){
+            var params={};
+        	params[target]=CKEDITOR.instances[target].getData();
+            siteManager.updateDisplayObjectParams(params,false);
+        });
+    });
 </script>
 </cfoutput>
