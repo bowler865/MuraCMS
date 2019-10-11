@@ -341,8 +341,10 @@ setMarkdownEditors=function(selector) {
             var t = CKEDITOR.instances[e.id];
             void 0 !== t && null != t && CKEDITOR.remove(t), "" == Mura(document.getElementById(e.id)).val() && Mura(document.getElementById(e.id)).val("<p></p>");
             var a = e.getAttribute("data-toolbar") || "Default";
+
             $(document.getElementById(e.id)).ckeditor({
                 toolbar: a,
+                height: e.getAttribute("data-height"),
                 customConfig: "config.js.cfm"
             }, htmlEditorOnComplete);
         }

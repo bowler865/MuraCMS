@@ -638,9 +638,6 @@
 
 			if (isEditText){
 				appliedHeight = Math.min(760, utility(window).height()-96);
-				if(frameHeight > appliedHeight){
-					appliedHeight=frameHeight;
-				}
 			} else if(isFullHeight) {
 				appliedHeight = utility(window).height()-96;
 			} else {

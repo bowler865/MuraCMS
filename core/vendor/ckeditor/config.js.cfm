@@ -236,6 +236,7 @@ CKEDITOR.editorConfig = function( config )
 		config.extraPlugins += ',muratag';
 	</cfif>
 
+	<!---
 	<cfif cgi.http_referer contains 'carch.edittext'>
 		config.extraPlugins += ',autogrow';
 		config.autoGrow_onStartup = true;
@@ -247,6 +248,7 @@ CKEDITOR.editorConfig = function( config )
 			config.autoGrow_minHeight = 400;
 		}
 	</cfif>
+	--->
 
 	//config.extraPlugins += ',MuraFileBrowser';
 	//config.ProtectedTags = 'i';

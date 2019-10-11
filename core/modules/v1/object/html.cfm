@@ -17,7 +17,7 @@
 	<div class="block block-bordered">
 	  	<div class="block-content">
 		  	<div class="mura-control-group">
-				<textarea style="display:none" name="#esapiEncode('html_attr',$.event('target'))#" id="#esapiEncode('html_attr',$.event('target'))#" class="objectParam htmlEditor" data-width="100%"></textarea>
+				<textarea style="display:none" name="#esapiEncode('html_attr',$.event('target'))#" id="#esapiEncode('html_attr',$.event('target'))#" class="objectParam htmlEditor" data-height="490" data-width="100%"></textarea>
 			</div>
 			<div class="mura-actions">
 				<div class="form-actions">
