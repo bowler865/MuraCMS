@@ -505,6 +505,22 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 								</cfif>
 								<cfset started=true>
 								<cfset openGrouping=false />
+							<cfelseif param.getField() eq 'pathDepth'>
+								<cfset var depthToLength=''>
+								<cfloop list="#param.getCriteria()#" item="local.d">
+									<cfif isNumeric(local.d)>
+										<cfset depthToLength=listAppend(depthToLength,(35 * local.d) + (local.d-1))>
+									</cfif>
+								</cfloop>
+								<cfif len(depthToLength)>
+									Length(tcontent.path) 
+									#param.getCondition()# 
+									<cfif isListParam>(</cfif>
+										<cfqueryparam cfsqltype="cf_sql_numeric" value="#depthToLength#" list="#iif(isListParam,de('true'),de('false'))#">
+									<cfif isListParam>)</cfif>
+									<cfset started=true>
+									<cfset openGrouping=false />
+								</cfif>
 							<cfelseif len(param.getField())>
 								<cfif not ((param.getCriteria() eq 'null' or param.getCriteria() eq '') and param.getCondition() eq 'is')>
 									<cfset castfield="attributeValue">
