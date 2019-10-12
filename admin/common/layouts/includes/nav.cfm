@@ -266,7 +266,7 @@
                                         <a<cfif rc.originalcircuit eq 'cwebservice'> class="active"</cfif> href="#application.configBean.getContext()##application.configBean.getAdminDir()#/?muraAction=cwebservice.list&amp;siteid=#esapiEncode('url',session.siteid)#"><i class="mi-exchange"></i><span class="sidebar-mini-hide">Web Services (REST)</span></a>
                                     </li>
                                     <li>
-                                        <a target="_blank" href="#rc.$.siteConfig().getApi(type='json',version='v1').getEndpoint()#/"><i class="mi-exchange"></i><span class="sidebar-mini-hide">JSON API</span></a>
+                                        <a target="_blank" href="#application.configBean.getContext()#/#request.apiStub#/json/v1/#esapiEncode('url',session.siteid)#"><i class="mi-exchange"></i><span class="sidebar-mini-hide">JSON API</span></a>
                                     </li>
                                     <!---trash bin --->
                                     <li>
