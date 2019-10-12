@@ -11,7 +11,7 @@
 	<div class="block block-bordered">
 	  	<div class="block-content">
 		  	<div class="mura-control-group">
-				<textarea name="source" id="source" class="htmlEditor" data-width="100%"></textarea>
+				<textarea name="source" id="source" class="htmlEditor" data-height="400" data-width="100%"></textarea>
 			</div>
 			<div class="mura-actions">
 				<div class="form-actions">

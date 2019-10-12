@@ -236,7 +236,7 @@ CKEDITOR.editorConfig = function( config )
 		config.extraPlugins += ',muratag';
 	</cfif>
 
-	<cfif cgi.http_referer contains 'carch.edittext' or cgi.http_referer contains 'html.cfm'>
+	<cfif false and  (cgi.http_referer contains 'carch.edittext' or cgi.http_referer contains 'html.cfm')>
 		config.extraPlugins += ',autogrow';
 		config.autoGrow_onStartup = true;
 		config.autoGrow_bottomSpace = 10;
