@@ -25,13 +25,11 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 
 		*/
 
-		//if(configBean.getIndexfileinurls()){
+		if(configBean.getIndexfileinurls()){
 			variables.endpoint="#site.getResourcePath(complete=1)#/index.cfm/_api/json/v1/#variables.siteid#";
-		/*
 		} else {
 			variables.endpoint="#site.getResourcePath(complete=1)#/_api/json/v1/#variables.siteid#";
 		}
-		*/
 
 		variables.config={
 			linkMethods=[],
@@ -3266,9 +3264,8 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 				}
 
 				var domain=cgi.server_name;
-
-				//Rigged to always have index.cfm until some issues are figured out
-				if(true || configBean.getValue('indexFileInURLS')){
+				
+				if(configBean.getValue('indexFileInURLS')){
 					var indexFile="/index.cfm";
 				} else {
 					var indexFile="";
@@ -4213,9 +4210,8 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 		if(!listFindNoCase('json,rest',arguments.params.mode)){
 			arguments.params.mode=request.muraAPIRequestMode;
 		}
-
-		//Rigged to always have index.cfm until some issues are figured out
-		if(true || $.globalConfig('indexFileInURLS')){
+	
+		if($.globalConfig('indexFileInURLS')){
 			var indexFile="/index.cfm";
 		} else {
 			var indexFile="";
