@@ -11,7 +11,7 @@
 	<div class="block block-bordered">
 	  	<div class="block-content">
 		  	<div class="mura-control-group">
-				<textarea name="source" id="source" class="htmlEditor" data-height="490" data-width="100%"></textarea>
+				<textarea name="source" id="source" class="htmlEditor" data-width="100%"></textarea>
 			</div>
 			<div class="mura-actions">
 				<div class="form-actions">
@@ -21,7 +21,7 @@
 		</div> <!-- /.block-content -->
 	</div> <!-- /.block-bordered -->
 </div> <!-- /.block-constrain -->
-
+<!---
 <script>
 $(function(){
 	$('##updateBtn').click(function(){
@@ -83,7 +83,8 @@ $(function(){
 
 });
 </script>
-<!---
+--->
+
 <script>
 	Mura(function(m){
 		var target='source';
@@ -101,5 +102,4 @@ $(function(){
         });
     });
 </script>
---->
 </cfoutput>

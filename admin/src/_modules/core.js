@@ -345,7 +345,7 @@ setMarkdownEditors=function(selector) {
             $(document.getElementById(e.id)).ckeditor({
                 toolbar: a,
                 height: e.getAttribute("data-height"),
-                customConfig: "config.js.cfm"
+                customConfig: "config.js.cfm?cacheid=" + Math.random()
             }, htmlEditorOnComplete);
         }
     })

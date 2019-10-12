@@ -631,7 +631,7 @@
 			var appliedHeight = 0;
 
 			var isEditText = framesrc.includes('cArch.edittext');
-			var isFullHeight = framesrc.includes('cArch.editLive') || framesrc.includes('cArch.edit');
+			var isFullHeight = framesrc.includes('cArch.editLive') || framesrc.includes('cArch.edit') || framesrc.includes('html.cfm');;
 			var windowHeight = Math.max(frameHeight, utility(window).height());
 
 			utility('##frontEndToolsModalContainer ##frontEndToolsModalBody,##frontEndToolsModalContainer ##frontEndToolsModaliframe').width(frontEndModalWidth);
