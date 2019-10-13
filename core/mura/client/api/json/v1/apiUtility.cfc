@@ -27,8 +27,10 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 
 		if(configBean.getIndexfileinurls()){
 			variables.endpoint="#site.getResourcePath(complete=1)#/index.cfm/_api/json/v1/#variables.siteid#";
+			variables.endpointRootRelative="/index.cfm/_api/json/v1/#variables.siteid#";
 		} else {
 			variables.endpoint="#site.getResourcePath(complete=1)#/_api/json/v1/#variables.siteid#";
+			variables.endpointRootRelative="/_api/json/v1/#variables.siteid#";
 		}
 
 		variables.config={
@@ -3248,7 +3250,7 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 		return '';
 	}
 
-	function getEndPoint(mode='json',useProtocol=true){
+	function getEndPoint(mode='json',useProtocol=true,complete="true"){
 		if(request.muraApiRequest){
 			var configBean=getBean('configBean');
 			if(!isDefined('request.apiEndpoint')){
@@ -3275,12 +3277,20 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 			}
 			return request.apiEndpoint;
 		}
-
-		if(arguments.mode=='json'){
-			return variables.endpoint;
+		if(arguments.complete){
+			if(arguments.mode=='json'){
+				return variables.endpoint;
+			} else {
+				return replace(variables.endpoint,'/json/','/rest/');
+			}
 		} else {
-			return replace(variables.endpoint,'/json/','/rest/');
+			if(arguments.mode=='json'){
+				return variables.endpointRootRelative;
+			} else {
+				return replace(variables.endpointRootRelative,'/json/','/rest/');
+			}
 		}
+		
 
 	}
 

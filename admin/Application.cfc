@@ -385,12 +385,6 @@ component extends="framework" output="false" {
 		request.muraScope=request.context.$;
 		request.m=request.context.$;
 
-		if(request.m.globalConfig('indexfileinurls')){
-			request.apiStub='index.cfm/_api';
-		} else {
-			request.apiStub='_api';
-		}
-
 		if(request.context.moduleid neq ''){
 			session.moduleid = request.context.moduleid;
 		}
