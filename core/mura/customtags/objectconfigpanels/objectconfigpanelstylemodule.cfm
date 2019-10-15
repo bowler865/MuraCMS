@@ -137,7 +137,7 @@
 										<div class="mura-input-group">
 											<label sclass="mura-serial">
 												<input type="text" name="margin" id="objectmarginall" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.objectstyles.marginall))>#val(esapiEncode('html_attr',attributes.params.stylesupport.objectstyles.marginall))#</cfif>">
-											</label>#request.preferreduom#
+											</label>
 											<select id="objectmarginuom" name="objectmarginuom" class="styleSupport">
 												<cfloop list="#request.objectlayoutuom#" index="u">
 													<option value="#u#"<cfif attributes.params.stylesupport.objectmarginuom eq u or not len(attributes.params.styleSupport.objectmarginuom) and u eq request.preferreduom> selected</cfif>>#u#</option>
