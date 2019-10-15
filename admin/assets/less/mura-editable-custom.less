@@ -19,9 +19,9 @@
 	.mura-editable-label {
 		display: none !important;
 		background: #BEBEBE !important;
-    border-radius: 3px 3px 0 0;
+		border-radius: 3px 3px 0 0;
 		color: #000 !important;
-    font-family: "Inter UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+		font-family: "Inter UI","Helvetica Neue",Helvetica,Arial,sans-serif;
 		font-size: 11px !important;
 		font-weight: 700 !important;
 		height: 24px !important;
@@ -47,11 +47,20 @@
 	&.mura-region-active{
 		outline: 2px solid #BEBEBE !important;
 		outline-offset: -2px !important;
+	}
 
-		&:hover{
-			background: green;
-		}
+	&.mura-region-active .mura-editable-label,
+	&:hover .mura-editable-label {
+		.inline-block() !important;
+	}
 
+	&.inline {
+		.inline-block() !important;
+	}
+
+	&.mura-region-active{
+		outline: 2px solid #BEBEBE !important;
+		outline-offset: -2px !important;
 	}
 
 	&.mura-region-active .mura-editable-label,

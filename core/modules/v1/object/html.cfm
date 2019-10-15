@@ -40,7 +40,7 @@
         m("##updateBtn").click(function(){
             var params={};
         	params[target]=CKEDITOR.instances[target].getData();
-            siteManager.updateDisplayObjectParams(params,true);
+            siteManager.updateDisplayObjectParams(params,false);
         });
     });
 </script>
