@@ -115,11 +115,11 @@
 
 										<div class="mura-input-group">
 											<label class="mura-serial">
-												<input type="text" name="objectminheight" id="objectminheightnum" placeholder="0" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.objectstyles.minheight))>#val(esapiEncode('html_attr',attributes.params.stylesupport.objectstyles.minheight))#</cfif>">
+												<input type="text" name="objectminheight" id="objectminheightnum" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.objectstyles.minheight))>#val(esapiEncode('html_attr',attributes.params.stylesupport.objectstyles.minheight))#</cfif>">
 											</label>
 											<select id="objectminheightuom" name="objectminheightuom" class="styleSupport">
 												<cfloop list="#request.objectlayoutuomext#" index="u">
-													<option value="#u#"<cfif attributes.params.stylesupport.objectminheightuom eq u> selected</cfif>>#u#</option>
+													<option value="#u#"<cfif attributes.params.stylesupport.objectminheightuom eq u or not len(attributes.params.styleSupport.objectpaddinguom) and u eq request.preferreduom> selected</cfif>>#u#</option>
 												</cfloop>
 											</select>
 										</div>
@@ -137,10 +137,10 @@
 										<div class="mura-input-group">
 											<label sclass="mura-serial">
 												<input type="text" name="margin" id="objectmarginall" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.objectstyles.marginall))>#val(esapiEncode('html_attr',attributes.params.stylesupport.objectstyles.marginall))#</cfif>">
-											</label>
+											</label>#request.preferreduom#
 											<select id="objectmarginuom" name="objectmarginuom" class="styleSupport">
 												<cfloop list="#request.objectlayoutuom#" index="u">
-													<option value="#u#"<cfif attributes.params.stylesupport.objectmarginuom eq u> selected</cfif>>#u#</option>
+													<option value="#u#"<cfif attributes.params.stylesupport.objectmarginuom eq u or not len(attributes.params.styleSupport.objectmarginuom) and u eq request.preferreduom> selected</cfif>>#u#</option>
 												</cfloop>
 											</select>
 										<a class="btn ui-advanced mura-ui-link" data-reveal="objectmarginadvanced" href="##"><i class="mi-arrows"></i></a>
@@ -210,7 +210,7 @@
 											</label>
 											<select id="objectpaddinguom" name="objectpaddinguom" class="styleSupport">
 												<cfloop list="#request.objectlayoutuom#" index="u">
-													<option value="#u#"<cfif attributes.params.styleSupport.objectpaddinguom eq u> selected</cfif>>#u#</option>
+													<option value="#u#"<cfif attributes.params.styleSupport.objectpaddinguom eq u or not len(attributes.params.styleSupport.objectpaddinguom) and u eq request.preferreduom> selected</cfif>>#u#</option>
 												</cfloop>
 											</select>
 										</div>

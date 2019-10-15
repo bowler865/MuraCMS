@@ -40,10 +40,12 @@
 
 
 		<cfscript>
-		request.uomdefault = "rem,em,%,px";
-		request.uomextdefault = "rem,em,vw,vh,%,px";
+		request.uomdefault = "%,px,rem,em";
+		request.uomextdefault = "%,px,rem,em,vw,vh";
+		request.preferreduom = "rem";
 		param name="request.objectlayoutuom" default=$.globalConfig().getValue(property='objectlayoutuom',defaultValue=request.uomdefault);
 		param name="request.objectlayoutuomext" default=$.globalConfig().getValue(property='objectlayoutuomext',defaultValue=request.uomextdefault);
+		param name="request.preferreduom" default=$.globalConfig().getValue(property='preferreduom',defaultValue=request.preferreduom);
 
 		u = request.objectlayoutuom.listToArray(',');
 		v = request.uomdefault.listToArray(',');
@@ -94,7 +96,6 @@
 			param name="attributes.params.stylesupport.contentpaddinguom" default="";
 			param name="attributes.params.stylesupport.contentwidth" default="";
 			param name="attributes.params.stylesupport.contentwidthuom" default="";
-			param name="attributes.params.stylesupport.contentwidthnum" default="";
 			param name="attributes.params.stylesupport.objectbackgroundpositionx" default="";
 			param name="attributes.params.stylesupport.objectbackgroundpositiony" default="";
 			param name="attributes.params.stylesupport.contentbackgroundpositionx" default="";
@@ -1173,8 +1174,10 @@
 				var el = $('#contentwidthuomval');
 				var str = $('#contentwidthuom').val();
 				var num = $('#contentwidthnum').val();
-				if (num.length > 0){
+				if (Mura.isNumeric(num)){
 					str = num + str;
+				} else {
+					str='';
 				}
 				$(el).val(str).trigger('change');
 			});

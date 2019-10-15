@@ -61,7 +61,7 @@
 												</label>
 												<select id="metamarginuom" name="metamarginuom" class="styleSupport">
 													<cfloop list="#request.objectlayoutuom#" index="u">
-														<option value="#u#"<cfif attributes.params.styleSupport.metamarginuom eq u> selected</cfif>>#u#</option>
+														<option value="#u#"<cfif attributes.params.styleSupport.metamarginuom eq u or not len(attributes.params.styleSupport.metamarginuom) and u eq request.preferreduom> selected</cfif>>#u#</option>
 													</cfloop>
 												</select>
 											</div>
@@ -128,7 +128,7 @@
 												</label>
 												<select id="metapaddinguom" name="metapaddinguom" class="styleSupport">
 													<cfloop list="#request.objectlayoutuom#" index="u">
-														<option value="#u#"<cfif attributes.params.styleSupport.metapaddinguom eq u> selected</cfif>>#u#</option>
+														<option value="#u#"<cfif attributes.params.styleSupport.metapaddinguom eq u or not len(attributes.params.styleSupport.metapaddinguom) and u eq request.preferreduom> selected</cfif>>#u#</option>
 													</cfloop>
 												</select>
 											</div>

@@ -33,7 +33,7 @@
 
 										<div class="mura-input-group">
 											<label class="mura-serial">
-												<input type="text" name="contentwidth" id="contentwidthnum" placeholder="100" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.contentstyles.width))>#val(esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.width))#</cfif>">
+												<input type="text" name="contentwidth" id="contentwidthnum" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.contentstyles.width))>#val(esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.width))#</cfif>">
 											</label>
 											<select id="contentwidthuom" name="contentwidthuom" class="styleSupport">
 												<cfloop list="#request.objectlayoutuomext#" index="u">
@@ -53,11 +53,11 @@
 
 										<div class="mura-input-group">
 											<label class="mura-serial">
-												<input type="text" name="contentminheight" id="contentminheightnum" placeholder="0" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.contentstyles.minheight))>#val(esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.minheight))#</cfif>">
+												<input type="text" name="contentminheight" id="contentminheightnum" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.contentstyles.minheight))>#val(esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.minheight))#</cfif>">
 											</label>
 											<select id="contentminheightuom" name="contentminheightuom" class="styleSupport">
 												<cfloop list="#request.objectlayoutuomext#" index="u">
-													<option value="#u#"<cfif attributes.params.stylesupport.contentminheightuom eq u> selected</cfif>>#u#</option>
+													<option value="#u#"<cfif attributes.params.stylesupport.contentminheightuom eq u or not len(attributes.params.styleSupport.contentminheightuom) and u eq request.preferreduom> selected</cfif>>#u#</option>
 												</cfloop>
 											</select>
 										</div>
@@ -74,11 +74,12 @@
 									<div class="col-xs-12 center">
 										<div class="mura-input-group">
 											<label class="mura-serial">
-												<input type="text" name="margin" id="contentmarginall" placeholder="All" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.contentstyles.marginall))>#val(esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.marginall))#</cfif>">
+												<input type="text" name="margin" id="contentmarginall" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.contentstyles.marginall))>#val(esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.marginall))#</cfif>">
 											</label>
+										
 											<select id="contentmarginuom" name="contentmarginuom" class="styleSupport">
 												<cfloop list="#request.objectlayoutuom#" index="u">
-													<option value="#u#"<cfif attributes.params.styleSupport.contentmarginuom eq u> selected</cfif>>#u#</option>
+													<option value="#u#"<cfif attributes.params.styleSupport.contentmarginuom eq u or not len(attributes.params.styleSupport.contentmarginuom) and u eq request.preferreduom> selected</cfif>>#u#</option>
 												</cfloop>
 											</select>
 										</div>
@@ -145,11 +146,11 @@
 									<div class="col-xs-12 center">
 										<div class="mura-input-group">
 											<label class="mura-serial">
-												<input type="text" name="padding" id="contentpaddingall" placeholder="All" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.contentstyles.paddingall))>#val(esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.paddingall))#</cfif>">
+												<input type="text" name="padding" id="contentpaddingall" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.contentstyles.paddingall))>#val(esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.paddingall))#</cfif>">
 											</label>
 											<select id="contentpaddinguom" name="contentpaddinguom" class="styleSupport">
 												<cfloop list="#request.objectlayoutuom#" index="u">
-													<option value="#u#"<cfif attributes.params.styleSupport.contentpaddinguom eq u> selected</cfif>>#u#</option>
+													<option value="#u#"<cfif attributes.params.styleSupport.contentpaddinguom eq u or not len(attributes.params.styleSupport.contentpaddinguom) and u eq request.preferreduom> selected</cfif>>#u#</option>
 												</cfloop>
 											</select>
 										</div>
