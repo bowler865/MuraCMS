@@ -26,24 +26,6 @@
 		"sI": 0,
 		"sU": 0
 		},
-	"/less/assets.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "/less/assets-min.css",
-		"oF": 0,
-		"oS": 3
-		},
-	"/less/assets.css.map": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/less/assets.css.map",
-		"oF": 0
-		},
 	"/less/assets.less": {
 		"aP": 0,
 		"bl": 0,
@@ -248,7 +230,7 @@
 		"sI": 0,
 		"sU": 0
 		},
-	"/less/mura.7.2.less": {
+	"/less/mura.8.less": {
 		"aP": 0,
 		"bl": 0,
 		"eJ": 0,
@@ -258,14 +240,14 @@
 		"ma": 1,
 		"mS": 0,
 		"oA": 0,
-		"oAP": "/mura.7.2.min.css",
+		"oAP": "/mura.8.min.css",
 		"oF": 2,
 		"oS": 1,
 		"rwU": 0,
 		"sI": 0,
 		"sU": 0
 		},
-	"/less/mura.7.2.skin.css": {
+	"/less/mura.8.skin.css": {
 		"aP": 1,
 		"bl": 0,
 		"ft": 16,
@@ -275,15 +257,15 @@
 		"oF": 2,
 		"oS": 3
 		},
-	"/less/mura.7.2.skin.css.map": {
+	"/less/mura.8.skin.css.map": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
-		"oAP": "/less/mura.7.2.skin.css.map",
+		"oAP": "/less/mura.8.skin.css.map",
 		"oF": 0
 		},
-	"/less/mura.7.2.skin.less": {
+	"/less/mura.8.skin.less": {
 		"aP": 0,
 		"bl": 0,
 		"eJ": 0,
@@ -436,7 +418,7 @@
 		"sI": 0,
 		"sU": 0
 		},
-	"/less/utilities.7.2.less": {
+	"/less/utilities.8.less": {
 		"aP": 0,
 		"bl": 0,
 		"eJ": 0,
@@ -446,7 +428,7 @@
 		"ma": 1,
 		"mS": 0,
 		"oA": 1,
-		"oAP": "/less/utilities.7.2.css",
+		"oAP": "/less/utilities.8.css",
 		"oF": 0,
 		"oS": 0,
 		"rwU": 0,
@@ -520,40 +502,40 @@
 		"oF": 0,
 		"oS": 3
 		},
-	"/mura.7.2.min.css": {
+	"/mura.8.min.css": {
 		"aP": 1,
 		"bl": 0,
 		"ft": 16,
 		"ma": 0,
 		"oA": 0,
-		"oAP": "/mura.7.2.min-min.css",
+		"oAP": "/mura.8.min-min.css",
 		"oF": 0,
 		"oS": 3
 		},
-	"/mura.7.2.min.css.map": {
+	"/mura.8.min.css.map": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
-		"oAP": "/mura.7.2.min.css.map",
+		"oAP": "/mura.8.min.css.map",
 		"oF": 0
 		},
-	"/mura.7.2.skin.css": {
+	"/mura.8.skin.css": {
 		"aP": 1,
 		"bl": 0,
 		"ft": 16,
 		"ma": 0,
 		"oA": 0,
-		"oAP": "/mura.7.2.skin-min.css",
+		"oAP": "/mura.8.skin-min.css",
 		"oF": 0,
 		"oS": 3
 		},
-	"/mura.7.2.skin.css.map": {
+	"/mura.8.skin.css.map": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
-		"oAP": "/mura.7.2.skin.css.map",
+		"oAP": "/mura.8.skin.css.map",
 		"oF": 0
 		},
 	"/readme.txt": {
