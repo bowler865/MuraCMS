@@ -2774,7 +2774,7 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 						baseURL=baseURL & '=' & esapiEncode('url',params[p]);
 					}
 
-					if(!listFindNoCase('expanddepth,expand,muraPointInTime,liveOnly,feedid,cacheid,_cacheid,distinct,fields,entityname,method,maxItems,pageIndex,itemsPerPage,sortBy,sortDirection,contentpoolid,shownavonly,showexcludesearch,includehomepage,feedname,useCategoryIntersect',propName)){
+					if(!listFindNoCase('expanddepth,expand,muraPointInTime,liveOnly,feedid,cacheid,_cacheid,distinct,fields,entityname,method,maxItems,pageIndex,itemsPerPage,sortBy,sortDirection,contentpoolid,shownavonly,showexcludesearch,includehomepage,feedname,useCategoryIntersect,useDataNamespace',propName)){
 						if(propName == 'sort'){
 							advancedsort=listAppend(advancedsort,arguments.params[p]);
 						} else if(!(entity.getEntityName()=='user' && propName=='isPublic')){
