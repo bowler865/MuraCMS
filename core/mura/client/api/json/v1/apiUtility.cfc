@@ -757,8 +757,6 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 												 }});
 										 }
 
-										writeLog(type="information", file="application",text="#serializeJSON(result)#");
-
 										return result;
 									}
 								} else if(params.grant_type == 'refresh_token'){
