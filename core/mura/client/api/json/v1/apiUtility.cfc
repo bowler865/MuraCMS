@@ -492,15 +492,26 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 							|| arrayLen(pathInfo) == 6 && pathInfo[6]=='tokeninfo'
 						);
 
-						var userInfoRequest=isDefined('url.access_token') && isDefined('url.client_id') && (arrayLen(pathInfo) == 5 && pathInfo[5]=='userinfo'
+						var userInfoRequest=isDefined('url.access_token') && (arrayLen(pathInfo) == 5 && pathInfo[5]=='userinfo'
 							|| arrayLen(pathInfo) == 6 && pathInfo[6]=='userinfo'
 						);
 
 						var token=getBean('oauthToken').loadBy(token=params.access_token);
+
 						if(!(tokenInfoRequest || userInfoRequest)){
 							structDelete(params,'access_token');
 							structDelete(url,'access_token');
 						}
+						
+						if(userInfoRequest){
+							structDelete(params,'access_token');
+							structDelete(url,'access_token');
+							return serializeResponse(
+								statusCode=200,
+								response= getOAuthTokenInfo(argumentCollection=params).info
+							);
+						}
+						
 						if(!token.exists() || !listFind('client_credentials,authorization_code,password,implicit',token.getGrantType())){
 							params.method='Not Available';
 							responseObject.setHeader( 'WWW-Authenticate', 'Bearer error="invalid_access_token"' );
@@ -540,11 +551,6 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 							return serializeResponse(
 								statusCode=200,
 								response= getOAuthTokenInfo(argumentCollection=params)
-							);
-						} else if(userInfoRequest){
-							return serializeResponse(
-								statusCode=200,
-								response= getOAuthTokenInfo(argumentCollection=params).info
 							);
 						}
 					} else if(!(isDefined('params.client_id') || isDefined('params.refresh_token'))){
