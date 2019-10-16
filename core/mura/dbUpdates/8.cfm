@@ -5,5 +5,5 @@
 
 	dbUtility.setTable("tcontent")
 		.addColumn(column="canonicalURL",dataType="varchar",length=255)
-		.addColumn(column="isTemplate",dataType="int");
+		.addColumn(column="isTemplate",dataType="tinyint");
 </cfscript>
