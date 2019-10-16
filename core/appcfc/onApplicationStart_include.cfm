@@ -319,6 +319,7 @@ if ( application.setupComplete ) {
 		variables.serviceFactory.addAlias("mailingListMember","memberBean");
 		variables.serviceFactory.addAlias("groupDAO","userDAO");
 		variables.serviceFactory.addAlias("userRedirect","userRedirectBean");
+		variables.serviceFactory.addAlias("altURL","contentAltURLBean");
 
 		//The ad manager has been removed, but may be there in certain legacy conditions
 		if(variables.serviceFactory.containsBean('placementBean')){
@@ -420,6 +421,7 @@ if ( application.setupComplete ) {
 		variables.serviceFactory.getBean('oauthClient');
 		variables.serviceFactory.getBean('oauthToken');
 		variables.serviceFactory.getBean('entity');
+		variables.serviceFactory.getBean('altURL');
 	}
 
 	variables.serviceFactory.getBean('contentCategoryAssign');
