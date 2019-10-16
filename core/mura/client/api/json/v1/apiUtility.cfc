@@ -25,7 +25,7 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 
 		*/
 
-		if(configBean.getIndexfileinurls()){
+		if(true || configBean.getIndexfileinurls()){
 			variables.endpoint="#site.getResourcePath(complete=1)#/index.cfm/_api/json/v1/#variables.siteid#";
 			variables.endpointRootRelative="/index.cfm/_api/json/v1/#variables.siteid#";
 		} else {
@@ -3276,7 +3276,7 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 
 				var domain=cgi.server_name;
 				
-				if(configBean.getValue('indexFileInURLS')){
+				if(true || configBean.getValue('indexFileInURLS')){
 					var indexFile="/index.cfm";
 				} else {
 					var indexFile="";
