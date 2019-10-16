@@ -741,6 +741,7 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 												'refresh_token'=oauthclient.generateToken(granttype='refresh_token',userid=clientAccount.getUserID()).getToken(),
 												'info'=token.getTokenInfo()
 											 });
+											
 										 } else {
 											result=serializeResponse(
 	 											statusCode=200,
@@ -755,6 +756,8 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 													'info'=token.getTokenInfo()
 												 }});
 										 }
+
+										writeLog(type="information", file="application",text="#serializeJSON(result)#");
 
 										return result;
 									}
