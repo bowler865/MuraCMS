@@ -546,6 +546,9 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 						}
 					
 						if(tokenInfoRequest){
+							responseObject.setHeader( 'Cache-Control', 'no-store' );
+							responseObject.setHeader( 'Pragma', 'no-cache' );
+							
 							params.access_token=url.access_token;
 							return serializeResponse(
 								statusCode=200,
@@ -635,6 +638,9 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 											token.setData(serializeJSON(getSession())).save();
 										}
 
+										responseObject.setHeader( 'Cache-Control', 'no-store' );
+										responseObject.setHeader( 'Pragma', 'no-cache' );
+
 										result=serializeResponse(
 											statusCode=200,
 											response={
@@ -677,8 +683,11 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 											token.setData(serializeJSON(getSession())).save();
 										}
 
+										responseObject.setHeader( 'Cache-Control', 'no-store' );
+										responseObject.setHeader( 'Pragma', 'no-cache' );
+
 										if(oauth2){
-										result=serializeResponse(
+											result=serializeResponse(
 											statusCode=200,
 											response={
 												'token_type'='Bearer',
@@ -729,6 +738,9 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 											clientAccount.login();
 											token.setData(serializeJSON(getSession())).save();
 										}
+
+										responseObject.setHeader( 'Cache-Control', 'no-store' );
+										responseObject.setHeader( 'Pragma', 'no-cache' );
 
 										if(oauth2){
 										result=serializeResponse(
@@ -790,6 +802,9 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 										clientAccount.login();
 										token.setData(serializeJSON(getSession())).save();
 									}
+									
+									responseObject.setHeader( 'Cache-Control', 'no-store' );
+									responseObject.setHeader( 'Pragma', 'no-cache' );
 
 									if(oauth2){
 									result=serializeResponse(
