@@ -55,8 +55,8 @@ component extends="mura.bean.beanExtendable" entityName="content" table="tconten
 	property name="comments" fieldtype="one-to-many" cfc="comment" fkcolumn="contentid";
 	property name="stats" fieldtype="one-to-one" cfc="stats" fkcolumn="contentid";
 	property name="preserveID" type="string" default="" comparable="false" persistent="false";
-	property name="active" type="numeric" default="0" comparable="false";
-	property name="approved" type="numeric" default="0" comparable="false";
+	property name="active" type="tinyint" default="0" comparable="false";
+	property name="approved" type="tinyint" default="0" comparable="false";
 	property name="orderno" type="numeric" default="0" comparable="false";
 	property name="metaDesc" type="string" default="";
 	property name="metaKeyWords" type="string" default="";
@@ -84,16 +84,16 @@ component extends="mura.bean.beanExtendable" entityName="content" table="tconten
 	property name="template" type="string" default="";
 	property name="childTemplate" type="string" default="";
 	property name="responseMessage" type="string" default="" html="true";
-	property name="responseChart" type="numeric" default="0";
+	property name="responseChart" type="tinyint" default="0";
 	property name="responseSendTo" type="string" default="";
 	property name="responseDisplayFields" type="string" default="";
 	property name="moduleAssign" type="string" default="";
 	property name="notes" type="string" default="";
 	property name="inheritObjects" type="string" default="Inherit";
-	property name="isFeature" type="numeric" default="0";
+	property name="isFeature" type="tinyint" default="0";
 	property name="isNew" type="numeric" default="1" persistent="false";
 	property name="releaseDate" type="date" default="";
-	property name="isLocked" type="numeric" default="0" persistent="false";
+	property name="isLocked" type="tinyint" default="0" persistent="false";
 	property name="nextN" type="numeric" default="10";
 	property name="sortBy" type="string" default="orderno";
 	property name="sortDirection" type="string" default="asc";
@@ -113,13 +113,13 @@ component extends="mura.bean.beanExtendable" entityName="content" table="tconten
 	property name="credits" type="string" default="";
 	property name="audience" type="string" default="";
 	property name="keyPoints" type="string" default="" persistent="false";
-	property name="searchExclude" type="numeric" default="0";
-	property name="displayTitle" type="numeric" default="1";
+	property name="searchExclude" type="tinyint" default="0";
+	property name="displayTitle" type="tinyint" default="1";
 	property name="path" type="string" default="";
 	property name="tags" type="string" default="";
-	property name="doCache" type="numeric" default="1" persistent="false";
+	property name="doCache" type="tinyint" default="1" persistent="false";
 	property name="created" type="date" default="";
-	property name="mobileExclude" type="numeric" default="0";
+	property name="mobileExclude" type="tinyint" default="0";
 	property name="changesetID" type="string" default="" comparable="false";
 	property name="imageSize" type="string" default="small";
 	property name="imageHeight" type="string" default="AUTO";
@@ -135,7 +135,7 @@ component extends="mura.bean.beanExtendable" entityName="content" table="tconten
 	property name="approvalChainOverride" type="boolean" default="false" comparable="false" persistent="false";
 	property name="relatedContentSetData" type="any" persistent="false";
 	property name="canonicalURL" type="string" default="";
-	property name="isTemplate" type="numeric" default="0";
+	property name="isTemplate" type="tinyint" default="0";
 
 	variables.primaryKey = 'contentid';
 	variables.entityName = 'content';

@@ -454,12 +454,14 @@ function prop(property) output=false {
 function andProp(property) output=false {
 	variables.instance.pendingParam.relationship='and';
 	variables.instance.pendingParam.column=transformFieldName(arguments.property);
+	transformDataType(arguments.property);
 	return this;
 }
 
 function orProp(property) output=false {
 	variables.instance.pendingParam.relationship='or';
 	variables.instance.pendingParam.column=transformFieldName(arguments.property);
+	transformDataType(arguments.property);
 	return this;
 }
 
@@ -706,6 +708,20 @@ function transformFields(fields){
 	return arguments.fields;
 }
 
+function transformDataType(property){
+	if(listLen(arguments.property,'.') eq 2){
+		var fieldArray=listToArray(variables.instance.pendingParam.column,'.');
+		var entityName=listFirst(arguments.property,'.');
+		if(getServiceFactory().containsBean(entityName)){
+			local.related=getBean(entityName);
+			if(isDefined('local.related.getFeed')){
+				local.related.getFeed().loadTableMetaData();
+				variables.instance.pendingParam.dataType=application.objectMappings[entityname].columns[fieldArray[2]].dataType;
+			}				
+		}
+	}
+}
+
 function transformFieldName(fieldname){
 	arguments.fieldname=trim(arguments.fieldname);
 
@@ -724,6 +740,7 @@ function transformFieldName(fieldname){
 
 	return arguments.fieldname;
 }
+
 
 function isAggregateQuery(){
 	if(isDefined('url.fields') && len(url.fields)){
@@ -992,6 +1009,7 @@ function getEndRow() output=false {
 						<cfif listLen(param.getCriteria(),'.') eq 2>
 							<cfset transformCriteria=listToArray(param.getCriteria(),'.')>
 							<!--- Check if it's an entity make sure schema data is loaded --->
+							
 							<cfif getServiceFactory().containsBean('#transformCriteria[1]#')>
 								<cfset local.related=getBean('#transformCriteria[1]#')>
 								<cfif isDefined('local.related.getFeed')>
