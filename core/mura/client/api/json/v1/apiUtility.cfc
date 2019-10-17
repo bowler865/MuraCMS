@@ -474,7 +474,7 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 						request.muraHasOAuthBearerTokenHeader=true;
 					}
 				}
-				writeLog(type="information",file="application",text="params: " & serializeJSON(params));
+				writeLog(type="information",file="application",text="params: " & serializeJSON(params) & " pathInfo: " & serializeJSON(pathInfo));
 
 				if(isBasicAuth && isBasicAuthDirect){
 					var userUtility=getBean('userUtility');
