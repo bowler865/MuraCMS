@@ -489,11 +489,11 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 					}
 				} else {
 					if(isDefined('params.access_token')){
-						var tokenInfoRequest=isDefined('url.access_token') && isDefined('url.client_id') && (arrayLen(pathInfo) == 5 && pathInfo[5]=='tokeninfo'
+						var tokenInfoRequest=isDefined('params.access_token') && isDefined('params.client_id') && (arrayLen(pathInfo) == 5 && pathInfo[5]=='tokeninfo'
 							|| arrayLen(pathInfo) == 6 && pathInfo[6]=='tokeninfo'
 						);
 
-						var userInfoRequest=isDefined('url.access_token') && (arrayLen(pathInfo) == 5 && pathInfo[5]=='userinfo'
+						var userInfoRequest=isDefined('params.access_token') && (arrayLen(pathInfo) == 5 && pathInfo[5]=='userinfo'
 							|| arrayLen(pathInfo) == 6 && pathInfo[6]=='userinfo'
 						);
 
