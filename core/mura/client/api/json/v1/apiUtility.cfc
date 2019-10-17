@@ -611,12 +611,15 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 								param name="params.grant_type" default="invalid";
 
 								params.method='getOAuthToken';
-
+								
 								if(params.grant_type == 'authorization_code'){
 									if(oauthclient.getGrantType()!='authorization_code' || oauthclient.getClientSecret() != params.client_secret){
+										responseObject.setHeader( 'client-exists', oauthclient.exists() );
+										responseObject.setHeader( 'client-granttype', oauthclient.getGrantType() );
+										responseObject.setHeader( 'client-secretmatch', oauthclient.getClientSecret() != params.client_secret );
 										structDelete(params,'client_id');
 										structDelete(params,'client_secret');
-										responseObject.setHeader( 'WWW-Authenticate', 'Bearer error="invalid_authorization_code"' );
+										responseObject.setHeader( 'WWW-Authenticate', 'Bearer error="invalid_grant_type"' );
 										throw(type='authorization');
 									}
 
@@ -629,6 +632,10 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 										params={
 											method='getOAuthToken'
 										};
+										responseObject.setHeader( 'token-exists', token.exists() );
+										responseObject.setHeader( 'token-isExpired', token.isExpired() );
+										responseObject.setHeader( 'client-exists', clientAccount.exists() );
+										responseObject.setHeader( 'client-validredirect', oauthclient.isValidRedirectURI(params.redirect_uri) );
 										responseObject.setHeader( 'WWW-Authenticate', 'Bearer error="invalid_authorization_code"' );
 										throw(type='authorization');
 									} else {
