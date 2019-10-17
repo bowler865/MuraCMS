@@ -475,9 +475,6 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 					}
 				}
 
-				writeLog(type="Error", file="exception",text="Request Params:" & serializeJSON(params));
-				writeLog(type="Error", file="exception",text="Request Headers:" & serializeJSON(headers));
-
 				if(isBasicAuth && isBasicAuthDirect){
 					var userUtility=getBean('userUtility');
 					var rsuser=userUtility.lookupByCredentials(params['client_id'],params['client_secret'],variables.siteid);
