@@ -474,7 +474,8 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 						request.muraHasOAuthBearerTokenHeader=true;
 					}
 				}
-
+				writeLog(log="application",text="params; " & serializeJSON(params));
+				
 				if(isBasicAuth && isBasicAuthDirect){
 					var userUtility=getBean('userUtility');
 					var rsuser=userUtility.lookupByCredentials(params['client_id'],params['client_secret'],variables.siteid);
@@ -614,9 +615,6 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 								
 								if(params.grant_type == 'authorization_code'){
 									if(oauthclient.getGrantType()!='authorization_code' || oauthclient.getClientSecret() != params.client_secret){
-										responseObject.setHeader( 'client-exists', oauthclient.exists() );
-										responseObject.setHeader( 'client-granttype', oauthclient.getGrantType() );
-										responseObject.setHeader( 'client-secretmatch', oauthclient.getClientSecret() != params.client_secret );
 										structDelete(params,'client_id');
 										structDelete(params,'client_secret');
 										responseObject.setHeader( 'WWW-Authenticate', 'Bearer error="invalid_grant_type"' );
@@ -632,10 +630,6 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 										params={
 											method='getOAuthToken'
 										};
-										responseObject.setHeader( 'token-exists', token.exists() );
-										responseObject.setHeader( 'token-isExpired', token.isExpired() );
-										responseObject.setHeader( 'client-exists', clientAccount.exists() );
-										responseObject.setHeader( 'client-validredirect', oauthclient.isValidRedirectURI(params.redirect_uri) );
 										responseObject.setHeader( 'WWW-Authenticate', 'Bearer error="invalid_authorization_code"' );
 										throw(type='authorization');
 									} else {
@@ -1441,7 +1435,7 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 		var $=getBean('$').init(variables.siteid);
 		$.event('response',arguments.response);
 		$.announceEvent('onApiResponse');
-
+		writeLog(log="application",text="response; " & serializeJSON(arguments.response));
 		if(structKeyExists(arguments.response,'data') && isStruct(arguments.response.data)){
 			if(isBoolean($.event('useDataNamespace')) ){
 				if(!$.event('useDataNamespace')){
