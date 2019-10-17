@@ -474,7 +474,7 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 						request.muraHasOAuthBearerTokenHeader=true;
 					}
 				}
-				writeLog(log="exception",text="params: " & serializeJSON(params));
+				writeLog(type="information",file="application",text="params: " & serializeJSON(params));
 
 				if(isBasicAuth && isBasicAuthDirect){
 					var userUtility=getBean('userUtility');
@@ -1435,7 +1435,7 @@ component extends="mura.cfobject" hint="This provides JSON/REST API functionalit
 		var $=getBean('$').init(variables.siteid);
 		$.event('response',arguments.response);
 		$.announceEvent('onApiResponse');
-		writeLog(log="exception",text="response; " & serializeJSON(arguments.response));
+		writeLog(type="information",file="application",text="response; " & serializeJSON(arguments.response));
 		if(structKeyExists(arguments.response,'data') && isStruct(arguments.response.data)){
 			if(isBoolean($.event('useDataNamespace')) ){
 				if(!$.event('useDataNamespace')){
