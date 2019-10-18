@@ -936,16 +936,18 @@ component
 				frow['name'] = rereplace(frow['fullname'],"\..*","");
 				frow['type'] = rsFiles['type'][x];
 				frow['ext'] = rereplace(frow['fullname'],".[^\.]*\.","");
-				frow['isimage'] = listfind("jpg,jpeg,gif,png",frow['ext']);
+				frow['isimage'] = listfind(m.globalConfig().get(property='filebrowserimagelist',defaultValue="gif,jpg,jpeg,png,svg"),frow['ext']);
 				frow['info'] = {};
 				if(frow['isfile']) {
 					frow['ext'] = rereplace(frow['fullname'],".[^\.]*\.","");
 
-					if(	frow['isimage'] ) {
-						var iinfo = imageInfo(imageNew(conditionalExpandPath(filePath) & application.configBean.getFileDelim() & frow['fullname']));
-						if( isStruct(iinfo) ) {
-							frow['info']['height'] = iinfo.height;
-							frow['info']['width'] = iinfo.width;
+					if(	frow['isimage']) {
+						if(frow['ext'] != 'svg'){
+							var iinfo = imageInfo(imageNew(conditionalExpandPath(filePath) & application.configBean.getFileDelim() & frow['fullname']));
+							if( isStruct(iinfo) ) {
+								frow['info']['height'] = iinfo.height;
+								frow['info']['width'] = iinfo.width;
+							}
 						}
 					}
 				}

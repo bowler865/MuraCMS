@@ -1019,7 +1019,7 @@ config: {
           <label class="fileinfo">{{currentFile.fullname}} ({{currentFile.size}}kb <span v-if="checkImageType()">{{currentFile.info.width}}x{{currentFile.info.height}}</span>)</label>
           <div class="form-actions">
             <a v-if="checkImageType() && checkSelectMode()" class="btn mura-primary" @click="selectFile()"><i class="mi-check"></i>Select</a>
-            <a v-if="checkImageType()" class="btn mura-primary" @click="editImage()"><i class="mi-crop"></i>Edit Image</a>
+            <a v-if="checkImageType() && currentFile.ext.toLowerCase() !='svg'" class="btn mura-primary" @click="editImage()"><i class="mi-crop"></i>Edit Image</a>
             <a v-if="checkFileEditable()" class="btn mura-primary" @click="editFile()"><i class="mi-pencil"></i>Edit</a>
             <a class="btn mura-primary" @click="renameFile()"><i class="mi-edit"></i>Rename</a>
             <a v-if="checkIsFile()" class="btn mura-primary" @click="downloadFile()"><i class="mi-download"></i>Download</a>
