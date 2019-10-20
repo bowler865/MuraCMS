@@ -9,8 +9,8 @@ RUN mkdir -p /var/www/plugins
 COPY core/docker/build/urlrewrite.xml /var/www/etc/urlrewrite.xml
 
 # Logs
-RUN ln -sf /dev/stdout /opt/lucee/web/logs/application.log \
-	&& ln -sf /dev/stdout /opt/lucee/web/logs/exception.log
+#RUN ln -sf /dev/stdout /opt/lucee/web/logs/application.log \
+#	&& ln -sf /dev/stdout /opt/lucee/web/logs/exception.log
 
 # Copy Mura files
 COPY . /var/www
