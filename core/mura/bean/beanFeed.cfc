@@ -732,9 +732,15 @@ function transformFieldName(fieldname){
 	if ( listLen(arguments.fieldname,'.') == 2 ) {
 		var fieldArray=listToArray(arguments.fieldname,'.');
 		if(structKeyExists(application.objectMappings,fieldArray[1])){
+			if(!structKeyExists(application.objectMappings[fieldArray[1]],'table')){
+				getBean(fieldArray[1]);
+			}
 			arguments.fieldname=application.objectMappings[fieldArray[1]].table & '.' & fieldArray[2];
 		}
 	} else if(structKeyExists(application.objectMappings[getEntityName()],arguments.fieldname)){
+		if(!structKeyExists(application.objectMappings[getEntityName()],'table')){
+			getBean(getEntityName());
+		}
 		arguments.fieldname=application.objectMappings[getEntityName()].table & '.' & arguments.fieldname;
 	}
 

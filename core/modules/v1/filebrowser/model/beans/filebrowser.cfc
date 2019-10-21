@@ -535,6 +535,7 @@ component
 			arguments.siteid == "" ? "default" : arguments.siteid;
 
 			var m=getBean('m').init(arguments.siteid);
+			var fileWriter=getBean('fileWriter');
 
      		if(!m.validateCSRFTokens(context='upload')){
 				throw(type="invalidTokens");
@@ -574,7 +575,26 @@ component
 				var valid = false;
 				if(m.currentUser().isSuperUser() || listFindNoCase(allowedExtensions,item.serverfileext)) {
 						try {
-							fileMove(item.serverdirectory & m.globalConfig().getFileDelim() & item.serverfile,conditionalExpandPath(filePath) & m.globalConfig().getFileDelim() & item.serverfile );
+							local.newitempath=conditionalExpandPath(filePath) & m.globalConfig().getFileDelim() & item.serverfile;
+							fileMove(item.serverdirectory & m.globalConfig().getFileDelim() & item.serverfile,local.newitempath );
+							//hack to ensure svg files to have the correct content type on s3
+							if(listFirst(local.newitempath,':')=='s3' && listLast(local.newitempath,'.')=='svg'){
+								try{
+									storeSetMetadata(
+										arguments.filepath,
+										{
+											"Content-Type"='image/svg+xml'
+										}
+									);
+									storeSetACL(
+										arguments.filepath,
+										[{
+											group='all',
+											permission='read'
+										}]
+									);
+								} catch (any e){}
+							}
 							ArrayAppend(response.saved,item);
 						}
 						catch( any e ) {
@@ -936,16 +956,18 @@ component
 				frow['name'] = rereplace(frow['fullname'],"\..*","");
 				frow['type'] = rsFiles['type'][x];
 				frow['ext'] = rereplace(frow['fullname'],".[^\.]*\.","");
-				frow['isimage'] = listfind("jpg,jpeg,gif,png",frow['ext']);
+				frow['isimage'] = listFindNoCase(m.globalConfig().get(property='filebrowserimagelist',defaultValue="gif,jpg,jpeg,png,svg"),frow['ext']);
 				frow['info'] = {};
 				if(frow['isfile']) {
 					frow['ext'] = rereplace(frow['fullname'],".[^\.]*\.","");
 
-					if(	frow['isimage'] ) {
-						var iinfo = imageInfo(imageNew(conditionalExpandPath(filePath) & application.configBean.getFileDelim() & frow['fullname']));
-						if( isStruct(iinfo) ) {
-							frow['info']['height'] = iinfo.height;
-							frow['info']['width'] = iinfo.width;
+					if(	frow['isimage']) {
+						if(frow['ext'] != 'svg'){
+							var iinfo = imageInfo(imageNew(conditionalExpandPath(filePath) & application.configBean.getFileDelim() & frow['fullname']));
+							if( isStruct(iinfo) ) {
+								frow['info']['height'] = iinfo.height;
+								frow['info']['width'] = iinfo.width;
+							}
 						}
 					}
 				}

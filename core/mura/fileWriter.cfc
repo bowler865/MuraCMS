@@ -463,5 +463,22 @@
 				}
 			}
 		}
+		
+		/*
+		function setStoreMetaData(filepath,metadata,permissions){
+			if(listFirst(arguments.filepath,':') =='s3'){
+				if(isdefined('arguments.metadata') && isStruct(arguments.metadata)){
+					var fileMetaData=storeGetMetadata(arguments.filepath);
+					structAppend(fileMetaData,arguments.metadata);
+					storeSetMetadata(arguments.filepath,fileMetaData);
+				}
+				if(isDefined('arguments.permissions') && isArray(arguments.permissions)){
+					storeSetACL(arguments.filepath,arguments.permissions);
+				}
+			}
+
+			return this;
+		}
+		*/
 	</cfscript>
 </cfcomponent>
