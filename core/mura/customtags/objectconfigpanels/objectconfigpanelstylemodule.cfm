@@ -82,7 +82,7 @@
     				              <input type="checkbox" id="expandedwidthtoggle" name="expandedwidthtoggle" value="true"<cfif listFind(attributes.params.class,'mura-expanded',' ')> checked</cfif>><span></span> Expand Width
       				          </label>
 												<label class="css-input switch switch-sm switch-primary">
-    				              <input name="constraincontenttoggle" type="checkbox" id="constraincontenttoggle" class="classtoggle" value="true"<cfif listFind(attributes.params.contentcssclass,contentcontainerclass,' ')> checked</cfif>><span></span> Constrain Content
+    				              <input name="constraincontenttoggle" type="checkbox" id="constraincontenttoggle" value="true"<cfif listFind(attributes.params.contentcssclass,contentcontainerclass,' ')> checked</cfif>><span></span> Constrain Content
       				          </label>
       									<!--- hidden select tied to js logic in objectconfigurator.cfm --->
 												<div style="display:none;">	
