@@ -44,7 +44,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 /**
  * This handles translating a frontend request to html
  */
-component extends="mura.cfobject" output="false" hint="This handles translating a frontend request to html" {
+component extends="mura.baseobject" output="false" hint="This handles translating a frontend request to html" {
 
 	public function translate(required event) output=false {
 		var page = "";

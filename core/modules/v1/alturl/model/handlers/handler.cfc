@@ -1,4 +1,4 @@
-<cfcomponent output="false" extends="mura.cfobject">
+<cfcomponent output="false" extends="mura.baseobject">
 	<!--- This is set to allow the tab in the admin to read the correct name --->
 	<cfset this.pluginName = "Alternate URLs">
 

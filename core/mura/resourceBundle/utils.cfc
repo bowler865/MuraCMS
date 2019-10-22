@@ -20,7 +20,7 @@
 /**
  * This provides resource bundle utility methods
  */
-component extends="mura.cfobject" output="false" hint="This provides resource bundle utility methods" {
+component extends="mura.baseobject" output="false" hint="This provides resource bundle utility methods" {
 	variables.locale = "en_US";
 
 	/**

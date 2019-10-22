@@ -44,7 +44,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 /**
  * This provides primary login service functionality
  */
-component extends="mura.cfobject" output="false" hint="This provides primary login service functionality" {
+component extends="mura.baseobject" output="false" hint="This provides primary login service functionality" {
 
 	public function init(required any userUtility, required any userDAO, required any utility, required any permUtility, required any settingsManager) output=false {
 		variables.userUtility=arguments.userUtility;

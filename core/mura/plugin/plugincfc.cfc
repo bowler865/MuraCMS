@@ -44,7 +44,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 /**
  * This provides plugin install, update and delete handling
  */
-component extends="mura.cfobject" output="false" hint="This provides plugin install, update and delete handling" {
+component extends="mura.baseobject" output="false" hint="This provides plugin install, update and delete handling" {
 	variables.pluginConfig="";
 
 	public function init(any pluginConfig="", any configBean="") output=false {

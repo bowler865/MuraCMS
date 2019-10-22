@@ -174,7 +174,7 @@ if ( application.setupComplete ) {
 	}
 	application.appReloadKey = variables.iniProperties.appreloadkey;
 	variables.iniProperties.webroot = expandPath("/muraWRM");
-	variables.tracer=createObject("component","mura.cfobject").init();
+	variables.tracer=createObject("component","mura.baseobject").init();
 	variables.tracepoint=variables.tracer.initTracepoint("Instantiating DI1");
 
 	if(directoryExists(expandPath("/mura/content/file/imagecfc"))){

@@ -44,7 +44,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 /**
  * This provides reminder bean functionality
  */
-component extends="mura.cfobject" output="false" hint="This provides reminder bean functionality" {
+component extends="mura.baseobject" output="false" hint="This provides reminder bean functionality" {
 	variables.instance=structNew();
 	variables.instance.contentid="";
 	variables.instance.email="";

@@ -51,7 +51,7 @@
 	may, if you choose, apply this exception to your own modified versions of
 	Mura CMS.
 --->
-<cfcomponent extends="Mura.cfobject">
+<cfcomponent extends="mura.baseobject">
 
 	<cffunction name="get" access="remote" returnformat="plain">
 		<cfargument name="commentID">

@@ -1,4 +1,4 @@
-<cfcomponent extends="mura.cfobject" output="false" hint="This handles user login strikes persistence">
+<cfcomponent extends="mura.baseobject" output="false" hint="This handles user login strikes persistence">
 <cfset variables.instance.userID="">
 <cfset variables.instance.strikes=0>
 <cfset variables.instance.lastAttempt="">

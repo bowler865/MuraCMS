@@ -1,4 +1,4 @@
-component extends="mura.cfobject" hint="This provides JSON/REST API functionality" {
+component extends="mura.baseobject" hint="This provides JSON/REST API functionality" {
 
 	function init(siteid){
 		var tracepoint=initTracePoint("Instantiating API Utility for: #siteid#");

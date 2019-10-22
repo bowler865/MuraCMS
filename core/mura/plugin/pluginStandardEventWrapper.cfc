@@ -44,7 +44,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 /**
  * This provides functionality to parse runtime context and provide it to the executing event handler method
  */
-component extends="mura.cfobject" output="false" hint="This provides functionality to parse runtime context and provide it to the executing event handler method" {
+component extends="mura.baseobject" output="false" hint="This provides functionality to parse runtime context and provide it to the executing event handler method" {
 	variables.eventHandler="";
 	variables.eventName="";
 	variables.objectName="";

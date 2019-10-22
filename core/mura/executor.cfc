@@ -1,4 +1,4 @@
-component extends="mura.cfobject" hint="This provides a utility to execute cfm file with tread safety"{
+component extends="mura.baseobject" hint="This provides a utility to execute cfm file with tread safety"{
 
 	function execute(filepath){
 		var result='';

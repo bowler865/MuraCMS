@@ -1,4 +1,4 @@
-component extends="mura.cfobject" accessors=true output=false {
+component extends="mura.baseobject" accessors=true output=false {
 
 	variables.providerName='base';
 

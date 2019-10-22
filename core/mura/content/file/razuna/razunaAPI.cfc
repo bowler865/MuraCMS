@@ -28,7 +28,7 @@
  * 2013/04/10			CF Mitrah		 	Initial version
 
 --->
-<cfcomponent extends="mura.cfobject" hint="This provide Razuna api functionality">
+<cfcomponent extends="mura.baseobject" hint="This provide Razuna api functionality">
 	<cfscript>
 		function set(required string hostName,required string APIKey, required numeric hostID){
 

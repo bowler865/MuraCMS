@@ -51,7 +51,7 @@
 	may, if you choose, apply this exception to your own modified versions of
 	Mura CMS.
 --->
-<cfcomponent extends="mura.cfobject" output="false">
+<cfcomponent extends="mura.baseobject" output="false">
 
 	<cffunction name="init" output="false">
 		<cfargument name="configBean" type="any" required="yes"/>

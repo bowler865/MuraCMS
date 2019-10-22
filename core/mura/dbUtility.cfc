@@ -1,4 +1,4 @@
-<cfcomponent extends="mura.cfobject" output="false" hint="This provides a CRUD utility manage database schemas">
+<cfcomponent extends="mura.baseobject" output="false" hint="This provides a CRUD utility manage database schemas">
 	<cfset variables.table="">
 
 	<cfset variables.tableLookUp=structNew()>

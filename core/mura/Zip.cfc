@@ -45,7 +45,7 @@
 <cfcomponent displayname = "Zip Component"
              hint        = "This provides a collections of functions that supports the Zip and GZip functionality by using the Java Zip file API."
 			 output		 = "false"
-			 extends	 = "mura.cfobject">
+			 extends	 = "mura.baseobject">
 
 	<cfscript>
 

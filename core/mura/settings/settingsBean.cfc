@@ -2193,7 +2193,7 @@ component extends="mura.bean.beanExtendable" entityName="site" table="tsettings"
 	}
 
 	function on(eventName,fn){
-		var handler=new mura.cfobject();
+		var handler=new mura.baseobject();
 
 		if(left(arguments.eventName,2)!='on' && left(arguments.eventName,8)!='standard'){
 			arguments.eventName="on" & arguments.eventName;

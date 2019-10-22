@@ -44,7 +44,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 /**
  * This provides a utility to access all Mura functionality
  */
-component extends="mura.cfobject" output="false" hint="This provides a utility to access all Mura functionality" {
+component extends="mura.baseobject" output="false" hint="This provides a utility to access all Mura functionality" {
 	variables.instance.event="";
 
 	public function init(data) output=false {

@@ -1,4 +1,4 @@
-component extends="mura.cfobject" {
+component extends="mura.baseobject" {
 
   public boolean function onSessionStart() {
   	session.loggedin = false;

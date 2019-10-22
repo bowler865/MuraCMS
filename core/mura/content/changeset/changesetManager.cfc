@@ -1,4 +1,4 @@
-<cfcomponent extends="mura.cfobject" output="false" hint="This provides service level logic functionality">
+<cfcomponent extends="mura.baseobject" output="false" hint="This provides service level logic functionality">
 
 <cfset variables.configBean="">
 <cfset variables.trashManager="">

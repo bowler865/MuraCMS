@@ -1,7 +1,7 @@
 /**
  * Trash item bean
  */
-component extends="mura.cfobject" output="false" hint="Trash item bean" {
+component extends="mura.baseobject" output="false" hint="Trash item bean" {
 	variables.trashManager="";
 
 	public function setTrashManager(trashManager) output=false {

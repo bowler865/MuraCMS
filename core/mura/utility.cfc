@@ -52,7 +52,7 @@
   Mura CMS.
 --->
 
-<cfcomponent extends="mura.cfobject" output="false" hint="This provides global utility methods">
+<cfcomponent extends="mura.baseobject" output="false" hint="This provides global utility methods">
 
 <cffunction name="init" output="false">
 <cfargument name="configBean" type="any" required="yes"/>

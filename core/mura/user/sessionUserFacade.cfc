@@ -1,7 +1,7 @@
 /**
  * This provides access to the current user's session
  */
-component extends="mura.cfobject" output="false" hint="This provides access to the current user's session" {
+component extends="mura.baseobject" output="false" hint="This provides access to the current user's session" {
 	variables.userBean="";
 
 	/**

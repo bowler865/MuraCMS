@@ -44,7 +44,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 /**
  * This provides a proxy to larger content data
  */
-component extends="mura.cfobject" output="false" hint="This provides a proxy to larger content data" {
+component extends="mura.baseobject" output="false" hint="This provides a proxy to larger content data" {
 	variables.instance=structNew();
 	variables.instance.content="";
 	variables.instance.struct=structNew();

@@ -1,5 +1,5 @@
 component
-	extends="mura.cfobject"
+	extends="mura.baseobject"
 	output=false
   {
 

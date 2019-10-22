@@ -44,7 +44,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 /**
  * This provides specialized methods to the primary front end request event object
  */
-component output="false" extends="mura.cfobject" hint="This provides specialized methods to the primary front end request event object" {
+component output="false" extends="mura.baseobject" hint="This provides specialized methods to the primary front end request event object" {
 
 	public function init() output=false {
 

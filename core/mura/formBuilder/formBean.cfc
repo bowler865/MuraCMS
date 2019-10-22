@@ -40,7 +40,7 @@ for your modified version; it is your choice whether to do so, or to make such m
 the GNU General Public License version 2 without this exception. You may, if you choose, apply this exception
 to your own modified versions of Mura CMS.
 --->
-<cfcomponent displayname="formBean" output="false" extends="mura.cfobject" hint="This provides formBean functionality">
+<cfcomponent displayname="formBean" output="false" extends="mura.baseobject" hint="This provides formBean functionality">
 
 	<cfproperty name="FormID" type="uuid" default="" required="true" maxlength="35" />
 	<cfproperty name="Name" type="string" default="" maxlength="150" />

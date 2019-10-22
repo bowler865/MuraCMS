@@ -44,7 +44,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 /**
  * Thid provides base plugin event handling functionality
  */
-component extends="mura.cfobject" output="false" hint="Thid provides base plugin event handling functionality" {
+component extends="mura.baseobject" output="false" hint="Thid provides base plugin event handling functionality" {
 
 	public function init(required pluginConfig, required configBean) output=false {
 		variables.pluginConfig=arguments.pluginConfig;

@@ -1,4 +1,4 @@
-<cfcomponent extends="mura.cfobject" output="false" hint="This provides legacy custom extended object feed functionality">
+<cfcomponent extends="mura.baseobject" output="false" hint="This provides legacy custom extended object feed functionality">
 
 <cfset variables.instance.siteID="">
 <cfset variables.configBean="">

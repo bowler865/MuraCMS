@@ -26,7 +26,7 @@
 /**
  * This provide core iterating functionality
  */
-component extends="mura.cfobject" displayname="Iterator" output="false" hint="This provide core iterating functionality" {
+component extends="mura.baseobject" displayname="Iterator" output="false" hint="This provide core iterating functionality" {
 	variables.maxRecordsPerPage=1000;
 	variables.recordTranslator="";
 	variables.iteratorID="";

@@ -1,4 +1,4 @@
-component extends="mura.cfobject"{
+component extends="mura.baseobject"{
 	
 	remote function getCSRFTokens() returnFormat="json" {	
 

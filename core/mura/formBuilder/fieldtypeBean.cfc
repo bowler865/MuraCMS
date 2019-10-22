@@ -40,7 +40,7 @@ for your modified version; it is your choice whether to do so, or to make such m
 the GNU General Public License version 2 without this exception. You may, if you choose, apply this exception
 to your own modified versions of Mura CMS.
 --->
-<cfcomponent displayname="fieldtypeBean" output="false"  extends="mura.cfobject" hint="This provides fieldtypeBean functionality">
+<cfcomponent displayname="fieldtypeBean" output="false"  extends="mura.baseobject" hint="This provides fieldtypeBean functionality">
 	<cfproperty name="FieldTypeID" type="uuid" default="" required="true" maxlength="35" />
 	<cfproperty name="Label" type="string" default="" required="true" maxlength="45" />
 	<cfproperty name="RbLabel" type="string" default="" maxlength="35" />

@@ -51,7 +51,7 @@
 	may, if you choose, apply this exception to your own modified versions of 
 	Mura CMS.
 --->
-<cfcomponent extends="mura.cfobject" output="false">
+<cfcomponent extends="mura.baseobject" output="false">
 
 	<!---
 			This is the SITE eventHandler.cfc

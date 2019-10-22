@@ -44,7 +44,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 /**
  * This provides a thread safe context to execute plugin cfm base event handling
  */
-component extends="mura.cfobject" output="false" hint="This provides a thread safe context to execute plugin cfm base event handling" {
+component extends="mura.baseobject" output="false" hint="This provides a thread safe context to execute plugin cfm base event handling" {
 	variables.configBean="";
 	variables.settingsManager="";
 	variables.pluginManager="";

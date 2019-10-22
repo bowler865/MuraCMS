@@ -44,14 +44,14 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 /**
  * This provides a utility to map old to new imported key bundles values
  */
-component output="false" extends="mura.cfobject" hint="This provides a utility to map old to new imported key bundles values" {
+component output="false" extends="mura.baseobject" hint="This provides a utility to map old to new imported key bundles values" {
 	variables.keys="";
 	variables.mode="";
 
 	public function init(mode, utility) output=false {
 		variables.utility=arguments.utility;
 		variables.mode=arguments.mode;
-		variables.keys=createObject("component","mura.cfobject");
+		variables.keys=createObject("component","mura.baseobject");
 		return this;
 	}
 

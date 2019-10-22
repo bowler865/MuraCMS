@@ -10,7 +10,7 @@
 /**
  * This provides access to locale resource bundle keys
  */
-component extends="mura.cfobject" output="false" hint="This provides access to locale resource bundle keys" {
+component extends="mura.baseobject" output="false" hint="This provides access to locale resource bundle keys" {
 	variables.resourceBundle=structNew();
 	variables.resourceBundleStruct=structNew();
 	variables.locale="en_US";

@@ -1,4 +1,4 @@
-<cfcomponent extends="mura.cfobject" output="false" hint="This provides trash service logic functionality">
+<cfcomponent extends="mura.baseobject" output="false" hint="This provides trash service logic functionality">
 
 <cfset variables.configBean="">
 

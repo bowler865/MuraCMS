@@ -44,7 +44,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 /**
  * This provides access to a plugin's configuration
  */
-component extends="mura.cfobject" output="false" hint="This provides access to a plugin's configuration" {
+component extends="mura.baseobject" output="false" hint="This provides access to a plugin's configuration" {
 	variables.settings=structNew();
 	variables.name="";
 	variables.deployed=0;

@@ -51,7 +51,7 @@
 	may, if you choose, apply this exception to your own modified versions of
 	Mura CMS.
 */
-component persistent="false" accessors="true" output="false" extends="mura.cfobject" hint="This provides content comment service level logic functionality" {
+component persistent="false" accessors="true" output="false" extends="mura.baseobject" hint="This provides content comment service level logic functionality" {
 
 	property name='contentManager';
 	property name='configBean';

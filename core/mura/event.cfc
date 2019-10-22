@@ -44,7 +44,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 /**
  * This provides a utility to hold the contextual information related to code execution
  */
-component output="false" extends="mura.cfobject" hint="This provides a utility to hold the contextual information related to code execution" {
+component output="false" extends="mura.baseobject" hint="This provides a utility to hold the contextual information related to code execution" {
 	variables.event=structNew();
 
 	public function init(any data="#structNew()#", $) output=false {

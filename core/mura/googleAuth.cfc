@@ -1,4 +1,4 @@
-component extends="mura.cfobject" hint="Google Authenticator"{
+component extends="mura.baseobject" hint="Google Authenticator"{
 
 	function init(numeric timeStepSizeInSeconds=30, numeric windowSize=3, numeric codeDigits=6) {
 		var gauth = 'com.warrenstrange.googleauth.GoogleAuthenticator';

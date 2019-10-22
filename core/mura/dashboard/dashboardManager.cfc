@@ -41,7 +41,7 @@ For clarity, if you create a modified version of Mura CMS, you are not obligated
 modified version; it is your choice whether to do so, or to make such modified version available under the GNU General Public License
 version 2 without this exception.  You may, if you choose, apply this exception to your own modified versions of Mura CMS.
 */
-component extends="mura.cfobject" output="false" {
+component extends="mura.baseobject" output="false" {
 
 	public function init(required any configBean, required any userGateway, required any contentGateway, required any sessionTrackingGateway, required any emailGateway, required any settingsManager, required any raterManager, required any feedGateway) output=false {
 		variables.configBean=arguments.configBean;
