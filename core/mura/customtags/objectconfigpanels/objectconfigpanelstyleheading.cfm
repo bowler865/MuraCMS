@@ -206,8 +206,17 @@
 									$('##custommetaspacing').show();
 								} else {
 									$('##custommetaspacing').hide();
+									$('##metapaddingright').val('');
+									$('##metapaddingtop').val('')
+									$('##metapaddingleft').val('')
+									$('##metapaddingbottom').val('')
 									$('##metapaddingall').val('').trigger('change');
-									$('##metamarginall').val('').trigger('change');
+
+									$('##metamarginright').val('');
+									$('##metamargintop').val('')
+									$('##metamarginleft').val('')
+									$('##metamarginbottom').val('')
+									$('##metamarginall').val('').trigger('change')
 								}
 							}	
 						)

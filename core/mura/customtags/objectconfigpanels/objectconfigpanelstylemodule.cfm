@@ -286,8 +286,17 @@
 											$('##customobjectspacing').show();
 										} else {
 											$('##customobjectspacing').hide();
+											$('##objectpaddingright').val('');
+											$('##objectpaddingtop').val('')
+											$('##objectpaddingleft').val('')
+											$('##objectpaddingbottom').val('')
 											$('##objectpaddingall').val('').trigger('change');
-											$('##objectmarginall').val('').trigger('change');
+
+											$('##objectmarginright').val('');
+											$('##objectmargintop').val('')
+											$('##objectmarginleft').val('')
+											$('##objectmarginbottom').val('')
+											$('##objectmarginall').val('').trigger('change')
 										}
 									}	
 								)

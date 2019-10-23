@@ -228,8 +228,17 @@
 									$('##customcontentspacing').show();
 								} else {
 									$('##customcontentspacing').hide();
+									$('##contentpaddingright').val('');
+									$('##contentpaddingtop').val('')
+									$('##contentpaddingleft').val('')
+									$('##contentpaddingbottom').val('')
 									$('##contentpaddingall').val('').trigger('change');
-									$('##contentmarginall').val('').trigger('change');
+
+									$('##contentmarginright').val('');
+									$('##contentmargintop').val('')
+									$('##contentmarginleft').val('')
+									$('##contentmarginbottom').val('')
+									$('##contentmarginall').val('').trigger('change')
 								}
 							}	
 						)
