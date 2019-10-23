@@ -130,6 +130,7 @@
 							<div class="mura-control-group mura-ui-grid">
 								<label>Spacing</label>
 								<select name="objectspacing" class="objectParam">
+									<option value="">--</option>
 									<cfloop array="#request.spacingoptions#" index="option">
 										<option value="#option.value#"<cfif attributes.params.objectspacing eq option.value> selected</cfif>>#esapiEncode('html',option.name)#</option>
 									</cfloop>
