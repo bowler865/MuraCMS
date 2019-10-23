@@ -13,38 +13,78 @@
         <div id="panel-style-content-1" class="panel-collapse collapse">
             <div class="mura-panel-body">
             <!--- panel contents --->
-
-				<!--- text alignment --->
-				<div class="mura-control-group">
-					<label>Text Alignment</label>
-					<select name="textAlign" class="contentStyle">
-						<option value="">--</option>
-						<option value="left"<cfif attributes.params.stylesupport.contentstyles.textalign eq 'left'> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.left')#</option>
-						<option value="right"<cfif attributes.params.stylesupport.contentstyles.textalign eq 'right'> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.right')#</option>
-						<option value="center"<cfif attributes.params.stylesupport.contentstyles.textalign eq 'center'> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.center')#</option>
-						<option value="justify"<cfif attributes.params.stylesupport.contentstyles.textalign eq 'justify'> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.justify')#</option>
-					</select>
-				</div>
-
-				<div class="mura-control-group">
-					<!--- todo: rbkey for margin and placeholders --->
-					<label>Width</label>
-
-					<div class="row mura-ui-row">
-
-							<div class="mura-input-group">
-								<label class="mura-serial">
-									<input type="text" name="contentwidth" id="contentwidthnum" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.contentstyles.width))>#val(esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.width))#</cfif>">
-								</label>
-								<select id="contentwidthuom" name="contentwidthuom" class="styleSupport">
-									<cfloop list="#request.objectlayoutuomext#" index="u">
-										<option value="#u#"<cfif attributes.params.stylesupport.contentwidthuom eq u> selected</cfif>>#u#</option>
-									</cfloop>
-								</select>
-							</div>
-							<input type="hidden" name="width" id="contentwidthuomval" class="contentStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.width)#">
+				<cfif attributes.params.object eq 'container'>
+					<!--- text alignment --->
+					<div class="mura-control-group">
+						<label>Flex Alignment</label>
+						<select name="justifyContent" class="contentStyle">
+							<option value="">--</option>
+							<option value="flext-start"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'flext-start'> selected</cfif>>flext-start</option>
+							<option value="flex-end"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'flex-end'> selected</cfif>>flex-end</option>
+							<option value="center"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'center'> selected</cfif>>center</option>
+							<option value="space-between"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'space-between'> selected</cfif>>space-between</option>
+							<option value="space-around"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'space-around'> selected</cfif>>space-around</option>
+							<option value="space-evenly"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'justify'> selected</cfif>>space-evenly</option>
+						</select>
 					</div>
-				</div>
+					<!--- text alignment --->
+					<div class="mura-control-group">
+						<label>Flex Align Items</label>
+						<select name="alignItems" class="contentStyle">
+							<option value="">--</option>
+							<option value="flext-start"<cfif attributes.params.stylesupport.contentstyles.alignItems eq 'flext-start'> selected</cfif>>flext-start</option>
+							<option value="flex-end"<cfif attributes.params.stylesupport.contentstyles.alignItems eq 'flex-end'> selected</cfif>>flex-end</option>
+							<option value="center"<cfif attributes.params.stylesupport.contentstyles.alignItems eq 'center'> selected</cfif>>center</option>
+							<option value="baseline"<cfif attributes.params.stylesupport.contentstyles.alignItems eq 'baseline'> selected</cfif>>baseline</option>
+						</select>
+					</div>
+
+					<!--- text alignment --->
+					<div class="mura-control-group">
+						<label>Flex Align Content</label>
+						<select name="alignContent" class="contentStyle">
+							<option value="">--</option>
+							<option value="flext-start"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'flext-start'> selected</cfif>>flext-start</option>
+							<option value="flex-end"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'flex-end'> selected</cfif>>flex-end</option>
+							<option value="center"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'center'> selected</cfif>>center</option>
+							<option value="stretch"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'stretch'> selected</cfif>>stretch</option>
+							<option value="space-between"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'space-between'> selected</cfif>>space-between</option>
+							<option value="space-around"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'space-around'> selected</cfif>>space-around</option>
+						</select>
+					</div>
+				<cfelse>
+					<!--- text alignment --->
+					<div class="mura-control-group">
+						<label>Text Alignment</label>
+						<select name="textAlign" class="contentStyle">
+							<option value="">--</option>
+							<option value="left"<cfif attributes.params.stylesupport.contentstyles.textalign eq 'left'> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.left')#</option>
+							<option value="right"<cfif attributes.params.stylesupport.contentstyles.textalign eq 'right'> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.right')#</option>
+							<option value="center"<cfif attributes.params.stylesupport.contentstyles.textalign eq 'center'> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.center')#</option>
+							<option value="justify"<cfif attributes.params.stylesupport.contentstyles.textalign eq 'justify'> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.justify')#</option>
+						</select>
+					</div>
+
+					<div class="mura-control-group">
+						<!--- todo: rbkey for margin and placeholders --->
+						<label>Width</label>
+
+						<div class="row mura-ui-row">
+
+								<div class="mura-input-group">
+									<label class="mura-serial">
+										<input type="text" name="contentwidth" id="contentwidthnum" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.contentstyles.width))>#val(esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.width))#</cfif>">
+									</label>
+									<select id="contentwidthuom" name="contentwidthuom" class="styleSupport">
+										<cfloop list="#request.objectlayoutuomext#" index="u">
+											<option value="#u#"<cfif attributes.params.stylesupport.contentwidthuom eq u> selected</cfif>>#u#</option>
+										</cfloop>
+									</select>
+								</div>
+								<input type="hidden" name="width" id="contentwidthuomval" class="contentStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.width)#">
+						</div>
+					</div>
+				</cfif>	
 
 				<div class="mura-control-group">
 					<!--- todo: rbkey for margin and placeholders --->

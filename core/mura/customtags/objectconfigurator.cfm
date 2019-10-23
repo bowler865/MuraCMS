@@ -141,6 +141,14 @@
 				,'textalign'
 				,'minheight'
 				,'width'
+				,'justifyContent'
+				,'alignItems'
+				,'alignContent'
+				,'alignSelf'
+				,'order'
+				,'flexGrow'
+				,'flexShrink'
+				,'flex'
 				,'zindex'];
 
 			for (p in attributes.globalparams){

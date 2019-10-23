@@ -124,6 +124,14 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 	'webkitTransition'='-webkit-transition',
 	'whiteSpace'='white-space',
 	'wordSpacing'='word-spacing',
+	'justifyContent'='justify-content',
+	'alignItems'='alignItems',
+	'alignContent'='align-content',
+	'alignSelf'='align-self',
+	'order'='order',
+	'flexGrow'='flex-grow',
+	'flexShrink'='flex-shrink',
+	'flex'='flex',
 	'zIndex'='z-index'
 	}>
 
