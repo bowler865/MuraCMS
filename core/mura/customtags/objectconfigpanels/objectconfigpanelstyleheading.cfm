@@ -48,139 +48,170 @@
         <div id="panel-style-meta-2" class="panel-collapse collapse">
             <div class="mura-panel-body">
             <!--- panel contents --->
-								<!--- margin --->
-								<div class="mura-control-group mura-ui-grid">
-									<!--- todo: rbkey for margin and placeholders --->
-									<label>Margin</label>
 
-									<div class="row mura-ui-row">
-										<div class="col-xs-12 center">
-											<div class="mura-input-group">
-												<label class="mura-serial">
-													<input type="text" name="margin" id="metamarginall" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.metastyles.marginall))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.marginall))#</cfif>">
-												</label>
-												<select id="metamarginuom" name="metamarginuom" class="styleSupport">
-													<cfloop list="#request.objectlayoutuom#" index="u">
-														<option value="#u#"<cfif attributes.params.styleSupport.metamarginuom eq u or not len(attributes.params.styleSupport.metamarginuom) and u eq request.preferreduom> selected</cfif>>#u#</option>
-													</cfloop>
-												</select>
-											</div>
-										<a class="btn ui-advanced mura-ui-link" data-reveal="metamarginadvanced" href="##"><i class="mi-arrows"></i></a>
-										</div>
-									</div>
+				<cfif arrayLen(request.spacingoptions)>
+					<div class="mura-control-group  mura-ui-grid">
+						<label>Spacing</label>
+						<select name="metaspacing" class="objectParam">
+							<cfloop array="#request.spacingoptions#" index="option">
+								<option value="#option.value#"<cfif attributes.params.metaspacing eq option.value> selected</cfif>>#esapiEncode('html',option.name)#</option>
+							</cfloop>
+							<option value="custom"<cfif attributes.params.metaspacing eq 'custom'> selected</cfif>>Custom</option>
+						</select>
+					</div>
+				</cfif>
 
-									<div id="metamarginadvanced" class="mura-ui-inset" style="display: none;">
-										<div class="row mura-ui-row">
-											<div class="col-xs-3"></div>
-											<div class="col-xs-6">
-												<label class="mura-serial">
-													<input type="text" name="metaMarginTop" id="metamargintop" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.metastyles.margintop))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.margintop))#</cfif>">
-												</label>
-												<input type="hidden" name="marginTop" id="metamargintopval" class="metaStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.metastyles.margintop)#">
-											</div>
-											<div class="col-xs-3"></div>
-										</div>
+				<div id="custommetaspacing"<cfif arrayLen(request.spacingoptions) and attributes.params.metaspacing neq 'custom'> style="display:none;"</cfif>>
+					<!--- margin --->
+					<div class="mura-control-group mura-ui-grid">
+						<!--- todo: rbkey for margin and placeholders --->
+						<label>Margin</label>
 
-										<div class="row mura-ui-row">
-											<div class="col-xs-5">
-												<label class="mura-serial">
-													<input type="text" name="metaMarginLeft" id="metamarginleft" class="numeric serial pull-right" value="<cfif attributes.params.stylesupport.metastyles.marginleft eq 'auto'>auto<cfelseif len(trim(attributes.params.stylesupport.metastyles.marginleft))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.marginleft))#</cfif>">
-													<a class="btn pull-right input-auto" data-auto-input="metamarginleft" href="##"><span>a</span></a>
-												</label>
-												<input type="hidden" name="marginLeft" id="metamarginleftval" class="metaStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.metastyles.marginleft)#">
-											</div>
-											<div class="col-xs-2">
-												<i class="mi-arrows ui-inset-icon"></i>
-											</div>
-											<div class="col-xs-5">
-												<label class="mura-serial">
-													<input type="text" name="metaMarginRight" id="metamarginright" class="numeric serial pull-left" value="<cfif attributes.params.stylesupport.metastyles.marginright eq 'auto'>auto<cfelseif len(trim(attributes.params.stylesupport.metastyles.marginright))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.marginright))#</cfif>">
-													<a class="btn pull-left input-auto" data-auto-input="metamarginright" href="##"><span>a</span></a>
-												</label>
-												<input type="hidden" name="marginRight" id="metamarginrightval" class="metaStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.metastyles.marginright)#">
-											</div>
-										</div>
-
-										<div class="row mura-ui-row">
-											<div class="col-xs-3"></div>
-											<div class="col-xs-6">
-												<label class="mura-serial">
-													<input type="text" name="metaMarginBottom" id="metamarginbottom" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.metastyles.marginbottom))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.marginbottom))#</cfif>">
-												</label>
-												<input type="hidden" name="marginBottom" id="metamarginbottomval" class="metaStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.metastyles.marginbottom)#">
-											</div>
-											<div class="col-xs-3"></div>
-										</div>
-									</div>
-
+						<div class="row mura-ui-row">
+							<div class="col-xs-12 center">
+								<div class="mura-input-group">
+									<label class="mura-serial">
+										<input type="text" name="margin" id="metamarginall" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.metastyles.marginall))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.marginall))#</cfif>">
+									</label>
+									<select id="metamarginuom" name="metamarginuom" class="styleSupport">
+										<cfloop list="#request.objectlayoutuom#" index="u">
+											<option value="#u#"<cfif attributes.params.styleSupport.metamarginuom eq u or not len(attributes.params.styleSupport.metamarginuom) and u eq request.preferreduom> selected</cfif>>#u#</option>
+										</cfloop>
+									</select>
 								</div>
+							<a class="btn ui-advanced mura-ui-link" data-reveal="metamarginadvanced" href="##"><i class="mi-arrows"></i></a>
+							</div>
+						</div>
 
-								<!--- padding --->
-								<div class="mura-control-group mura-ui-grid">
-									<!--- todo: rbkey for padding and placeholders --->
-									<label>Padding</label>
-
-									<div class="row mura-ui-row">
-										<div class="col-xs-12 center">
-											<div class="mura-input-group">
-												<label class="mura-serial">
-													<input type="text" name="padding" id="metapaddingall" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.metastyles.paddingall))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.paddingall))#</cfif>">
-												</label>
-												<select id="metapaddinguom" name="metapaddinguom" class="styleSupport">
-													<cfloop list="#request.objectlayoutuom#" index="u">
-														<option value="#u#"<cfif attributes.params.styleSupport.metapaddinguom eq u or not len(attributes.params.styleSupport.metapaddinguom) and u eq request.preferreduom> selected</cfif>>#u#</option>
-													</cfloop>
-												</select>
-											</div>
-										<a class="btn ui-advanced mura-ui-link" data-reveal="metapaddingadvanced" href="##"><i class="mi-arrows"></i></a>
-										</div>
-									</div>
-
-									<div id="metapaddingadvanced" class="mura-ui-inset" style="display: none;">
-										<div class="row mura-ui-row">
-											<div class="col-xs-3"></div>
-											<div class="col-xs-6">
-												<label class="mura-serial">
-													<input type="text" name="metaPaddingTop" id="metapaddingtop" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.metastyles.paddingtop))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.paddingtop))#</cfif>">
-												</label>
-												<input type="hidden" name="paddingTop" id="metapaddingtopval" class="metaStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.metastyles.paddingtop)#">
-											</div>
-											<div class="col-xs-3"></div>
-										</div>
-
-										<div class="row mura-ui-row">
-											<div class="col-xs-1"></div>
-												<div class="col-xs-4">
-													<label class="mura-serial">
-														<input type="text" name="metaPaddingLeft" id="metapaddingleft" class="numeric serial pull-right" value="<cfif len(trim(attributes.params.stylesupport.metastyles.paddingleft))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.paddingleft))#</cfif>">
-													</label>
-													<input type="hidden" name="paddingLeft" id="metapaddingleftval" class="metaStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.metastyles.paddingleft)#">
-												</div>
-												<div class="col-xs-2">
-													<i class="mi-arrows ui-inset-icon"></i>
-												</div>
-												<div class="col-xs-4">
-													<label class="mura-serial">
-														<input type="text" name="metaPaddingRight" id="metapaddingright" class="numeric serial pull-left" value="<cfif len(trim(attributes.params.stylesupport.metastyles.paddingright))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.paddingright))#</cfif>">
-													</label>
-													<input type="hidden" name="paddingRight" id="metapaddingrightval" class="metaStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.metastyles.paddingright)#">
-												</div>
-											<div class="col-xs-1"></div>
-										</div>
-
-										<div class="row mura-ui-row">
-											<div class="col-xs-3"></div>
-											<div class="col-xs-6">
-												<label class="mura-serial">
-													<input type="text" name="metaPaddingBottom" id="metapaddingbottom" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.metastyles.paddingbottom))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.paddingbottom))#</cfif>">
-												</label>
-												<input type="hidden" name="paddingBottom" id="metapaddingbottomval" class="metaStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.metastyles.paddingbottom)#">
-											</div>
-											<div class="col-xs-3"></div>
-										</div>
-									</div>
-
+						<div id="metamarginadvanced" class="mura-ui-inset" style="display: none;">
+							<div class="row mura-ui-row">
+								<div class="col-xs-3"></div>
+								<div class="col-xs-6">
+									<label class="mura-serial">
+										<input type="text" name="metaMarginTop" id="metamargintop" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.metastyles.margintop))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.margintop))#</cfif>">
+									</label>
+									<input type="hidden" name="marginTop" id="metamargintopval" class="metaStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.metastyles.margintop)#">
 								</div>
+								<div class="col-xs-3"></div>
+							</div>
+
+							<div class="row mura-ui-row">
+								<div class="col-xs-5">
+									<label class="mura-serial">
+										<input type="text" name="metaMarginLeft" id="metamarginleft" class="numeric serial pull-right" value="<cfif attributes.params.stylesupport.metastyles.marginleft eq 'auto'>auto<cfelseif len(trim(attributes.params.stylesupport.metastyles.marginleft))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.marginleft))#</cfif>">
+										<a class="btn pull-right input-auto" data-auto-input="metamarginleft" href="##"><span>a</span></a>
+									</label>
+									<input type="hidden" name="marginLeft" id="metamarginleftval" class="metaStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.metastyles.marginleft)#">
+								</div>
+								<div class="col-xs-2">
+									<i class="mi-arrows ui-inset-icon"></i>
+								</div>
+								<div class="col-xs-5">
+									<label class="mura-serial">
+										<input type="text" name="metaMarginRight" id="metamarginright" class="numeric serial pull-left" value="<cfif attributes.params.stylesupport.metastyles.marginright eq 'auto'>auto<cfelseif len(trim(attributes.params.stylesupport.metastyles.marginright))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.marginright))#</cfif>">
+										<a class="btn pull-left input-auto" data-auto-input="metamarginright" href="##"><span>a</span></a>
+									</label>
+									<input type="hidden" name="marginRight" id="metamarginrightval" class="metaStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.metastyles.marginright)#">
+								</div>
+							</div>
+
+							<div class="row mura-ui-row">
+								<div class="col-xs-3"></div>
+								<div class="col-xs-6">
+									<label class="mura-serial">
+										<input type="text" name="metaMarginBottom" id="metamarginbottom" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.metastyles.marginbottom))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.marginbottom))#</cfif>">
+									</label>
+									<input type="hidden" name="marginBottom" id="metamarginbottomval" class="metaStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.metastyles.marginbottom)#">
+								</div>
+								<div class="col-xs-3"></div>
+							</div>
+						</div>
+
+					</div>
+
+					<!--- padding --->
+					<div class="mura-control-group mura-ui-grid">
+						<!--- todo: rbkey for padding and placeholders --->
+						<label>Padding</label>
+
+						<div class="row mura-ui-row">
+							<div class="col-xs-12 center">
+								<div class="mura-input-group">
+									<label class="mura-serial">
+										<input type="text" name="padding" id="metapaddingall" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.metastyles.paddingall))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.paddingall))#</cfif>">
+									</label>
+									<select id="metapaddinguom" name="metapaddinguom" class="styleSupport">
+										<cfloop list="#request.objectlayoutuom#" index="u">
+											<option value="#u#"<cfif attributes.params.styleSupport.metapaddinguom eq u or not len(attributes.params.styleSupport.metapaddinguom) and u eq request.preferreduom> selected</cfif>>#u#</option>
+										</cfloop>
+									</select>
+								</div>
+							<a class="btn ui-advanced mura-ui-link" data-reveal="metapaddingadvanced" href="##"><i class="mi-arrows"></i></a>
+							</div>
+						</div>
+
+						<div id="metapaddingadvanced" class="mura-ui-inset" style="display: none;">
+							<div class="row mura-ui-row">
+								<div class="col-xs-3"></div>
+								<div class="col-xs-6">
+									<label class="mura-serial">
+										<input type="text" name="metaPaddingTop" id="metapaddingtop" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.metastyles.paddingtop))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.paddingtop))#</cfif>">
+									</label>
+									<input type="hidden" name="paddingTop" id="metapaddingtopval" class="metaStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.metastyles.paddingtop)#">
+								</div>
+								<div class="col-xs-3"></div>
+							</div>
+
+							<div class="row mura-ui-row">
+								<div class="col-xs-1"></div>
+									<div class="col-xs-4">
+										<label class="mura-serial">
+											<input type="text" name="metaPaddingLeft" id="metapaddingleft" class="numeric serial pull-right" value="<cfif len(trim(attributes.params.stylesupport.metastyles.paddingleft))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.paddingleft))#</cfif>">
+										</label>
+										<input type="hidden" name="paddingLeft" id="metapaddingleftval" class="metaStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.metastyles.paddingleft)#">
+									</div>
+									<div class="col-xs-2">
+										<i class="mi-arrows ui-inset-icon"></i>
+									</div>
+									<div class="col-xs-4">
+										<label class="mura-serial">
+											<input type="text" name="metaPaddingRight" id="metapaddingright" class="numeric serial pull-left" value="<cfif len(trim(attributes.params.stylesupport.metastyles.paddingright))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.paddingright))#</cfif>">
+										</label>
+										<input type="hidden" name="paddingRight" id="metapaddingrightval" class="metaStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.metastyles.paddingright)#">
+									</div>
+								<div class="col-xs-1"></div>
+							</div>
+
+							<div class="row mura-ui-row">
+								<div class="col-xs-3"></div>
+								<div class="col-xs-6">
+									<label class="mura-serial">
+										<input type="text" name="metaPaddingBottom" id="metapaddingbottom" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.metastyles.paddingbottom))>#val(esapiEncode('html_attr',attributes.params.stylesupport.metastyles.paddingbottom))#</cfif>">
+									</label>
+									<input type="hidden" name="paddingBottom" id="metapaddingbottomval" class="metaStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.metastyles.paddingbottom)#">
+								</div>
+								<div class="col-xs-3"></div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<cfif arrayLen(request.spacingoptions)>
+					<script>
+						$('select[name="metaspacing"').on(
+							'change',
+							function(){
+								if($(this).val()=='custom'){
+									$('##custommetaspacing').show();
+								} else {
+									$('##custommetaspacing').hide();
+									$('##metapaddingall').val('').trigger('change');
+									$('##metamarginall').val('').trigger('change');
+								}
+							}	
+						)
+					</script>
+				</cfif>
 
             <!--- /end panel contents --->
             </div> <!--- /.mura-panel-body --->

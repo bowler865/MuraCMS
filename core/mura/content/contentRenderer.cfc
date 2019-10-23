@@ -3300,6 +3300,14 @@ Display Objects
 		}
 	}
 
+	function getSpacingOptions(){
+		if (isdefined('this.spacingOptions') && isArray(this.spacingOptions)){
+			return this.spacingOptions;
+		} else {
+			return [];
+		}
+	}
+
 </cfscript>
 
 

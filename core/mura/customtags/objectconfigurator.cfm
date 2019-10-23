@@ -33,6 +33,9 @@
 		<cfparam name="attributes.params.label" default="">
 		<cfparam name="attributes.params.labeltag" default="h2">
 		<cfparam name="attributes.params.object" default="">
+		<cfparam name="attributes.params.objectspacing" default="">
+		<cfparam name="attributes.params.contentspacing" default="">
+		<cfparam name="attributes.params.metaspacing" default="">
 
 		<cfparam name="request.hasbasicoptions" default="false">
 		<cfparam name="request.hasmetaoptions" default="false">
@@ -153,6 +156,7 @@
 
 		<cfset request.colorOptions = $.getContentRenderer().getColorOptions()>
 		<cfset request.modulethemeoptions = $.getContentRenderer().getModuleThemeOptions()>
+		<cfset request.spacingoptions = $.getContentRenderer().getSpacingOptions()>
 
 		<cfset contentcontainerclass=esapiEncode("javascript",$.getContentRenderer().expandedContentContainerClass)>
 

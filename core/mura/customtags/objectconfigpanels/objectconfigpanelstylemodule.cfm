@@ -37,96 +37,108 @@
         <div id="panel-style-object-1" class="panel-collapse collapse">
             <div class="mura-panel-body">
             	<!--- panel contents --->
-							<cfif request.haspositionoptions>
-
-								<div class="mura-control-group">
-									<label>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.alignment')#</label>
-									<select name="alignment" class="classtoggle">
-									<option value="">--</option>
-									<option value="mura-left"<cfif listFind(attributes.params.class,'mura-left',' ')> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.left')#</option>
-									<!---<option value="mura-center"<cfif listFind(attributes.params.class,'mura-center',' ')> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.center')#</option>--->
-									<option value="mura-right"<cfif listFind(attributes.params.class,'mura-right',' ')> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.right')#</option>
-									</select>
-								</div>
-
-								<div class="mura-control-group">
-									<label>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.width')#</label>
-									<!--- width selector widget --->
-									<div id="object-widthsel-ui">
-										<div id="object-widthsel-wrapper">
-										<cfloop from="1" to="#arrayLen(attributes.positionoptions)#" index="i">
-											<cfset p = attributes.positionoptions[i]>
-											<cfif structKeyExists(p,'cols') and val(p["cols"])>
-											<div class="object-widthsel-option" data-value="#p["value"]#"><span>#p["cols"]#</span></div>
-											</cfif>
-										</cfloop>
-										</div>
-									</div>
-									<!--- hidden select tied to js logic in objectconfigurator.cfm --->
-									<div style="display: none">
-										<select name="width" id="objectwidthsel" class="classtoggle">
-											<cfloop from="1" to="#arrayLen(attributes.positionoptions)#" index="i">
-												<cfset p = attributes.positionoptions[i]>
-												<option value="#p['value']#"<cfif listFind(attributes.params.class,'#p['value']#',' ')> selected</cfif>>#p['label']#</option>
-												<cfset l = "'#p["label"]#'">
-												<cfset v = "'#p["value"]#'">
-											</cfloop>
-										</select>
-									</div>
-								</div>
-
-								<cfif len(contentcontainerclass)>
-									<div class="mura-control-group constraincontentcontainer" style='display:none;'>
-												<!--- todo: rb keys --->
-												<label class="css-input switch switch-sm switch-primary">
-    				              <input type="checkbox" id="expandedwidthtoggle" name="expandedwidthtoggle" value="true"<cfif listFind(attributes.params.class,'mura-expanded',' ')> checked</cfif>><span></span> Expand Width
-      				          </label>
-												<label class="css-input switch switch-sm switch-primary">
-    				              <input name="constraincontenttoggle" type="checkbox" id="constraincontenttoggle" value="true"<cfif listFind(attributes.params.contentcssclass,contentcontainerclass,' ')> checked</cfif>><span></span> Constrain Content
-      				          </label>
-      									<!--- hidden select tied to js logic in objectconfigurator.cfm --->
-												<div style="display:none;">	
-													<select name="constraincontent" id="objectconstrainsel" class="classtoggle">
-														<option value=""<cfif not listFind(attributes.params.contentcssclass,contentcontainerclass,' ')> selected</cfif>>False</option>
-														<option value="constrain"<cfif listFind(attributes.params.contentcssclass,contentcontainerclass,' ')> selected</cfif>>True</option>
-													</select> 
-												</div>									 								
-									</div>
-								</cfif>
-
-								<div class="mura-control-group objectbreakpointcontainer" style="display:none;">
-									<!--- todo: rbkeys for label and options --->
-									<label>Full-Width Breakpoint</label>
-									<select name="breakpoint"  id="objectbreakpointsel" class="classtoggle">
-									<option value="">Auto</option>
-									<option value="mura-sm"<cfif listFind(attributes.params.class,'mura-sm',' ')> selected</cfif>>Tablet ( <768px )</option>
-									<option value="mura-md"<cfif listFind(attributes.params.class,'mura-md',' ')> selected</cfif>>Laptop ( <992px )</option>
-									<option value="mura-lg"<cfif listFind(attributes.params.class,'mura-lg',' ')> selected</cfif>> Desktop ( <1200px )</option>
-									</select>
-								</div>
-								
-							</cfif>
+						<cfif request.haspositionoptions>
 
 							<div class="mura-control-group">
-								<!--- todo: rbkey for margin and placeholders --->
-								<label>Minimum Height</label>
+								<label>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.alignment')#</label>
+								<select name="alignment" class="classtoggle">
+								<option value="">--</option>
+								<option value="mura-left"<cfif listFind(attributes.params.class,'mura-left',' ')> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.left')#</option>
+								<!---<option value="mura-center"<cfif listFind(attributes.params.class,'mura-center',' ')> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.center')#</option>--->
+								<option value="mura-right"<cfif listFind(attributes.params.class,'mura-right',' ')> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.right')#</option>
+								</select>
+							</div>
 
-								<div class="row mura-ui-row">
-
-										<div class="mura-input-group">
-											<label class="mura-serial">
-												<input type="text" name="objectminheight" id="objectminheightnum" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.objectstyles.minheight))>#val(esapiEncode('html_attr',attributes.params.stylesupport.objectstyles.minheight))#</cfif>">
-											</label>
-											<select id="objectminheightuom" name="objectminheightuom" class="styleSupport">
-												<cfloop list="#request.objectlayoutuomext#" index="u">
-													<option value="#u#"<cfif attributes.params.stylesupport.objectminheightuom eq u or not len(attributes.params.styleSupport.objectpaddinguom) and u eq request.preferreduom> selected</cfif>>#u#</option>
-												</cfloop>
-											</select>
-										</div>
-										<input type="hidden" name="minHeight" id="objectminheightuomval" class="objectStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.objectstyles.minheight)#">
+							<div class="mura-control-group">
+								<label>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.width')#</label>
+								<!--- width selector widget --->
+								<div id="object-widthsel-ui">
+									<div id="object-widthsel-wrapper">
+									<cfloop from="1" to="#arrayLen(attributes.positionoptions)#" index="i">
+										<cfset p = attributes.positionoptions[i]>
+										<cfif structKeyExists(p,'cols') and val(p["cols"])>
+										<div class="object-widthsel-option" data-value="#p["value"]#"><span>#p["cols"]#</span></div>
+										</cfif>
+									</cfloop>
+									</div>
+								</div>
+								<!--- hidden select tied to js logic in objectconfigurator.cfm --->
+								<div style="display: none">
+									<select name="width" id="objectwidthsel" class="classtoggle">
+										<cfloop from="1" to="#arrayLen(attributes.positionoptions)#" index="i">
+											<cfset p = attributes.positionoptions[i]>
+											<option value="#p['value']#"<cfif listFind(attributes.params.class,'#p['value']#',' ')> selected</cfif>>#p['label']#</option>
+											<cfset l = "'#p["label"]#'">
+											<cfset v = "'#p["value"]#'">
+										</cfloop>
+									</select>
 								</div>
 							</div>
 
+							<cfif len(contentcontainerclass)>
+								<div class="mura-control-group constraincontentcontainer" style='display:none;'>
+											<!--- todo: rb keys --->
+											<label class="css-input switch switch-sm switch-primary">
+								<input type="checkbox" id="expandedwidthtoggle" name="expandedwidthtoggle" value="true"<cfif listFind(attributes.params.class,'mura-expanded',' ')> checked</cfif>><span></span> Expand Width
+							</label>
+											<label class="css-input switch switch-sm switch-primary">
+								<input name="constraincontenttoggle" type="checkbox" id="constraincontenttoggle" value="true"<cfif listFind(attributes.params.contentcssclass,contentcontainerclass,' ')> checked</cfif>><span></span> Constrain Content
+							</label>
+									<!--- hidden select tied to js logic in objectconfigurator.cfm --->
+											<div style="display:none;">	
+												<select name="constraincontent" id="objectconstrainsel" class="classtoggle">
+													<option value=""<cfif not listFind(attributes.params.contentcssclass,contentcontainerclass,' ')> selected</cfif>>False</option>
+													<option value="constrain"<cfif listFind(attributes.params.contentcssclass,contentcontainerclass,' ')> selected</cfif>>True</option>
+												</select> 
+											</div>									 								
+								</div>
+							</cfif>
+
+							<div class="mura-control-group objectbreakpointcontainer" style="display:none;">
+								<!--- todo: rbkeys for label and options --->
+								<label>Full-Width Breakpoint</label>
+								<select name="breakpoint"  id="objectbreakpointsel" class="classtoggle">
+								<option value="">Auto</option>
+								<option value="mura-sm"<cfif listFind(attributes.params.class,'mura-sm',' ')> selected</cfif>>Tablet ( <768px )</option>
+								<option value="mura-md"<cfif listFind(attributes.params.class,'mura-md',' ')> selected</cfif>>Laptop ( <992px )</option>
+								<option value="mura-lg"<cfif listFind(attributes.params.class,'mura-lg',' ')> selected</cfif>> Desktop ( <1200px )</option>
+								</select>
+							</div>
+							
+						</cfif>
+
+						<div class="mura-control-group">
+							<!--- todo: rbkey for margin and placeholders --->
+							<label>Minimum Height</label>
+
+							<div class="row mura-ui-row">
+								<div class="mura-input-group">
+									<label class="mura-serial">
+										<input type="text" name="objectminheight" id="objectminheightnum" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.objectstyles.minheight))>#val(esapiEncode('html_attr',attributes.params.stylesupport.objectstyles.minheight))#</cfif>">
+									</label>
+									<select id="objectminheightuom" name="objectminheightuom" class="styleSupport">
+										<cfloop list="#request.objectlayoutuomext#" index="u">
+											<option value="#u#"<cfif attributes.params.stylesupport.objectminheightuom eq u or not len(attributes.params.styleSupport.objectpaddinguom) and u eq request.preferreduom> selected</cfif>>#u#</option>
+										</cfloop>
+									</select>
+								</div>
+								<input type="hidden" name="minHeight" id="objectminheightuomval" class="objectStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.objectstyles.minheight)#">
+							</div>
+						</div>
+						
+						<cfif arrayLen(request.spacingoptions)>
+							<div class="mura-control-group mura-ui-grid">
+								<label>Spacing</label>
+								<select name="objectspacing" class="objectParam">
+									<cfloop array="#request.spacingoptions#" index="option">
+										<option value="#option.value#"<cfif attributes.params.objectspacing eq option.value> selected</cfif>>#esapiEncode('html',option.name)#</option>
+									</cfloop>
+									<option value="custom"<cfif attributes.params.objectspacing eq 'custom'> selected</cfif>>Custom</option>
+								</select>
+							</div>
+						</cfif>
+
+						<div id="customobjectspacing"<cfif arrayLen(request.spacingoptions) and attributes.params.objectspacing neq 'custom'> style="display:none;"</cfif>>
 							<!--- margin --->
 							<div class="mura-control-group mura-ui-grid">
 								<!--- todo: rbkey for margin and placeholders --->
@@ -263,6 +275,23 @@
 								</div>
 
 							</div>
+						</div>
+						<cfif arrayLen(request.spacingoptions)>
+							<script>
+								$('select[name="objectspacing"').on(
+									'change',
+									function(){
+										if($(this).val()=='custom'){
+											$('##customobjectspacing').show();
+										} else {
+											$('##customobjectspacing').hide();
+											$('##objectpaddingall').val('').trigger('change');
+											$('##objectmarginall').val('').trigger('change');
+										}
+									}	
+								)
+							</script>
+						</cfif>
 
             	<!--- /panel contents --->
             </div> <!--- /.mura-panel-body --->
