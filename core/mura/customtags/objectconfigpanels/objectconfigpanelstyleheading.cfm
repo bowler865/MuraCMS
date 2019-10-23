@@ -48,6 +48,19 @@
         <div id="panel-style-meta-2" class="panel-collapse collapse">
             <div class="mura-panel-body">
             <!--- panel contents --->
+				<cfif len(attributes.params.stylesupport.metastyles.margintop
+					& attributes.params.stylesupport.metastyles.marginbottom
+					& attributes.params.stylesupport.metastyles.marginleft
+					& attributes.params.stylesupport.metastyles.marginright
+					& attributes.params.stylesupport.metastyles.marginall
+					& attributes.params.stylesupport.metastyles.paddingtop
+					& attributes.params.stylesupport.metastyles.paddingbottom
+					& attributes.params.stylesupport.metastyles.paddingleft
+					& attributes.params.stylesupport.metastyles.paddingright
+					& attributes.params.stylesupport.metastyles.paddingall
+				)>
+					<cfset attributes.params.metaspacing='custom'>
+				</cfif>
 
 				<cfif arrayLen(request.spacingoptions)>
 					<div class="mura-control-group  mura-ui-grid">

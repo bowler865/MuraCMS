@@ -66,6 +66,20 @@
 					</div>
 				</div>
 
+				<cfif len(attributes.params.stylesupport.contentstyles.margintop
+					& attributes.params.stylesupport.contentstyles.marginbottom
+					& attributes.params.stylesupport.contentstyles.marginleft
+					& attributes.params.stylesupport.contentstyles.marginright
+					& attributes.params.stylesupport.contentstyles.marginall
+					& attributes.params.stylesupport.contentstyles.paddingtop
+					& attributes.params.stylesupport.contentstyles.paddingbottom
+					& attributes.params.stylesupport.contentstyles.paddingleft
+					& attributes.params.stylesupport.contentstyles.paddingright
+					& attributes.params.stylesupport.contentstyles.paddingall
+				)>
+					<cfset attributes.params.contentspacing='custom'>
+				</cfif>
+
 				<cfif arrayLen(request.spacingoptions)>
 					<div class="mura-control-group mura-ui-grid">
 						<label>Spacing</label>
