@@ -65,13 +65,14 @@
 				<cfif arrayLen(request.spacingoptions)>
 					<div class="mura-control-group  mura-ui-grid">
 						<label>Spacing</label>
-						<select name="metaspacing" class="objectParam">
+						<select name="metaspacingselect">
 							<option value="">--</option>
 							<cfloop array="#request.spacingoptions#" index="option">
 								<option value="#option.value#"<cfif attributes.params.metaspacing eq option.value> selected</cfif>>#esapiEncode('html',option.name)#</option>
 							</cfloop>
 							<option value="custom"<cfif attributes.params.metaspacing eq 'custom'> selected</cfif>>Custom</option>
 						</select>
+						<input name="metaspacing" class="objectParam" type="hidden" value="#esapiEncode('html_attr',attributes.params.metaspacing)#">
 					</div>
 				</cfif>
 
@@ -212,16 +213,18 @@
 				</div>
 				<cfif arrayLen(request.spacingoptions)>
 					<script>
-						$('select[name="metaspacing"').on(
+						$('select[name="metaspacingselect"]').on(
 							'change',
 							function(){
+								var item=$(this);
 								if($(this).val()=='custom'){
 									$('##custommetaspacing').show();
 								} else {
 									$('##custommetaspacing').hide();
-									$('##metapaddingall').val('empty').trigger('change');
-									$('##metamarginall').val('empty').trigger('change')
+									$('##metapaddingall').val('').trigger('keyup');
+									$('##metamarginall').val('').trigger('keyup');
 								}
+								$('input[name="metaspacing"]').val(item.val()).trigger('change');
 							}	
 						)
 					</script>
