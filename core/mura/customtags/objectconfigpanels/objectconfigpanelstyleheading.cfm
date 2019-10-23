@@ -219,17 +219,8 @@
 									$('##custommetaspacing').show();
 								} else {
 									$('##custommetaspacing').hide();
-									$('##metapaddingright').val('');
-									$('##metapaddingtop').val('')
-									$('##metapaddingleft').val('')
-									$('##metapaddingbottom').val('')
-									$('##metapaddingall').val('').trigger('change');
-
-									$('##metamarginright').val('');
-									$('##metamargintop').val('')
-									$('##metamarginleft').val('')
-									$('##metamarginbottom').val('')
-									$('##metamarginall').val('').trigger('change')
+									$('##metapaddingall').val('empty').trigger('change');
+									$('##metamarginall').val('empty').trigger('change')
 								}
 							}	
 						)

@@ -193,7 +193,7 @@
 								<div class="col-xs-3"></div>
 								<div class="col-xs-6">
 									<label class="mura-serial">
-										<input type="text" name="contentPaddingTop" id="contentpaddingtop"s class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.contentstyles.paddingtop))>#val(esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.paddingtop))#</cfif>">
+										<input type="text" name="contentPaddingTop" id="contentpaddingtop" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.contentstyles.paddingtop))>#val(esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.paddingtop))#</cfif>">
 									</label>
 									<input type="hidden" name="paddingTop" id="contentpaddingtopval" class="contentStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.paddingtop)#">
 								</div>
@@ -213,7 +213,7 @@
 								</div>
 								<div class="col-xs-4">
 									<label class="mura-serial">
-										<input type="text" name="contentPaddingRight" id="contentpaddingright"s class="numeric serial pull-left" value="<cfif len(trim(attributes.params.stylesupport.contentstyles.paddingright))>#val(esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.paddingright))#</cfif>">
+										<input type="text" name="contentPaddingRight" id="contentpaddingright" class="numeric serial pull-left" value="<cfif len(trim(attributes.params.stylesupport.contentstyles.paddingright))>#val(esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.paddingright))#</cfif>">
 									</label>
 									<input type="hidden" name="paddingRight" id="contentpaddingrightval" class="contentStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.paddingright)#">
 								</div>
@@ -223,7 +223,7 @@
 								<div class="col-xs-3"></div>
 								<div class="col-xs-6">
 									<label class="mura-serial">
-										<input type="text" name="contentPaddingBottom" id="contentpaddingbottom"s class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.contentstyles.paddingbottom))>#val(esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.paddingbottom))#</cfif>">
+										<input type="text" name="contentPaddingBottom" id="contentpaddingbottom" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.contentstyles.paddingbottom))>#val(esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.paddingbottom))#</cfif>">
 									</label>
 									<input type="hidden" name="paddingBottom" id="contentpaddingbottomval" class="contentStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.paddingbottom)#">
 								</div>
@@ -242,17 +242,8 @@
 									$('##customcontentspacing').show();
 								} else {
 									$('##customcontentspacing').hide();
-									$('##contentpaddingright').val('');
-									$('##contentpaddingtop').val('')
-									$('##contentpaddingleft').val('')
-									$('##contentpaddingbottom').val('')
-									$('##contentpaddingall').val('').trigger('change');
-
-									$('##contentmarginright').val('');
-									$('##contentmargintop').val('')
-									$('##contentmarginleft').val('')
-									$('##contentmarginbottom').val('')
-									$('##contentmarginall').val('').trigger('change')
+									$('##contentpaddingall').val('empty').trigger('change');
+									$('##contentmarginall').val('empty').trigger('change')
 								}
 							}	
 						)
