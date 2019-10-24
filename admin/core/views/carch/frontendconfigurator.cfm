@@ -13,6 +13,7 @@
 	<cfparam name="rc.objectname" default="">
 	<cfparam name="rc.objecticonclass" default="mi-cog">
 	<cfparam name="rc.isnew" default="false">
+	<cfparam name="rc.isflex" default="false">
 
 	<cfif not len(rc.objectname) and len(rc.object) gt 1 or rc.objectname eq 'null' or rc.objectname eq 'undefined'>
 		<cfif rc.$.siteConfig().hasDisplayObject(rc.object)>
@@ -89,7 +90,7 @@
 
 		siteManager.configuratorMode='frontEnd';
 		siteManager.layoutmanager=true;
-
+		
 		var instanceid='#esapiEncode('javascript',rc.instanceid)#';
 		var configOptions={};
 		var originParams={};
@@ -190,7 +191,8 @@
 								'parentid':'#esapiEncode('javascript',rc.parentID)#',
 								'contenttype':'#esapiEncode('javascript',rc.contenttype)#',
 								'contentsubtype':'#esapiEncode('javascript',rc.contentsubtype)#',
-								'instanceid':'#esapiEncode('javascript',rc.instanceid)#'
+								'instanceid':'#esapiEncode('javascript',rc.instanceid)#',
+								'isflex':'#esapiEncode('javascript',rc.isflex)#'
 							}
 
 							//console.log(configOptions);

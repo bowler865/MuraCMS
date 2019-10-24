@@ -407,7 +407,7 @@
 		var targetFrame='modal';
 
 		//This is an advance look at the protential configurable object to see if it's a non-configurable component for form
-		if(!src)
+		if(!src){
 			if(editableObj.hasClass("mura-object")){
 				var editableObj=editableObj;
 			} else {
@@ -430,6 +430,7 @@
 				}
 
 			}
+		}
 
 		//If there's no direct src to goto then we're going to assume it's a display object configurator
 		if(!src){
@@ -437,6 +438,7 @@
 				var editableObj=utility(a).closest(".mura-object,.mura-async-object");
 			}
 
+			var isflex=editableObj.parent().closest('div[data-object="container"], div.mura-region-local[data-loose="false"]').length;
 			/*
 				This reloads the element in the dom to ensure that all the latest
 				values are present
@@ -445,7 +447,7 @@
 			if(typeof Mura.currentObjectInstanceID != 'undefined' && Mura.currentObjectInstanceID == editableObj.data('instanceid')){
 				return;
 			}
-
+			
 			Mura.currentObjectInstanceID= editableObj.data('instanceid');
 
 			editableObj=Mura('[data-instanceid="' + editableObj.data('instanceid') + '"]');
@@ -487,7 +489,7 @@
 
 			isnew=isnew || false;
 
-			var src= adminLoc + '?muraAction=cArch.frontEndConfigurator&compactDisplay=true&siteid=' + Mura.siteid + '&instanceid=' +  editableObj.data('instanceid') + '&contenthistid=' + Mura.contenthistid + '&contentid=' + Mura.contentid + '&parentid=' + Mura.parentid + '&object=' +  editableObj.data('object') + '&objectid=' +  editableObj.data('objectid') + '&layoutmanager=' +  Mura.layoutmanager + '&objectname=' + encodeURIComponent(editableObj.data('objectname')) + '&contenttype=' + Mura.type + '&contentsubtype=' +encodeURIComponent(Mura.subtype) + '&sourceFrame=' + targetFrame + '&objecticonclass=' + encodeURIComponent(editableObj.data('objecticonclass')) + '&isnew=' + isnew ;
+			var src= adminLoc + '?muraAction=cArch.frontEndConfigurator&compactDisplay=true&siteid=' + Mura.siteid + '&instanceid=' +  editableObj.data('instanceid') + '&contenthistid=' + Mura.contenthistid + '&contentid=' + Mura.contentid + '&parentid=' + Mura.parentid + '&object=' +  editableObj.data('object') + '&objectid=' +  editableObj.data('objectid') + '&layoutmanager=' +  Mura.layoutmanager + '&objectname=' + encodeURIComponent(editableObj.data('objectname')) + '&contenttype=' + Mura.type + '&contentsubtype=' +encodeURIComponent(Mura.subtype) + '&sourceFrame=' + targetFrame + '&objecticonclass=' + encodeURIComponent(editableObj.data('objecticonclass')) + '&isnew=' + isnew + '&isflex=' + isflex;
 
 			if(editableObj.is("div.mura-object[data-targetattr]")){
 				src+='&hasTargetAttr=true';

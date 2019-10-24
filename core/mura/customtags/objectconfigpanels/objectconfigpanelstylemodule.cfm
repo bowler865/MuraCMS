@@ -38,17 +38,30 @@
             <div class="mura-panel-body">
             	<!--- panel contents --->
 						<cfif request.haspositionoptions>
+							<cfif request.isflex>
+								<div class="mura-control-group">
+								<label>Flex Align Self</label>
+									<select name="alignSelf" class="objectStyle">
+										<option value="">--</option>
+										<option value="auto"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'flext-start'> selected</cfif>>flext-start</option>
+										<option value="flex-end"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'flex-end'> selected</cfif>>flex-end</option>
+										<option value="center"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'center'> selected</cfif>>center</option>
+										<option value="baseline"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'baseline'> selected</cfif>>space-between</option>
+										<option value="stretch"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'stretch'> selected</cfif>>space-around</option>
+									</select>
+								</div>
 
-							<div class="mura-control-group">
-								<label>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.alignment')#</label>
-								<select name="alignment" class="classtoggle">
-								<option value="">--</option>
-								<option value="mura-left"<cfif listFind(attributes.params.class,'mura-left',' ')> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.left')#</option>
-								<!---<option value="mura-center"<cfif listFind(attributes.params.class,'mura-center',' ')> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.center')#</option>--->
-								<option value="mura-right"<cfif listFind(attributes.params.class,'mura-right',' ')> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.right')#</option>
-								</select>
-							</div>
-
+							<cfelse>
+								<div class="mura-control-group">
+									<label>Float</label>
+									<select name="alignment" class="classtoggle">
+									<option value="">--</option>
+									<option value="mura-left"<cfif listFind(attributes.params.class,'mura-left',' ')> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.left')#</option>
+									<!---<option value="mura-center"<cfif listFind(attributes.params.class,'mura-center',' ')> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.center')#</option>--->
+									<option value="mura-right"<cfif listFind(attributes.params.class,'mura-right',' ')> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.right')#</option>
+									</select>
+								</div>
+							</cfif>
 							<div class="mura-control-group">
 								<label>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.width')#</label>
 								<!--- width selector widget --->

@@ -165,6 +165,7 @@
 		<cfset request.colorOptions = $.getContentRenderer().getColorOptions()>
 		<cfset request.modulethemeoptions = $.getContentRenderer().getModuleThemeOptions()>
 		<cfset request.spacingoptions = $.getContentRenderer().getSpacingOptions()>
+		<cfset request.isflex=yesNoFormat(request.$.event('isflex'))>
 
 		<cfset contentcontainerclass=esapiEncode("javascript",$.getContentRenderer().expandedContentContainerClass)>
 
