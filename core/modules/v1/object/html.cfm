@@ -29,7 +29,7 @@
 </div> <!-- /.block-constrain -->
 
 <script>
-    Mura(function(m){
+    $(function($){
 		var target='#esapiEncode('javascript',$.event('target'))#';
 
         siteManager.setDisplayObjectModalWidth(800);
@@ -37,7 +37,7 @@
 			CKEDITOR.instances[target].setData(params[target])
 		});
 
-        m("##updateBtn").click(function(){
+        Mura("##updateBtn").click(function(){
             var params={};
         	params[target]=CKEDITOR.instances[target].getData();
             siteManager.updateDisplayObjectParams(params,false);

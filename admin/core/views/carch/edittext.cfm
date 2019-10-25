@@ -86,7 +86,7 @@ $(function(){
 --->
 
 <script>
-	Mura(function(m){
+	$(function($){
 		var target='source';
 
         siteManager.setDisplayObjectModalWidth(800);
@@ -95,7 +95,7 @@ $(function(){
 			CKEDITOR.instances[target].setData(params[target])
 		});
 
-        m("##updateBtn").click(function(){
+        Mura("##updateBtn").click(function(){
             var params={};
         	params[target]=CKEDITOR.instances[target].getData();
             siteManager.updateDisplayObjectParams(params,false);
