@@ -1287,7 +1287,7 @@
 						<cfreturn trim(theDisplay1)>
 					</cfif>
 				<cfelse>
-					<cfset var objectargs={regionid=arguments.regionid,siteID=arguments.siteid,object=arguments.object,objectid=arguments.objectid,filename=filePath,params=arguments.params,showEditable=showEditable,isConfigurator=editableControl.isConfigurator,bodyRender=arguments.bodyRender,returnformat=arguments.returnformat,include=arguments.include,RenderingAsRegion=arguments.RenderingAsRegion}>
+					<cfset var objectargs={regionid=arguments.regionid,siteID=arguments.siteid,object=arguments.object,objectname=arguments.objectname,objectid=arguments.objectid,filename=filePath,params=arguments.params,showEditable=showEditable,isConfigurator=editableControl.isConfigurator,bodyRender=arguments.bodyRender,returnformat=arguments.returnformat,include=arguments.include,RenderingAsRegion=arguments.RenderingAsRegion}>
 
 					<cfif objectargs.object neq 'plugin' and displayobject.cacheoutput  and not ( isdefined('form') and not structIsEmpty(form) )>
 						<cfset objectargs.cacheKey=cacheKeyContentId>
