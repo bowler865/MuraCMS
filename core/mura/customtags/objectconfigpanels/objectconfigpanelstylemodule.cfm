@@ -43,7 +43,7 @@
 								<label>Flex Align Self</label>
 									<select name="alignSelf" class="objectStyle">
 										<option value="">--</option>
-										<option value="auto"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'flext-start'> selected</cfif>>flext-start</option>
+										<option value="auto"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'flex-start'> selected</cfif>>flex-start</option>
 										<option value="flex-end"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'flex-end'> selected</cfif>>flex-end</option>
 										<option value="center"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'center'> selected</cfif>>center</option>
 										<option value="baseline"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'baseline'> selected</cfif>>space-between</option>

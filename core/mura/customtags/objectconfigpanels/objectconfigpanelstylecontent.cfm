@@ -19,7 +19,7 @@
 						<label>Flex Alignment</label>
 						<select name="justifyContent" class="contentStyle">
 							<option value="">--</option>
-							<option value="flext-start"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'flext-start'> selected</cfif>>flext-start</option>
+							<option value="flex-start"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'flex-start'> selected</cfif>>flex-start</option>
 							<option value="flex-end"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'flex-end'> selected</cfif>>flex-end</option>
 							<option value="center"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'center'> selected</cfif>>center</option>
 							<option value="space-between"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'space-between'> selected</cfif>>space-between</option>
@@ -32,7 +32,7 @@
 						<label>Flex Align Items</label>
 						<select name="alignItems" class="contentStyle">
 							<option value="">--</option>
-							<option value="flext-start"<cfif attributes.params.stylesupport.contentstyles.alignItems eq 'flext-start'> selected</cfif>>flext-start</option>
+							<option value="flex-start"<cfif attributes.params.stylesupport.contentstyles.alignItems eq 'flex-start'> selected</cfif>>flex-start</option>
 							<option value="flex-end"<cfif attributes.params.stylesupport.contentstyles.alignItems eq 'flex-end'> selected</cfif>>flex-end</option>
 							<option value="center"<cfif attributes.params.stylesupport.contentstyles.alignItems eq 'center'> selected</cfif>>center</option>
 							<option value="baseline"<cfif attributes.params.stylesupport.contentstyles.alignItems eq 'baseline'> selected</cfif>>baseline</option>
@@ -44,7 +44,7 @@
 						<label>Flex Align Content</label>
 						<select name="alignContent" class="contentStyle">
 							<option value="">--</option>
-							<option value="flext-start"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'flext-start'> selected</cfif>>flext-start</option>
+							<option value="flex-start"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'flex-start'> selected</cfif>>flex-start</option>
 							<option value="flex-end"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'flex-end'> selected</cfif>>flex-end</option>
 							<option value="center"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'center'> selected</cfif>>center</option>
 							<option value="stretch"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'stretch'> selected</cfif>>stretch</option>
