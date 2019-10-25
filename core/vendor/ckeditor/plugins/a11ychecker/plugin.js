@@ -1245,6 +1245,9 @@
                 },
                 beforeInit: function(t) {
                     var e = this;
+
+                    while(!(t.filter && t.filter.allow)){}
+
                     t.config.a11ychecker_noIgnoreData || t.filter.allow("*[data-a11y-ignore]", "a11ychecker"), this.createTemporaryNamespace(t), t.once("instanceReady", function() {
                         ! function(n) {
                             var i = new n(t),
