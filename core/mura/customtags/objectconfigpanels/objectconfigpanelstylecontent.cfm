@@ -22,7 +22,7 @@
 							<option value="block"<cfif attributes.params.stylesupport.contentstyles.display eq 'block'> selected</cfif>>block</option>
 						</select>
 					</div>
-					<div class="mura-control-group flex-control" style="display:none;">
+					<div class="mura-control-group flex-control-content" style="display:none;">
 						<label>Flex Alignment</label>
 						<select name="justifyContent" class="contentStyle">
 							<option value="">--</option>
@@ -35,7 +35,7 @@
 						</select>
 					</div>
 					<!--- text alignment --->
-					<div class="mura-control-group flex-control" style="display:none;">
+					<div class="mura-control-group flex-control-content" style="display:none;">
 						<label>Flex Align Items</label>
 						<select name="alignItems" class="contentStyle">
 							<option value="">--</option>
@@ -47,7 +47,7 @@
 					</div>
 
 					<!--- text alignment --->
-					<div class="mura-control-group flex-control" style="display:none;">
+					<div class="mura-control-group flex-control-content" style="display:none;">
 						<label>Flex Align Content</label>
 						<select name="alignContent" class="contentStyle">
 							<option value="">--</option>
@@ -60,7 +60,7 @@
 						</select>
 					</div>
 
-					<div class="mura-control-group block-control" style="display:none;">
+					<div class="mura-control-group block-control-content" style="display:none;">
 						<!--- todo: rbkey for margin and placeholders --->
 						<label>Width</label>
 
@@ -86,16 +86,16 @@
 								'change',
 								function(){
 									if($(this).val() != 'block'){
-										$('.flex-control').show();
-										$('.block-control').each(function()
+										$('.flex-control-content').show();
+										$('.block-control-content').each(function()
 										{
 											var item=$(this);
 											item.hide();
 											item.find('input').val('');
 										})
 									} else {
-										$('.block-control').show();
-										$('.flex-control').each(function()
+										$('.block-control-content').show();
+										$('.flex-control-content').each(function()
 										{
 											var item=$(this);
 											item.hide();
@@ -106,6 +106,7 @@
 						});
 					</script>
 				<cfelse>
+
 					<!--- text alignment --->
 					<div class="mura-control-group">
 						<label>Text Alignment</label>

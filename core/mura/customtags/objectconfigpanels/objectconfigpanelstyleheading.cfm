@@ -47,6 +47,7 @@
         </div> <!--- /.mura-panel-heading --->
         <div id="panel-style-meta-2" class="panel-collapse collapse">
             <div class="mura-panel-body">
+
             <!--- panel contents --->
 				<cfif len(attributes.params.stylesupport.metastyles.margintop
 					& attributes.params.stylesupport.metastyles.marginbottom
