@@ -91,7 +91,7 @@
 										{
 											var item=$(this);
 											item.hide();
-											item.find('input').val('');
+											//item.find('input').val('');
 										})
 									} else {
 										$('.block-control-content').show();
@@ -99,7 +99,7 @@
 										{
 											var item=$(this);
 											item.hide();
-											item.find('select').val('');
+											//item.find('select').val('');
 										});
 									}
 								}).trigger('change');	
