@@ -54,11 +54,10 @@
 							<cfelse>
 								<div class="mura-control-group">
 									<label>Float</label>
-									<select name="alignment" class="classtoggle">
+									<select name="float" class="objectStyle">
 									<option value="">--</option>
-									<option value="mura-left"<cfif listFind(attributes.params.class,'mura-left',' ')> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.left')#</option>
-									<!---<option value="mura-center"<cfif listFind(attributes.params.class,'mura-center',' ')> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.center')#</option>--->
-									<option value="mura-right"<cfif listFind(attributes.params.class,'mura-right',' ')> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.right')#</option>
+									<option value="left"<cfif attributes.params.stylesupport.objectStyles.float eq 'left' or listFind(attributes.params.class,'mura-left',' ')> selected</cfif>>left</option>
+									<option value="right"<cfif attributes.params.stylesupport.objectStyles.float eq 'right' or listFind(attributes.params.class,'mura-right',' ')> selected</cfif>>right</option>
 									</select>
 								</div>
 							</cfif>

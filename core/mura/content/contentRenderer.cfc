@@ -132,7 +132,8 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 	'flexGrow'='flex-grow',
 	'flexShrink'='flex-shrink',
 	'flex'='flex',
-	'zIndex'='z-index'
+	'zIndex'='z-index',
+	'display'='display'
 	}>
 
 <!--- Set these to a boolean value to override settings.ini.cfm value--->

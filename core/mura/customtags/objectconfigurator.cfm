@@ -149,7 +149,8 @@
 				,'flexGrow'
 				,'flexShrink'
 				,'flex'
-				,'zindex'];
+				,'zindex'
+				,'display'];
 
 			for (p in attributes.globalparams){
 				param name="attributes.params.stylesupport.objectstyles.#p#" default="";

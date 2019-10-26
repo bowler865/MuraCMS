@@ -438,7 +438,18 @@
 				var editableObj=utility(a).closest(".mura-object,.mura-async-object");
 			}
 
-			var isflex=editableObj.parent().closest('div[data-object="container"], div.mura-region-local[data-loose="false"]').length;
+			var container=editableObj.parent().closest('div[data-object="container"]');
+			if(container.length){
+				console.log(container.css('display'))
+				if(container.children('.mura-object-content').css('display')=='block'){
+					var isflex=0;
+				} else {
+					var isflex=1;
+				}
+			} else {
+				var isflex=editableObj.parent().closest('div.mura-region-local[data-loose="false"]').length;
+			}
+			
 			/*
 				This reloads the element in the dom to ensure that all the latest
 				values are present
