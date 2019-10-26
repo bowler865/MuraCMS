@@ -50,7 +50,16 @@
 										<option value="stretch"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'stretch'> selected</cfif>>space-around</option>
 									</select>
 								</div>
-
+								<div class="mura-control-group">
+								<label>Flex Justify Self</label>
+									<select name="justifySelf" class="objectStyle">
+										<option value="">--</option>
+										<option value="stretch"<cfif attributes.params.stylesupport.objectStyles.justifySelf eq 'stretch'> selected</cfif>>stretch</option>
+										<option value="center"<cfif attributes.params.stylesupport.objectStyles.justifySelf eq 'center'> selected</cfif>>center</option>
+										<option value="start"<cfif attributes.params.stylesupport.objectStyles.justifySelf eq 'start'> selected</cfif>>start</option>
+										<option value="end"<cfif attributes.params.stylesupport.objectStyles.justifySelf eq 'end'> selected</cfif>>end</option>
+									</select>
+								</div>
 							<cfelse>
 								<div class="mura-control-group">
 									<label>Float</label>

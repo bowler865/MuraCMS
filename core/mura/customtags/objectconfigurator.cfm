@@ -145,6 +145,7 @@
 				,'alignItems'
 				,'alignContent'
 				,'alignSelf'
+				,'justifySelf'
 				,'order'
 				,'flexGrow'
 				,'flexShrink'

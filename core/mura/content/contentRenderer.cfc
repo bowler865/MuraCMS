@@ -128,6 +128,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 	'alignItems'='alignItems',
 	'alignContent'='align-content',
 	'alignSelf'='align-self',
+	'justifySelf'='justify-self',
 	'order'='order',
 	'flexGrow'='flex-grow',
 	'flexShrink'='flex-shrink',
