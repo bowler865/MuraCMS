@@ -37,7 +37,79 @@
         <div id="panel-style-object-1" class="panel-collapse collapse">
             <div class="mura-panel-body">
             	<!--- panel contents --->
-					<cfif request.haspositionoptions>
+				<cfif request.haspositionoptions>
+					<cfif request.isflex>
+					<div class="mura-control-group">
+						<label>Flex Align Self</label>
+						<select name="alignSelf" class="objectStyle">
+							<option value="">--</option>
+							<option value="auto"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'flex-start'> selected</cfif>>flex-start</option>
+							<option value="flex-end"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'flex-end'> selected</cfif>>flex-end</option>
+							<option value="center"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'center'> selected</cfif>>center</option>
+							<option value="baseline"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'baseline'> selected</cfif>>space-between</option>
+							<option value="stretch"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'stretch'> selected</cfif>>space-around</option>
+						</select>
+					</div>
+					<div class="mura-control-group">
+					<label>Flex Justify Self</label>
+						<select name="justifySelf" class="objectStyle">
+							<option value="">--</option>
+							<option value="stretch"<cfif attributes.params.stylesupport.objectStyles.justifySelf eq 'stretch'> selected</cfif>>stretch</option>
+							<option value="center"<cfif attributes.params.stylesupport.objectStyles.justifySelf eq 'center'> selected</cfif>>center</option>
+							<option value="start"<cfif attributes.params.stylesupport.objectStyles.justifySelf eq 'start'> selected</cfif>>start</option>
+							<option value="end"<cfif attributes.params.stylesupport.objectStyles.justifySelf eq 'end'> selected</cfif>>end</option>
+						</select>
+					</div>
+					<!---
+					<div class="mura-control-group flex-control-object">
+						<label>Flex Alignment</label>
+						<select name="justifyContent" class="objectStyle">
+							<option value="">--</option>
+							<option value="flex-start"<cfif attributes.params.stylesupport.objectstyles.justifyContent eq 'flex-start'> selected</cfif>>flex-start</option>
+							<option value="flex-end"<cfif attributes.params.stylesupport.objectstyles.justifyContent eq 'flex-end'> selected</cfif>>flex-end</option>
+							<option value="center"<cfif attributes.params.stylesupport.objectstyles.justifyContent eq 'center'> selected</cfif>>center</option>
+							<option value="space-between"<cfif attributes.params.stylesupport.objectstyles.justifyContent eq 'space-between'> selected</cfif>>space-between</option>
+							<option value="space-around"<cfif attributes.params.stylesupport.objectstyles.justifyContent eq 'space-around'> selected</cfif>>space-around</option>
+							<option value="space-evenly"<cfif attributes.params.stylesupport.objectstyles.justifyContent eq 'justify'> selected</cfif>>space-evenly</option>
+						</select>
+					</div>
+					<!--- text alignment --->
+					<div class="mura-control-group flex-control-object">
+						<label>Flex Align Items</label>
+						<select name="alignItems" class="objectStyle">
+							<option value="">--</option>
+							<option value="flex-start"<cfif attributes.params.stylesupport.objectstyles.alignItems eq 'flex-start'> selected</cfif>>flex-start</option>
+							<option value="flex-end"<cfif attributes.params.stylesupport.objectstyles.alignItems eq 'flex-end'> selected</cfif>>flex-end</option>
+							<option value="center"<cfif attributes.params.stylesupport.objectstyles.alignItems eq 'center'> selected</cfif>>center</option>
+							<option value="baseline"<cfif attributes.params.stylesupport.objectstyles.alignItems eq 'baseline'> selected</cfif>>baseline</option>
+						</select>
+					</div>
+					--->
+					<!--- text alignment --->
+					<div class="mura-control-group flex-control-object">
+						<label>Flex Align Content</label>
+						<select name="alignContent" class="objectStyle">
+							<option value="">--</option>
+							<option value="flex-start"<cfif attributes.params.stylesupport.objectstyles.alignContent eq 'flex-start'> selected</cfif>>flex-start</option>
+							<option value="flex-end"<cfif attributes.params.stylesupport.objectstyles.alignContent eq 'flex-end'> selected</cfif>>flex-end</option>
+							<option value="center"<cfif attributes.params.stylesupport.objectstyles.alignContent eq 'center'> selected</cfif>>center</option>
+							<option value="stretch"<cfif attributes.params.stylesupport.objectstyles.alignContent eq 'stretch'> selected</cfif>>stretch</option>
+							<option value="space-between"<cfif attributes.params.stylesupport.objectstyles.alignContent eq 'space-between'> selected</cfif>>space-between</option>
+							<option value="space-around"<cfif attributes.params.stylesupport.objectstyles.alignContent eq 'space-around'> selected</cfif>>space-around</option>
+						</select>
+					</div>
+				<cfelse>
+					<div class="mura-control-group">
+						<label>Float</label>
+						<select name="float" class="objectStyle">
+						<option value="">--</option>
+						<option value="left"<cfif attributes.params.stylesupport.objectStyles.float eq 'left' or listFind(attributes.params.class,'mura-left',' ')> selected</cfif>>left</option>
+						<option value="right"<cfif attributes.params.stylesupport.objectStyles.float eq 'right' or listFind(attributes.params.class,'mura-right',' ')> selected</cfif>>right</option>
+						</select>
+					</div>
+				</cfif>
+
+					
 					
 					<div class="mura-control-group">
 						<label>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.width')#</label>
@@ -300,77 +372,6 @@
 							}	
 						)
 					</script>
-				</cfif>
-
-				<cfif request.isflex>
-				<div class="mura-control-group" style="margin-top: 8px;">
-					<label>Flex Align Self</label>
-						<select name="alignSelf" class="objectStyle">
-							<option value="">--</option>
-							<option value="auto"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'flex-start'> selected</cfif>>flex-start</option>
-							<option value="flex-end"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'flex-end'> selected</cfif>>flex-end</option>
-							<option value="center"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'center'> selected</cfif>>center</option>
-							<option value="baseline"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'baseline'> selected</cfif>>space-between</option>
-							<option value="stretch"<cfif attributes.params.stylesupport.objectStyles.alignSelf eq 'stretch'> selected</cfif>>space-around</option>
-						</select>
-					</div>
-					<div class="mura-control-group">
-					<label>Flex Justify Self</label>
-						<select name="justifySelf" class="objectStyle">
-							<option value="">--</option>
-							<option value="stretch"<cfif attributes.params.stylesupport.objectStyles.justifySelf eq 'stretch'> selected</cfif>>stretch</option>
-							<option value="center"<cfif attributes.params.stylesupport.objectStyles.justifySelf eq 'center'> selected</cfif>>center</option>
-							<option value="start"<cfif attributes.params.stylesupport.objectStyles.justifySelf eq 'start'> selected</cfif>>start</option>
-							<option value="end"<cfif attributes.params.stylesupport.objectStyles.justifySelf eq 'end'> selected</cfif>>end</option>
-						</select>
-					</div>
-
-					<div class="mura-control-group flex-control-object">
-						<label>Flex Alignment</label>
-						<select name="justifyContent" class="objectStyle">
-							<option value="">--</option>
-							<option value="flex-start"<cfif attributes.params.stylesupport.objectstyles.justifyContent eq 'flex-start'> selected</cfif>>flex-start</option>
-							<option value="flex-end"<cfif attributes.params.stylesupport.objectstyles.justifyContent eq 'flex-end'> selected</cfif>>flex-end</option>
-							<option value="center"<cfif attributes.params.stylesupport.objectstyles.justifyContent eq 'center'> selected</cfif>>center</option>
-							<option value="space-between"<cfif attributes.params.stylesupport.objectstyles.justifyContent eq 'space-between'> selected</cfif>>space-between</option>
-							<option value="space-around"<cfif attributes.params.stylesupport.objectstyles.justifyContent eq 'space-around'> selected</cfif>>space-around</option>
-							<option value="space-evenly"<cfif attributes.params.stylesupport.objectstyles.justifyContent eq 'justify'> selected</cfif>>space-evenly</option>
-						</select>
-					</div>
-					<!--- text alignment --->
-					<div class="mura-control-group flex-control-object">
-						<label>Flex Align Items</label>
-						<select name="alignItems" class="objectStyle">
-							<option value="">--</option>
-							<option value="flex-start"<cfif attributes.params.stylesupport.objectstyles.alignItems eq 'flex-start'> selected</cfif>>flex-start</option>
-							<option value="flex-end"<cfif attributes.params.stylesupport.objectstyles.alignItems eq 'flex-end'> selected</cfif>>flex-end</option>
-							<option value="center"<cfif attributes.params.stylesupport.objectstyles.alignItems eq 'center'> selected</cfif>>center</option>
-							<option value="baseline"<cfif attributes.params.stylesupport.objectstyles.alignItems eq 'baseline'> selected</cfif>>baseline</option>
-						</select>
-					</div>
-
-					<!--- text alignment --->
-					<div class="mura-control-group flex-control-object">
-						<label>Flex Align Content</label>
-						<select name="alignContent" class="objectStyle">
-							<option value="">--</option>
-							<option value="flex-start"<cfif attributes.params.stylesupport.objectstyles.alignContent eq 'flex-start'> selected</cfif>>flex-start</option>
-							<option value="flex-end"<cfif attributes.params.stylesupport.objectstyles.alignContent eq 'flex-end'> selected</cfif>>flex-end</option>
-							<option value="center"<cfif attributes.params.stylesupport.objectstyles.alignContent eq 'center'> selected</cfif>>center</option>
-							<option value="stretch"<cfif attributes.params.stylesupport.objectstyles.alignContent eq 'stretch'> selected</cfif>>stretch</option>
-							<option value="space-between"<cfif attributes.params.stylesupport.objectstyles.alignContent eq 'space-between'> selected</cfif>>space-between</option>
-							<option value="space-around"<cfif attributes.params.stylesupport.objectstyles.alignContent eq 'space-around'> selected</cfif>>space-around</option>
-						</select>
-					</div>
-				<cfelse>
-					<div class="mura-control-group" style="margin-top: 8px;">
-						<label>Float</label>
-						<select name="float" class="objectStyle">
-						<option value="">--</option>
-						<option value="left"<cfif attributes.params.stylesupport.objectStyles.float eq 'left' or listFind(attributes.params.class,'mura-left',' ')> selected</cfif>>left</option>
-						<option value="right"<cfif attributes.params.stylesupport.objectStyles.float eq 'right' or listFind(attributes.params.class,'mura-right',' ')> selected</cfif>>right</option>
-						</select>
-					</div>
 				</cfif>
 
             	<!--- /panel contents --->
