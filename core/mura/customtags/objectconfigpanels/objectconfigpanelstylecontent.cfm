@@ -13,6 +13,7 @@
         <div id="panel-style-content-1" class="panel-collapse collapse">
             <div class="mura-panel-body">
             <!--- panel contents --->
+				<!--- text alignment --->
 				<cfif attributes.params.object eq 'container'>
 					<!--- text alignment --->
 					<div class="mura-control-group">
@@ -22,92 +23,7 @@
 							<option value="block"<cfif attributes.params.stylesupport.contentstyles.display eq 'block'> selected</cfif>>block</option>
 						</select>
 					</div>
-					<div class="mura-control-group flex-control-content" style="display:none;">
-						<label>Flex Alignment</label>
-						<select name="justifyContent" class="contentStyle">
-							<option value="">--</option>
-							<option value="flex-start"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'flex-start'> selected</cfif>>flex-start</option>
-							<option value="flex-end"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'flex-end'> selected</cfif>>flex-end</option>
-							<option value="center"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'center'> selected</cfif>>center</option>
-							<option value="space-between"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'space-between'> selected</cfif>>space-between</option>
-							<option value="space-around"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'space-around'> selected</cfif>>space-around</option>
-							<option value="space-evenly"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'justify'> selected</cfif>>space-evenly</option>
-						</select>
-					</div>
-					<!--- text alignment --->
-					<div class="mura-control-group flex-control-content" style="display:none;">
-						<label>Flex Align Items</label>
-						<select name="alignItems" class="contentStyle">
-							<option value="">--</option>
-							<option value="flex-start"<cfif attributes.params.stylesupport.contentstyles.alignItems eq 'flex-start'> selected</cfif>>flex-start</option>
-							<option value="flex-end"<cfif attributes.params.stylesupport.contentstyles.alignItems eq 'flex-end'> selected</cfif>>flex-end</option>
-							<option value="center"<cfif attributes.params.stylesupport.contentstyles.alignItems eq 'center'> selected</cfif>>center</option>
-							<option value="baseline"<cfif attributes.params.stylesupport.contentstyles.alignItems eq 'baseline'> selected</cfif>>baseline</option>
-						</select>
-					</div>
-
-					<!--- text alignment --->
-					<div class="mura-control-group flex-control-content" style="display:none;">
-						<label>Flex Align Content</label>
-						<select name="alignContent" class="contentStyle">
-							<option value="">--</option>
-							<option value="flex-start"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'flex-start'> selected</cfif>>flex-start</option>
-							<option value="flex-end"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'flex-end'> selected</cfif>>flex-end</option>
-							<option value="center"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'center'> selected</cfif>>center</option>
-							<option value="stretch"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'stretch'> selected</cfif>>stretch</option>
-							<option value="space-between"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'space-between'> selected</cfif>>space-between</option>
-							<option value="space-around"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'space-around'> selected</cfif>>space-around</option>
-						</select>
-					</div>
-
-					<div class="mura-control-group block-control-content" style="display:none;">
-						<!--- todo: rbkey for margin and placeholders --->
-						<label>Width</label>
-
-						<div class="row mura-ui-row">
-
-								<div class="mura-input-group">
-									<label class="mura-serial">
-										<input type="text" name="contentwidth" id="contentwidthnum" class="numeric serial" value="<cfif len(trim(attributes.params.stylesupport.contentstyles.width))>#val(esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.width))#</cfif>">
-									</label>
-									<select id="contentwidthuom" name="contentwidthuom" class="styleSupport">
-										<cfloop list="#request.objectlayoutuomext#" index="u">
-											<option value="#u#"<cfif attributes.params.stylesupport.contentwidthuom eq u> selected</cfif>>#u#</option>
-										</cfloop>
-									</select>
-								</div>
-								<input type="hidden" name="width" id="contentwidthuomval" class="contentStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.width)#">
-						</div>
-					</div>
-
-					<script>
-						$(function(){
-							$('select[name="display"]').on(
-								'change',
-								function(){
-									if($(this).val() != 'block'){
-										$('.flex-control-content').show();
-										$('.block-control-content').each(function()
-										{
-											var item=$(this);
-											item.hide();
-											item.find('input').val('');
-										})
-									} else {
-										$('.block-control-content').show();
-										$('.flex-control-content').each(function()
-										{
-											var item=$(this);
-											item.hide();
-											item.find('select').val('').niceSelect('update');
-										});
-									}
-								}).trigger('change');	
-						});
-					</script>
 				<cfelse>
-
-					<!--- text alignment --->
 					<div class="mura-control-group">
 						<label>Text Alignment</label>
 						<select name="textAlign" class="contentStyle">
@@ -118,8 +34,10 @@
 							<option value="justify"<cfif attributes.params.stylesupport.contentstyles.textalign eq 'justify'> selected</cfif>>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.justify')#</option>
 						</select>
 					</div>
+				</cfif>
 
-					<div class="mura-control-group">
+				<!--- If the module is a container this toggle visible if is block---> 
+				<div class="mura-control-group block-control-content" <cfif attributes.params.object eq 'container'>style="display:none;"</cfif>>
 						<!--- todo: rbkey for margin and placeholders --->
 						<label>Width</label>
 
@@ -138,7 +56,6 @@
 								<input type="hidden" name="width" id="contentwidthuomval" class="contentStyle" value="#esapiEncode('html_attr',attributes.params.stylesupport.contentstyles.width)#">
 						</div>
 					</div>
-				</cfif>	
 
 				<div class="mura-control-group">
 					<!--- todo: rbkey for margin and placeholders --->
@@ -347,6 +264,71 @@
 					</script>
 				</cfif>
 
+				<cfif attributes.params.object eq 'container'>
+					<div class="mura-control-group flex-control-content" style="display:none; margin-top:8px;">
+						<label>Flex Alignment</label>
+						<select name="justifyContent" class="contentStyle">
+							<option value="">--</option>
+							<option value="flex-start"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'flex-start'> selected</cfif>>flex-start</option>
+							<option value="flex-end"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'flex-end'> selected</cfif>>flex-end</option>
+							<option value="center"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'center'> selected</cfif>>center</option>
+							<option value="space-between"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'space-between'> selected</cfif>>space-between</option>
+							<option value="space-around"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'space-around'> selected</cfif>>space-around</option>
+							<option value="space-evenly"<cfif attributes.params.stylesupport.contentstyles.justifyContent eq 'justify'> selected</cfif>>space-evenly</option>
+						</select>
+					</div>
+					<!--- text alignment --->
+					<div class="mura-control-group flex-control-content" style="display:none;">
+						<label>Flex Align Items</label>
+						<select name="alignItems" class="contentStyle">
+							<option value="">--</option>
+							<option value="flex-start"<cfif attributes.params.stylesupport.contentstyles.alignItems eq 'flex-start'> selected</cfif>>flex-start</option>
+							<option value="flex-end"<cfif attributes.params.stylesupport.contentstyles.alignItems eq 'flex-end'> selected</cfif>>flex-end</option>
+							<option value="center"<cfif attributes.params.stylesupport.contentstyles.alignItems eq 'center'> selected</cfif>>center</option>
+							<option value="baseline"<cfif attributes.params.stylesupport.contentstyles.alignItems eq 'baseline'> selected</cfif>>baseline</option>
+						</select>
+					</div>
+
+					<!--- text alignment --->
+					<div class="mura-control-group flex-control-content" style="display:none; margin-top:8px;s">
+						<label>Flex Align Content</label>
+						<select name="alignContent" class="contentStyle">
+							<option value="">--</option>
+							<option value="flex-start"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'flex-start'> selected</cfif>>flex-start</option>
+							<option value="flex-end"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'flex-end'> selected</cfif>>flex-end</option>
+							<option value="center"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'center'> selected</cfif>>center</option>
+							<option value="stretch"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'stretch'> selected</cfif>>stretch</option>
+							<option value="space-between"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'space-between'> selected</cfif>>space-between</option>
+							<option value="space-around"<cfif attributes.params.stylesupport.contentstyles.alignContent eq 'space-around'> selected</cfif>>space-around</option>
+						</select>
+					</div>
+
+					<script>
+						$(function(){
+							$('select[name="display"]').on(
+								'change',
+								function(){
+									if($(this).val() != 'block'){
+										$('.flex-control-content').show();
+										$('.block-control-content').each(function()
+										{
+											var item=$(this);
+											item.hide();
+											item.find('input').val('');
+										})
+									} else {
+										$('.block-control-content').show();
+										$('.flex-control-content').each(function()
+										{
+											var item=$(this);
+											item.hide();
+											item.find('select').val('').niceSelect('update');
+										});
+									}
+								}).trigger('change');	
+						});
+					</script>
+				</cfif>	
             <!--- /end panel contents --->
             </div> <!--- /.mura-panel-body --->
         </div> <!--- /.panel-collapse --->
