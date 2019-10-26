@@ -440,7 +440,6 @@
 
 			var container=editableObj.parent().closest('div[data-object="container"]');
 			if(container.length){
-				console.log(container.css('display'))
 				if(container.children('.mura-object-content').css('display')=='block'){
 					var isflex=0;
 				} else {
