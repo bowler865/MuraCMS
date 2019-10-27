@@ -86,7 +86,7 @@
 
 					<cfif not request.isflex>
 						<div class="mura-control-group float-container-object">
-							<label>Alignment</label>
+							<label>Float</label>
 							<select name="float" class="objectStyle">
 							<option value="">--</option>
 							<option value="left"<cfif attributes.params.stylesupport.objectStyles.float eq 'left' or listFind(attributes.params.class,'mura-left',' ')> selected</cfif>>left</option>
