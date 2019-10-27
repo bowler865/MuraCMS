@@ -38,16 +38,6 @@
             <div class="mura-panel-body">
             	<!--- panel contents --->
 				<cfif request.haspositionoptions>
-					<cfif not request.isflex>
-						<div class="mura-control-group">
-							<label>Alignment</label>
-							<select name="float" class="objectStyle">
-							<option value="">--</option>
-							<option value="left"<cfif attributes.params.stylesupport.objectStyles.float eq 'left' or listFind(attributes.params.class,'mura-left',' ')> selected</cfif>>left</option>
-							<option value="right"<cfif attributes.params.stylesupport.objectStyles.float eq 'right' or listFind(attributes.params.class,'mura-right',' ')> selected</cfif>>right</option>
-							</select>
-						</div>
-					</cfif>
 					<div class="mura-control-group">
 						<label>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.width')#</label>
 						<!--- width selector widget --->
@@ -77,20 +67,31 @@
 
 					<cfif len(contentcontainerclass)>
 						<div class="mura-control-group constraincontentcontainer" style='display:none;'>
-									<!--- todo: rb keys --->
-									<label class="css-input switch switch-sm switch-primary">
-						<input type="checkbox" id="expandedwidthtoggle" name="expandedwidthtoggle" value="true"<cfif listFind(attributes.params.class,'mura-expanded',' ')> checked</cfif>><span></span> Expand Width
-					</label>
-									<label class="css-input switch switch-sm switch-primary">
-						<input name="constraincontenttoggle" type="checkbox" id="constraincontenttoggle" value="true"<cfif listFind(attributes.params.contentcssclass,contentcontainerclass,' ')> checked</cfif>><span></span> Constrain Content
-					</label>
+							<!--- todo: rb keys --->
+							<label class="css-input switch switch-sm switch-primary">
+								<input type="checkbox" id="expandedwidthtoggle" name="expandedwidthtoggle" value="true"<cfif listFind(attributes.params.class,'mura-expanded',' ')> checked</cfif>><span></span> Expand Width
+							</label>
+							<label class="css-input switch switch-sm switch-primary">
+								<input name="constraincontenttoggle" type="checkbox" id="constraincontenttoggle" value="true"<cfif listFind(attributes.params.contentcssclass,contentcontainerclass,' ')> checked</cfif>><span></span> Constrain Content
+							</label>
 							<!--- hidden select tied to js logic in objectconfigurator.cfm --->
-									<div style="display:none;">	
-										<select name="constraincontent" id="objectconstrainsel" class="classtoggle">
-											<option value=""<cfif not listFind(attributes.params.contentcssclass,contentcontainerclass,' ')> selected</cfif>>False</option>
-											<option value="constrain"<cfif listFind(attributes.params.contentcssclass,contentcontainerclass,' ')> selected</cfif>>True</option>
-										</select> 
-									</div>									 								
+							<div style="display:none;">	
+								<select name="constraincontent" id="objectconstrainsel" class="classtoggle">
+									<option value=""<cfif not listFind(attributes.params.contentcssclass,contentcontainerclass,' ')> selected</cfif>>False</option>
+									<option value="constrain"<cfif listFind(attributes.params.contentcssclass,contentcontainerclass,' ')> selected</cfif>>True</option>
+								</select> 
+							</div>									 								
+						</div>
+					</cfif>
+
+					<cfif not request.isflex>
+						<div class="mura-control-group float-container-object">
+							<label>Alignment</label>
+							<select name="float" class="objectStyle">
+							<option value="">--</option>
+							<option value="left"<cfif attributes.params.stylesupport.objectStyles.float eq 'left' or listFind(attributes.params.class,'mura-left',' ')> selected</cfif>>left</option>
+							<option value="right"<cfif attributes.params.stylesupport.objectStyles.float eq 'right' or listFind(attributes.params.class,'mura-right',' ')> selected</cfif>>right</option>
+							</select>
 						</div>
 					</cfif>
 

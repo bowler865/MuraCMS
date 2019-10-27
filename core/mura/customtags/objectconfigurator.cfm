@@ -1205,17 +1205,29 @@
 				var defaultOption = $('#object-widthsel-ui .object-widthsel-option[data-value="mura-twelve"]');
 				var bpSel =	$('#objectbreakpointsel');
 				var bpDiv = $('div.objectbreakpointcontainer');
-
+				var floatSel=$('select[name="float"]');
+				
 				if (curVal == ''){
 					$(bpSel).val('').niceSelect('update');
 					$(bpDiv).hide();
 					resetGridWidth();
 					unsetGridWidth();
+					if(floatSel.length){
+						$('.float-container-object').hide();
+						floatSel.val('').niceSelect('update');
+					}
 				} else {
 					if (curVal == 'mura-twelve' || curVal == 'mura-expanded'){
 						$(bpDiv).hide();
+						if(floatSel.length){
+							$('.float-container-object').hide();
+							floatSel.val('').niceSelect('update');
+						}
 					} else {
-						$(bpDiv).show();					
+						$(bpDiv).show();
+						if(floatSel.length){
+							$('.float-container-object').show();;
+						}					
 					}
 				}
 				if (curOption.length){
