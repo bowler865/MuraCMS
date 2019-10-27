@@ -91,6 +91,7 @@
 							<option value="">--</option>
 							<option value="left"<cfif attributes.params.stylesupport.objectStyles.float eq 'left' or listFind(attributes.params.class,'mura-left',' ')> selected</cfif>>left</option>
 							<option value="right"<cfif attributes.params.stylesupport.objectStyles.float eq 'right' or listFind(attributes.params.class,'mura-right',' ')> selected</cfif>>right</option>
+							<option value="none"<cfif attributes.params.stylesupport.objectStyles.float eq 'none'> selected</cfif>>none</option>
 							</select>
 						</div>
 					</cfif>
