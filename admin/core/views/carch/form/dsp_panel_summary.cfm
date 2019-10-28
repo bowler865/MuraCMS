@@ -105,6 +105,12 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 				      #application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.contentid')#:
 				      <cfif len(rc.contentID) and len(rc.contentBean.getcontentID())><span class="clicktocopy">#rc.contentBean.getcontentID()#</span><cfelse>#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.notavailable')#</cfif>
 				    </span>
+					<cfif len(rc.contentBean.getFileID())>
+						<span class="meta-label  meta-label-wide">
+							#application.rbFactory.getKeyValue(session.rb,'sitemanager.content.fields.fileid')#:
+							<span class="clicktocopy">#rc.contentBean.getFileId()#</span>
+						</span>
+					</cfif>
 
 					<div class="clearfix"></div>
 		  		</div> <!--- /metadata .help-block --->
