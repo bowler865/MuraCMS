@@ -18,7 +18,6 @@
 	}
 </cfscript>
 </cfsilent>
-<cfif not fileMetaData.getIsNew()>
 <div class="mura-control justify">
 <cfoutput>
 	<cfif attributes.bean.getEntityName() neq 'site'
@@ -129,4 +128,3 @@
 	</cfif>
 </cfoutput>
 </div>
-</cfif>

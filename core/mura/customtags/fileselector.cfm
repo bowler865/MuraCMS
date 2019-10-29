@@ -96,7 +96,7 @@
 			</script>
 		</cfif>
 
-		<cfif isObject(attributes.bean)>
+		<cfif isObject(attributes.bean) and len(attributes.bean.get(attributes.property))>
 			<cf_filetools bean="#attributes.bean#" property="#attributes.property#" deleteKey="#attributes.deleteKey#" compactDisplay="#attributes.compactDisplay#" size="#attributes.size#" filetype="#filetype#" locked="#attributes.locked#">
 		</cfif>
 	</div>

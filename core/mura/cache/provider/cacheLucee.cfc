@@ -60,7 +60,7 @@ component extends="mura.baseobject" output="false" hint="This is used by advance
 	}
 
 		/*
-    if(!cacheRegionExists(variables.cacheName) ) {
+    	if(!cacheRegionExists(variables.cacheName) ) {
 			cacheRegionNew(variables.cacheName);
 		}
 		*/
