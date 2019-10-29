@@ -50,8 +50,14 @@ component extends="mura.baseobject" output="false" hint="This is used by advance
 		hint="The name of the cache.";
 
 	public any function init(name,siteid){
+		
+	var cachePrefix=getBean('configBean').get('AdvancedCachePrefix');
 
-		variables.cacheName=arguments.siteID & "-" & arguments.name;
+	variables.cacheName=arguments.siteID & "-" &arguments.name;
+	
+	if(len(cachePrefix)){
+		variables.cacheName=cachePrefix & "-" & variables.cacheName;
+	}
 
 		/*
     if(!cacheRegionExists(variables.cacheName) ) {
