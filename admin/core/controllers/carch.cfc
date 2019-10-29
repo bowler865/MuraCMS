@@ -55,7 +55,6 @@ component extends="controller" output="false" {
 			param default=false name="arguments.rc.locknode";
 			param default=false name="arguments.rc.frontend";
 			param default=0 name="arguments.rc.istemplate";
-			param default="" name="arguments.rc.templateid";
 			if ( !arguments.rc.ommitPublishingTab ) {
 			  param default=0 name="arguments.rc.isNav";
 			  param default="_self" name="arguments.rc.target";
@@ -309,8 +308,11 @@ component extends="controller" output="false" {
 		}
 		arguments.rc.contentBean=variables.contentManager.getcontentVersion(arguments.rc.contenthistid,arguments.rc.siteid);
 		if(local.currentBean.getIsNew()  && (isValid('uuid',rc.templateid) || rc.templateid=='00000000000000000000000000000000001')){
-			arguments.rc.templateBean=getBean("content").loadBy(contentID=arguments.rc.templateid, siteID= arguments.rc.siteid);
-			var templateData=arguments.rc.templateBean.getAllValues(autocomplete=true);
+			var templateBean=getBean("content").loadBy(contentID=arguments.rc.templateid, siteID= arguments.rc.siteid);
+			var templateData=templateBean.getAllValues(autocomplete=true);
+			templateData.istemplate=0;
+			templateData.templatehistid=templateBean.getContentHistID();
+
 			structDelete(templateData,'contentid');
 			structDelete(templateData,'filename');
 			structDelete(templateData,'path');
@@ -321,7 +323,7 @@ component extends="controller" output="false" {
 			structDelete(templateData,'contenthistid');
 			structDelete(templateData,'releasedate');
 
-			templateData.istemplate=0;
+
 			arguments.rc.contentBean.set(templateData);
 		}
 		if ( arguments.rc.type != 'Variation' && arguments.rc.contentid != ''  && arguments.rc.contenthistid != '' && arguments.rc.contentBean.getIsNew() == 1 && !len(arguments.rc.instanceid) ) {

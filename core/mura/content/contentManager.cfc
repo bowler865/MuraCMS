@@ -1360,7 +1360,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 					</cfif>
 
 					<cfif newBean.getIsNew()>
-						<cfset variables.contentDAO.createObjects(arguments.data,newBean,newBean.getTemplateID()) />
+						<cfset variables.contentDAO.createObjects(arguments.data,newBean,newBean.getTemplateHistID()) />
 					<cfelse>
 						<cfset variables.contentDAO.createObjects(arguments.data,newBean,currentBean.getcontentHistID()) />
 					</cfif>

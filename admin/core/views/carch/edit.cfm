@@ -711,7 +711,7 @@ $('.clicktocopy').click(function(){
 	<input type="hidden" name="frontend" value="#esapiEncode('html_attr',rc.frontend)#" />
 	<input type="hidden" name="instanceid" value="#esapiEncode('html_attr',rc.instanceid)#" />
 	<input type="hidden" name="parenthistid" value="#esapiEncode('html_attr',rc.parenthistid)#" />
-	<input type="hidden" name="templateid" value="#esapiEncode('html_attr',rc.templateid)#" />
+	<input type="hidden" name="templatehistid" value="#esapiEncode('html_attr',rc.contentBean.getTemplateHistID())#" />
 
 	#rc.$.renderCSRFTokens(context=rc.contentBean.getContentHistID() & "add",format="form")#
 
