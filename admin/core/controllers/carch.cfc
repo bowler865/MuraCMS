@@ -323,8 +323,12 @@ component extends="controller" output="false" {
 			structDelete(templateData,'htmltitle');
 			structDelete(templateData,'contenthistid');
 			structDelete(templateData,'releasedate');
-
-
+			structDelete(templateData,'display');
+			structDelete(templateData,'displayStart');
+			structDelete(templateData,'displayStop');
+			structDelete(templateData,'searchExclude');
+			structDelete(templateData,'isnav');
+			
 			arguments.rc.contentBean.set(templateData);
 		}
 		if ( arguments.rc.type != 'Variation' && arguments.rc.contentid != ''  && arguments.rc.contenthistid != '' && arguments.rc.contentBean.getIsNew() == 1 && !len(arguments.rc.instanceid) ) {
