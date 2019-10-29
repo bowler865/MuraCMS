@@ -319,6 +319,7 @@ component extends="controller" output="false" {
 			structDelete(templateData,'urltitle');
 			structDelete(templateData,'htmltitle');
 			structDelete(templateData,'contenthistid');
+			structDelete(templateData,'releasedate');
 
 			templateData.istemplate=0;
 			arguments.rc.contentBean.set(templateData);
