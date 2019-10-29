@@ -323,6 +323,7 @@ component extends="controller" output="false" {
 			structDelete(templateData,'htmltitle');
 			structDelete(templateData,'contenthistid');
 			structDelete(templateData,'releasedate');
+			structDelete(templateData,'expires');
 			structDelete(templateData,'display');
 			structDelete(templateData,'displayStart');
 			structDelete(templateData,'displayStop');
