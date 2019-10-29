@@ -1,4 +1,4 @@
-<cfcomponent extends="mura.baseobject" output="false" hint="This provides a CRUD utility manage database schemas">
+<cfcomponent extends="mura.cfobject" output="false" hint="This provides a CRUD utility manage database schemas">
 	<cfset variables.table="">
 
 	<cfset variables.tableLookUp=structNew()>
@@ -135,7 +135,7 @@
 			</cfquery>
 			</cfcase>
 			--->
-			<cfcase value="mssql,postgresql">
+			<cfcase value="mssql">
 			<cfquery attributeCollection="#getQueryAttrs(name='rs')#">
 					select column_name,
 					character_maximum_length column_size,

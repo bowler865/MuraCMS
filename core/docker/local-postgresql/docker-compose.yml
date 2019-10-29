@@ -19,6 +19,8 @@ services:
       MURA_DATASOURCE: muradb
       MURA_DATABASE: muradb
       MURA_DBTYPE: postgresql
+      MURA_DBCONNECTIONSTRING: "jdbc:postgresql://mura_postgres:5432/muradb?currentSchema=testdb"
+      MURA_DBCLASS: org.postgresql.Driver
       MURA_DBUSERNAME: muradb
       MURA_DBPASSWORD: NOT_SECURE_CHANGE
       MURA_DBHOST: mura_postgres

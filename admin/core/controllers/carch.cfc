@@ -308,7 +308,7 @@ component extends="controller" output="false" {
 			arguments.rc.crumbdata=variables.contentManager.getCrumbList(arguments.rc.contentID,arguments.rc.siteid,true);
 		}
 		arguments.rc.contentBean=variables.contentManager.getcontentVersion(arguments.rc.contenthistid,arguments.rc.siteid);
-		if(local.currentBean.getIsNew() && (len(rc.templateid) && rc.templateid=='00000000000000000000000000000000001')){
+		if(local.currentBean.getIsNew() && (isValid('uuid',arguments.rc.templateid)|| rc.templateid=='00000000000000000000000000000000001')){
 			var templateBean=getBean("content").loadBy(contentID=arguments.rc.templateid, siteID= arguments.rc.siteid);
 			var templateData=templateBean.getAllValues(autocomplete=true);
 			templateData.istemplate=0;
@@ -331,6 +331,7 @@ component extends="controller" output="false" {
 			structDelete(templateData,'isnav');
 			
 			arguments.rc.contentBean.set(templateData);
+		
 		}
 		if ( arguments.rc.type != 'Variation' && arguments.rc.contentid != ''  && arguments.rc.contenthistid != '' && arguments.rc.contentBean.getIsNew() == 1 && !len(arguments.rc.instanceid) ) {
 			variables.fw.redirect(action="cArch.hist",append="contentid,siteid,startrow,moduleid,parentid,type",path="./");
