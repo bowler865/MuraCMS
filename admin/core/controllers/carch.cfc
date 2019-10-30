@@ -445,8 +445,8 @@ component extends="controller" output="false" {
 				}
 				if ( structIsEmpty(arguments.rc.contentBean.getErrors()) ) {
 					structDelete(session.mura,"editBean");
-					if ( arguments.rc.preview == 0 && !arguments.rc.murakeepediting ) {
-						if(isBoolean(arguments.rc.frontend) && arguments.rc.frontend && !listFindNoCase("Link,File",arguments.rc.contentBean.getType())){
+					if (!arguments.rc.murakeepediting ) {
+						if(arguments.rc.preview || isBoolean(arguments.rc.frontend) && arguments.rc.frontend && !listFindNoCase("Link,File",arguments.rc.contentBean.getType())){
 							location(url=arguments.rc.contentBean.getURL(complete=true,secure=application.settingsManager.getSite(arguments.rc.contentBean.getSiteID()).getUseSSL()),addtoken=false);
 						} else {
 							variables.fw.redirect(action="cArch.list",append="topid,siteid,startrow,moduleid",path="./");
