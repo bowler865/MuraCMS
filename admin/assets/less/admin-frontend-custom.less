@@ -549,28 +549,33 @@
 
 		.border-bottom-radius(2px) !important;
 		.border-top-radius(0) !important;
-  	.box-shadow(0 4px 6px rgba(0,0,0,.50)) !important;
+		.box-shadow(0 4px 6px rgba(0,0,0,.50)) !important;
 		border: 0 !important;
 		background: rgba(255, 255, 255, 0.13) !important;
-  	background: hsla(0,0%,18%,.97) !important;
+		background: hsla(0,0%,18%,.97) !important;
 		cursor: pointer !important;
 		margin-left: -5px;
-  	margin-top: 0 !important;
+		margin-top: 0 !important;
+		min-width: 140px !important;
 		padding-bottom: 2px;
 		padding-top: 0;
-  	text-align: left !important;
+		text-align: left !important;
 		top: (@feToolBarHeight - 1);
 
 		li {
 			cursor: pointer !important;
 			display: block !important;
 			margin: 0 !important;
-	    padding: 2px 4px !important;
-	    top: auto;
-	    right: auto;
-	    bottom: auto;
-	    left: auto;
+		    padding: 2px 4px !important;
+		    top: auto;
+		    right: auto;
+		    bottom: auto;
+		    left: auto;
 			
+				>a{
+					min-width: 120px;
+				}
+
 				&:first-child{
 					a{
 						padding-top: 7px !important;
@@ -588,7 +593,7 @@
 			float: none !important;
 			height: auto !important;
 			line-height: 1.2 !important;
-    	padding: 5px 10px 5px 12px!important;
+    		padding: 5px 10px 5px 12px!important;
 			}
 
 		li > a:hover {
@@ -628,10 +633,10 @@
 		> .dropdown-menu {
 			display: none;
 			margin-left: 0 !important;
-	    top:0 !important;
-	    left:100%;
-	    margin-top:-6px;
-	    margin-left:-1px;
+		    top:0 !important;
+		    left:100%;
+		    margin-top:-6px;
+		    margin-left:-1px;
 		}
 
 		&:hover > .dropdown-menu{
