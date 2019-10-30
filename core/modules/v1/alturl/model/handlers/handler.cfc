@@ -43,7 +43,7 @@
 				.prop('alturl').isEQ(request.currentfilename)
 				.andProp('ismuracontent').isEQ(0)
 				.addJoin('inner','tcontent','tcontentalturl.contenthistid=tcontent.contenthistid')
-				.andProp('content.active').isEQ(1)
+				.andProp('tcontent.active').isEQ(1)
 				.getIterator();
 
 			if (altURLit.hasNext()) {
