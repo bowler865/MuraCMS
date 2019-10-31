@@ -242,6 +242,16 @@
 					 	</#variables.$.getContentListPropertyValue(arguments.field,'tag',arguments.propertyMapFinal)#>
 					</cfif>
 				</cfcase>
+				<cfcase value="Subtype">
+					<cfif len(arguments.item.getValue(arguments.field))>
+					 	<#variables.$.getContentListPropertyValue(arguments.field,'tag',arguments.propertyMapFinal)# class="mura-item-meta__subtype mura-item-meta__subtype__#lcase(arguments.item.getValue('subtype'))#">
+					 	#variables.$.getContentListPropertyValue(arguments.field,"openingInnerMarkUp",arguments.propertyMapFinal)#
+					 			#variables.$.getContentListLabel(arguments.field,arguments.propertyMapFinal)#
+					 			 	#esapiEncode("html",arguments.item.getValue('subtype'))#
+					 	#variables.$.getContentListPropertyValue(arguments.field,"closingInnerMarkUp",arguments.propertyMapFinal)#
+					 	</#variables.$.getContentListPropertyValue(arguments.field,'tag',arguments.propertyMapFinal)#>
+					</cfif>
+				</cfcase>
 				<cfdefaultcase>
 					<cfif len(arguments.item.getValue(arguments.field))>
 						<!--- sys based dynamic classes are deprecated --->
