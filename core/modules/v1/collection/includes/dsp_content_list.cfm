@@ -295,6 +295,17 @@
 						 	</#variables.$.getContentListPropertyValue(arguments.field,'tag')#>
 						</cfif>
 					</cfcase>
+					<cfcase value="Subtype">
+						<cfif len(arguments.item.getValue('subtype'))>
+							<!--- sys based dynamic classes are deprecated --->
+						 	<#variables.$.getContentListPropertyValue(arguments.field,'tag')# class="sysSubtype sysSubtype__#arguments.item.getValue('subtype')#">
+						 	#variables.$.getContentListPropertyValue(arguments.field,"openingInnerMarkUp")#
+						 			#variables.$.getContentListLabel(arguments.field)#
+						 			#HTMLEditFormat(arguments.item.getValue('subtype'))#
+						 	#variables.$.getContentListPropertyValue(arguments.field,"closingInnerMarkUp")#
+						 	</#variables.$.getContentListPropertyValue(arguments.field,'tag')#>
+						</cfif>
+					</cfcase>
 					<cfdefaultcase>
 						<cfif len(arguments.item.getValue(arguments.field))>
 							<!--- sys based dynamic classes are deprecated --->
