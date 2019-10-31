@@ -72,7 +72,7 @@ component extends="mura.baseobject" hint="This provides JSON/REST API functional
 
 	    registerEntity('site',{
 	    	public=true,
-			fields="links,links,domain,siteid",
+			fields="links,links,domain,siteid,hasComments,commentApprovalDefault",
 			allowfieldselect=false
 		});
 
